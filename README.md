@@ -19,5 +19,8 @@ http://dcai-conference.net/
 * PACBB www.pacbb.net
 * MIS4TEL www.mis4tel-conference.net
 
+## Submissions
+http://dcai-conference.net/submission
+
 
 
