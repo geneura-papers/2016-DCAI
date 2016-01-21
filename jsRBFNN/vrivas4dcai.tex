@@ -7,6 +7,7 @@
 %
 \usepackage{makeidx}  % allows for indexgeneration
 \usepackage{color} %vrivas, 15-Jan-2016
+\usepackage{hyperref} %vrivas, 21-Jan-2016, for \url
 %c
 \begin{document}
 %
@@ -207,7 +208,7 @@ There will be two blank lines before and after the Abstract. \dots
 %
 \section{Introduction}
 % Web-based computing
-Web browsers stopped to be just simple HTML renders at they moment the allowed the executions of third-part programs included in the pages they downloaded. This way, browsers turned into wider frameworks in which multi-platform applications could be ran. Flash??? reference??? and Java applets reference??? are probably the best known techniques to do this, even for non-experts users. But, in fact, most of the code currently executed by browsers is written in a language called JavaScript reference???. The web, as we currently use it, would not be the same without the capability that JavaScript gives to the browser to make calculus, interact with the user, or dynamically retrieve data from servers without reloading the whole page, as it's done with AJAX Reference???. 
+Web browsers stopped to be just simple HTML renders at the moment they allowed the executions of third-part programs included in the pages they downloaded. This way, browsers turned into wider frameworks in which multi-platform applications could be ran. Flash??? reference??? and Java applets reference??? are probably the best known techniques to do this, even for non-experts users. But, in fact, most of the code currently executed by browsers is written in a language called JavaScript reference???. The web, as we currently use it, would not be the same without the capability that JavaScript gives to the browser to make calculus, interact with the user, or dynamically retrieve data from servers without reloading the whole page, as it's done with AJAX Reference???. 
 
 % Historia de JavaScript??? 
 
@@ -218,33 +219,45 @@ Due to the capabilities of JavaScript, in this work we propose the use of web br
  
 % Genetic Algorithms and RBFNN
 Both the problem being considered in this paper and the algorithms used to solve it were introduced in REFERENCIA DE 2004???. On the one hand, the problem consist on forecasting the values of the 
-exchange rates between two currencies, for a four years period (data is weekly averaged). On the other hand, the algorithm (described in section \ref{sec:algorithm} is a reduced version of EvRBF (REFERENCIA???), an evolutionary algorithm that makes Radial Basis Function Neural Networks (RBFNN) to evolve.
+exchange rates between two currencies, for a four years period (data is weekly averaged). On the other hand, the algorithm (described in section \ref{sec:algorithm} is a reduced version of {\em EvRBF} (REFERENCIA???), an evolutionary algorithm that makes Radial Basis Function Neural Networks (RBFNN) to evolve.
 
 RBFNN are feed-forward neural nets with just one hidden and one output layer Reference???. The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the higher the number of inputs that will not activate the neuron. Usually, Gaussian function is selected as the activation function, but many others can also be used.
 
-Configuring an RBFNN in order to solve a task consist on: a) choosing the activation function for hidden neurons, b) choosing the correct number of hidden and output neurons,  c) setting the parameters needed to apply the activation functions (i.e., center and radius), and d) setting the values for weights and bias. In any case, this last step can be easily computed once the rest of components have been established. Actually, the best set of weights and the bias can be computed using the Least Mean Square method.Taking this into account, the EvRBF algorithm has been designed to automatically search for the best configuration of an RBFNN that solves the problem being faced, except for the activation function to be used (i.e, the RBF) that is set a priori.
+Configuring an RBFNN in order to solve a task consist on: a) choosing the activation function for hidden neurons, b) choosing the correct number of hidden and output neurons,  c) setting the parameters needed to apply the activation functions (i.e., center and radius), and d) setting the values for weights and bias. In any case, this last step can be easily computed once the rest of components have been established. Actually, the best set of weights and the bias can be computed using the Least Mean Square method.Taking this into account, the {\em EvRBF} algorithm has been designed to automatically search for the best configuration of an RBFNN that solves the problem being faced, except for the activation function to be used (i.e, the RBF) that is set a priori.
 
 % Time-series prediction
 RBFNN have being successfully used by researchers to solve problems like classification, function approximation, and, as in this work, time-series forecasting REFERENCES???. Time-series can be considered as a special kind of function approximation where future values of the series are expressed as a function of past ones. There exist many methods in literature developed to forecast time-series references???, being ARIMA reference??? probably the most widely used. 
 
-In the herein, the implementation of EvRBF for web browsers (called jsEvRBF) has been compared to its original implementation as well as  to the method by REFERENCE, the ones introducing the time-series tackled in this paper.Thus, next section describes the jsEvRBF algorithm, and their special
+In the herein, the implementation of {\em EvRBF} for web browsers (called {\em jsEvRBF}) has been compared to its original implementation as well as  to the method by REFERENCE, the one introducing the time-series tackled in this paper. The paper has been organized in the following sections: section \ref{sec:algorithm} describes our algorithm; section \ref{sec:experiments} describes the problem to which the algorithm has been applied, as well as the experiments carried out and the results yielded. Finally, we draw some conclusions in section \ref{sec:conclusions}, and propose some future lines.
 
 
-\section{Algorithm}
+\section{The {\em jsEvRBF} algorithm}
 \label{sec:algorithm}
-% The EvRBF general skeleton
+% The {\em EvRBF} general skeleton
+{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so that it can be executed in web browsers.  As its predecessor REFERENCE???, its main characteristic is that individuals are complete RBFNN; for this reason, special operators have been programed in order to cross and mutate this kind of networks. Apart from this, it is a generational algorithm, with a fixed number of individuals, and uses tournament selection and elitist replacement. The code can be downloaded or forked from \url{ http://vrivas.github.io/evrbf_dcai2016}; its use is restricted under the terms of the Apache 2.0 license.
+
+In order to implement both the RBFNN and the evolutionary algorithm two JavaScript libraries have been developed by ourselves, namely {\em jsRBFNN}\footnote{\url{http://vrivas.github.io/jsRBFNN}} and {\em jsEO}\footnote{\url{http://vrivas.github.io/jsEO/}}. The first one implements the nets and also the LMS training algorithm to get the weights once a net has been built. The second one, {\em jsEO}REFRENCE_EVOSTAR??? is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new kind of individuals and operators by means of inheritance, as defined by object-oriented programming.
+
+
+
+
+
 % Specific characteristics of this implementation
 % Operators
 \section{Experiments and results}
+\label{sec:experiments}
 % The data-set
 % Two kind of experiments?
 % First one: lot of different browsers, short executions
 % Second one: only one browser, complete executions
 % Comparisons between them and original papers
 \section{Conclusions}
+\label{sec:conclusions}
 % It's possible to do, although some improvements have to be done, like migration
 % computation can be done while users are reading/using a web page
 % Servers need to have great computational power, but only the needed to serve many different problems, and store the information sent by clients.
+
+\section*{Acknowledges}
 %
 % ---- Bibliography ----
 %
