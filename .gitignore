@@ -7,5 +7,6 @@
 *.dem
 *.aux
 *.pdf
+*.out
 copiado.*
 *~
