@@ -283,36 +283,36 @@ With respect to the operators used in this algorithm:
 \end{itemize}
 
 
+Finally, the following set of parameters has to be established in order to run the {\em jsEvRBF} algorithm:
+\begin{itemize}
+\item{\em trnSamples}: Set of samples to train the nets; it will be also used to select the centers of the RBF of individuals in the initial population.
+\item{\em valSamples}: Set of samples to compute fitness.
+\item{\em inputDimension}: Dimension of inputs.
+\item{\em numNeurons}: Number of neurons for individuals of first population.
+\item{\em popSize}: Size of population
+\item{\em numGenerations}: Number of generations for the evolutionary algorithm.
+\item{\em tournamentSize}: Number of individuals to consider when selecting one of them to reproduce.
+\item{\em replaceRate}: Rate of individuals to be replaced in every new generation.
+\item{\em xOverRate}: Determines the number of individuals to which xOver operators will be applied.
+\item{\em mutRate}: Determines the number of individuals to which mutator operators will be applied.
+\item{\em mutPower}: Determines the number of neurons that will be changed by mutator operators, once the are being applied to a given individual.
+\end{itemize}
 
-3.1. Binary cross-over operator
-The binary-operator needs two RBF NNs to be applied, although it only
-changes one of them. This operator takes an uniformly random chosen number
-of consecutive hidden neurons from the first network, and another random
-sequence from the second; then it replaces the first of these sequences by the
-second one, so that the second individual remains unchanged.
-3.2. Unary operators
-Given that in a RBF NN the optimum weights from hidden-to-output
-neurons can be easily computed, the unary or mutation-like operators affect the
-hidden neuron components, centers and radii, in their quantities and values,
-but not the hidden-to-output weights.
-Centers mutator. This operator changes a given percentage of the compo-
-nents of the center of every hidden neuron. Each component of the center
-is modified by adding or subtracting a random value, which is chosen fol-
-lowing a Gaussian probability function with mean 0 and standard deviation
-0.1.
-Radii mutator. This operator is applied to one of the existing nets, but affects
-to the radii of the RBF. Radii are modified using a Gaussian function as de-
-fined previously. Radi
-
+Next section shows the exact values used for any of this parameters along the execution of the experiments.
 % Specific characteristics of this implementation
 % Operators
 \section{Experiments and results}
 \label{sec:experiments}
 % The data-set
+
 % Two kind of experiments?
+In order to test the {\em jsEvRBF}, two experiments have been carried out. First one has been open to a wide community of users
 % First one: lot of different browsers, short executions
+
 % Second one: only one browser, complete executions
+
 % Comparisons between them and original papers
+
 \section{Conclusions}
 \label{sec:conclusions}
 % It's possible to do, although some improvements have to be done, like migration
