@@ -177,7 +177,7 @@
 %                                     \toctitle is used
 %
 \author{
-V. M. Rivas\inst{1} 
+V. M. Rivas\inst{1}
 \and Other?\inst{2}
 }
 %
@@ -186,12 +186,16 @@ V. M. Rivas\inst{1}
 %%%% list of authors for the TOC (use if author list has to be modified)
 \tocauthor{V M. Rivas}
 %
-\institute{Depto. de Informatica, Univ. de Jaen, SPAIN,\\
-\email{vrivas@ujaen.es},\\ 
+%\institute{Depto. de Informatica, Univ. de Jaen, SPAIN,\\
+\institute{Universidad de Ja\'{e}n, Department of Computer Sciences,\\
+Campus Las Lagunillas s/n, 23071, Ja\'{e}n, SPAIN\\
+\email{vrivas@ujaen.es},\\
 \texttt{http://vrivas.es}
 \and
-Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
-Univ. de Granada, SPAIN
+%Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
+%Univ. de Granada, SPAIN
+Department of Computers, Architecture and Technology,\\
+C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN
 }
 
 \maketitle              % typeset the title of the contribution
@@ -208,35 +212,35 @@ There will be two blank lines before and after the Abstract. \dots
 %
 \section{Introduction}
 % Web-based computing
-Web browsers stopped to be just simple HTML renders at the moment they allowed the executions of third-part programs included in the pages they downloaded. This way, browsers turned into wider frameworks in which multi-platform applications could be ran. Flash??? reference??? and Java applets reference??? are probably the best known techniques to do this, even for non-experts users. But, in fact, most of the code currently executed by browsers is written in a language called JavaScript reference???. The web, as we currently use it, would not be the same without the capability that JavaScript gives to the browser to make calculus, interact with the user, or dynamically retrieve data from servers without reloading the whole page, as it's done with AJAX Reference???. 
+Web browsers stopped to be just simple HTML renders at the moment they allowed the executions of third-part programs included in the pages they downloaded. This way, browsers turned into wider frameworks in which multi-platform applications could be ran. Flash??? reference??? and Java applets reference??? are probably the best known techniques to do this, even for non-experts users. But, in fact, most of the code currently executed by browsers is written in a language called JavaScript reference???. The web, as we currently use it, would not be the same without the capability that JavaScript gives to the browser to make calculus, interact with the user, or dynamically retrieve data from servers without reloading the whole page, as it's done with AJAX Reference???.
 
-% Historia de JavaScript??? 
+% Historia de JavaScript???
 
 % Restricciones de JavaScript
-JavaScript is a general-purpose, object-based, event-driven language, that can be used to write programs for both the server and the client.  The way developers can add JavaScript code to their web pages or web applications is relatively simple: the code is inserted in the HTML code in plain text, being later interpreted and executed by the browser itself, once having being downloaded from the server. A vast majority (if not all) of nowadays, everyday, massively-used web pages and applications (including those related to social networks) exist thanks to this language. Thus, although web browsers allow the users to change the preferences in order to disable the execution of any JavaScript code, this is rarely done in these days. Even more, most standard web users are not aware of the existence of this language, not realizing their browsers are working as programming environments in which code is analyzed, translated into a low-level language and executed. Consequently, and for safety reasons, programs written in JavaScript are executed in browsers using a sandbox model. This model imposes a series of restriction that could be summarized as: the JavaScript program inserted in a given web page cannot access any other resources that the ones contained in that web page. JavaScript programs can also access to the client's disk in order to store little pieces of text (called cookies), and also when the user has to select a file to be sent across the net. 
+JavaScript is a general-purpose, object-based, event-driven language, that can be used to write programs for both the server and the client. The way developers can add JavaScript code to their web pages or web applications is relatively simple: the code is inserted in the HTML code in plain text, being later interpreted and executed by the browser itself, once having being downloaded from the server. A vast majority (if not all) of nowadays, everyday, massively-used web pages and applications (including those related to social networks) exist thanks to this language. Thus, although web browsers allow the users to change the preferences in order to disable the execution of any JavaScript code, this is rarely done in these days. Even more, most standard web users are not aware of the existence of this language, not realizing their browsers are working as programming environments in which code is analyzed, translated into a low-level language and executed. Consequently, and for safety reasons, programs written in JavaScript are executed in browsers using a sandbox model. This model imposes a series of restriction that could be summarized as: the JavaScript program inserted in a given web page cannot access any other resources that the ones contained in that web page. JavaScript programs can also access to the client's disk in order to store little pieces of text (called cookies), and also when the user has to select a file to be sent across the net.
 
 Due to the capabilities of JavaScript, in this work we propose the use of web browsers as agents able to download a set of data, execute an evolutionary algorithm that evolves neural nets, and apply this neural nets to forecast an economic time-series. Using this approach, any of the huge amount of devices in the world able to execute a web browser (from computers to smart TVs, including smart phones) can be used to run our algorithm, contributing to find new solutions.
- 
+
 % Genetic Algorithms and RBFNN
-Both the problem being considered in this paper and the algorithms used to solve it were introduced in REFERENCIA DE 2004???. On the one hand, the problem consist on forecasting the values of the 
-exchange rates between two currencies, for a four years period (data is weekly averaged). On the other hand, the algorithm (described in section \ref{sec:algorithm} is a reduced version of {\em EvRBF} (REFERENCIA???), an evolutionary algorithm that makes Radial Basis Function Neural Networks (RBFNN) to evolve.
+Both the problem being considered in this paper and the algorithms used to solve it were introduced in \cite{Rivas04}. On the one hand, the problem consist on forecasting the values of the
+exchange rates between two currencies, for a four years period (data is weekly averaged). On the other hand, the algorithm (described in section \ref{sec:algorithm} is a reduced version of {\em EvRBF} (\cite{Rivas04}), an evolutionary algorithm that makes Radial Basis Function Neural Networks (RBFNN) to evolve.
 
 RBFNN are feed-forward neural nets with just one hidden and one output layer Reference???. The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the higher the number of inputs that will not activate the neuron. Usually, Gaussian function is selected as the activation function, but many others can also be used.
 
-Configuring an RBFNN in order to solve a task consist on: a) choosing the activation function for hidden neurons, b) choosing the correct number of hidden and output neurons,  c) setting the parameters needed to apply the activation functions (i.e., center and radius), and d) setting the values for weights and bias. In any case, this last step can be easily computed once the rest of components have been established. Actually, the best set of weights and the bias can be computed using the Least Mean Square method.Taking this into account, the {\em EvRBF} algorithm has been designed to automatically search for the best configuration of an RBFNN that solves the problem being faced, except for the activation function to be used (i.e, the RBF) that is set a priori.
+Configuring an RBFNN in order to solve a task consist on: a) choosing the activation function for hidden neurons, b) choosing the correct number of hidden and output neurons, c) setting the parameters needed to apply the activation functions (i.e., center and radius), and d) setting the values for weights and bias. In any case, this last step can be easily computed once the rest of components have been established. Actually, the best set of weights and the bias can be computed using the Least Mean Square method.Taking this into account, the {\em EvRBF} algorithm has been designed to automatically search for the best configuration of an RBFNN that solves the problem being faced, except for the activation function to be used (i.e, the RBF) that is set a priori.
 
 % Time-series prediction
-RBFNN have being successfully used by researchers to solve problems like classification, function approximation, and, as in this work, time-series forecasting REFERENCES???. Time-series can be considered as a special kind of function approximation where future values of the series are expressed as a function of past ones. There exist many methods in literature developed to forecast time-series references???, being ARIMA reference??? probably the most widely used. 
+RBFNN have being successfully used by researchers to solve problems like classification, function approximation, and, as in this work, time-series forecasting \cite{Broomhead88,Keogh03,Whitehead}. Time-series can be considered as a special kind of function approximation where future values of the series are expressed as a function of past ones. There exist many methods in literature developed to forecast time-series references???, being ARIMA \cite{BoxJenk} probably the most widely used.
 
-In the herein, the implementation of {\em EvRBF} for web browsers (called {\em jsEvRBF}) has been compared to its original implementation as well as  to the method by REFERENCE, the one introducing the time-series tackled in this paper. The paper has been organized in the following sections: section \ref{sec:algorithm} describes our algorithm; section \ref{sec:experiments} describes the problem to which the algorithm has been applied, as well as the experiments carried out and the results yielded. Finally, we draw some conclusions in section \ref{sec:conclusions}, and propose some future lines.
+In the herein, the implementation of {\em EvRBF} for web browsers (called {\em jsEvRBF}) has been compared to its original implementation as well as to the method by REFERENCE, the one introducing the time-series tackled in this paper. The paper has been organized in the following sections: section \ref{sec:algorithm} describes our algorithm; section \ref{sec:experiments} describes the problem to which the algorithm has been applied, as well as the experiments carried out and the results yielded. Finally, we draw some conclusions in section \ref{sec:conclusions}, and propose some future lines.
 
 
 \section{The {\em jsEvRBF} algorithm}
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
-{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so that it can be executed in web browsers.  As its predecessor REFERENCE???, its main characteristic is that individuals are complete RBFNN; for this reason, special operators have been programed in order to cross and mutate this kind of networks. Apart from this, it is a generational algorithm, with a fixed number of individuals, and uses tournament selection and elitist replacement. The code can be downloaded or forked from \url{ http://vrivas.github.io/evrbf_dcai2016}; its use is restricted under the terms of the Apache 2.0 license.
+{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so that it can be executed in web browsers.  As its predecessor \cite{Rivas04}, its main characteristic is that individuals are complete RBFNN; for this reason, special operators have been programmed in order to cross and mutate this kind of networks. Apart from this, it is a generational algorithm, with a fixed number of individuals, and uses tournament selection and elitist replacement. The code can be downloaded or forked from \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms of the Apache 2.0 license.
 
-In order to implement both the RBFNN and the evolutionary algorithm two JavaScript libraries have been developed by ourselves, namely {\em jsRBFNN}\footnote{\url{http://vrivas.github.io/jsRBFNN}} and {\em jsEO}\footnote{\url{http://vrivas.github.io/jsEO/}}. The first one implements the nets and also the LMS training algorithm to get the weights once a net has been built. The second one, {\em jsEO}REFRENCE-EVOSTAR??? is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new kind of individuals and operators by means of inheritance, as defined by object-oriented programming.
+In order to implement both the RBFNN and the evolutionary algorithm, two JavaScript libraries have been developed by our research group, namely {\em jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em jsEO}\footnote{\url{http://bit.ly/js-EO}}. The first one implements the nets and also the LMS training algorithm to get the weights once a net has been built. The second one, {\em jsEO} REFRENCE-EVOSTAR??? is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new kind of individuals and operators by means of inheritance (as defined in object-oriented programming).
 
 
 
@@ -269,7 +273,26 @@ In order to implement both the RBFNN and the evolutionary algorithm two JavaScri
 %boundary-value problems for Hamiltonian systems.
 %Arch. Rat. Mech. Anal. 78, 315--333 (1982)
 
+\bibitem[1]{BoxJenk}
+Box, G.E., Jenkins G.M.: Time series analysis: forecasting and control. San Francisco: Holden Day (1976)
 
+\bibitem[2]{Broomhead88}
+Broomhead, D.S., Lowe D.: Multivariable functional interpolation and adaptive networks. Complex Systems, 2, 321--355 (1988)
+
+\bibitem[3]{Keogh03}
+Keogh, E.: On the Need for Time Series Data Mining Benchmarks: A Survey and Empirical. Data Mining and Knowledge Discovery, 7(4), 349--371 (2003).
+
+%\bibitem[4]{Pena2005}
+%Peña D.: An\'alisis de Series Temporales, Alianza Editorial, ISBN 84-206-9128-3 (2005)
+   
+\bibitem[5]{Rivas04}
+Rivas, V.M., Merelo, J.J., Castillo, P.A., Arenas, M.G., Castellanos, J.G.: Evolving RBF neural networks for time-series forecasting with EvRBF. Information Sciences, 165(3-4), 207--220 (2004)
+
+\bibitem[6]{Whitehead}
+Whitehead, B., Choate, T.: Cooperative-competitive genetic evolution of Radial Basis Function centers and widths for time series predictioN. IEEE Trans. on Neural Networks, 7(4), 869--880 (1996).
+
+
+   
 \end{thebibliography}
 %\clearpage
 %\addtocmark[2]{Author Index} % additional numbered TOC entry
