@@ -11,3 +11,4 @@
 copiado.*
 *~
 *.gz
+.~lock*
