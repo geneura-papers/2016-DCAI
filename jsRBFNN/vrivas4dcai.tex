@@ -8,6 +8,8 @@
 \usepackage{makeidx}  % allows for indexgeneration
 \usepackage{color} %vrivas, 15-Jan-2016
 \usepackage{hyperref} %vrivas, 21-Jan-2016, for \url
+\usepackage{graphicx} %vrivas, 27-Jan-2016, for images
+\usepackage{listings}%vrivas, 27-Jan-2016, for code
 %c
 \begin{document}
 %
@@ -240,11 +242,67 @@ In the herein, the implementation of {\em EvRBF} for web browsers (called {\em j
 % The {\em EvRBF} general skeleton
 {\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so that it can be executed in web browsers.  As its predecessor \cite{Rivas04}, its main characteristic is that individuals are complete RBFNN; for this reason, special operators have been programmed in order to cross and mutate this kind of networks. Apart from this, it is a generational algorithm, with a fixed number of individuals, and uses tournament selection and elitist replacement. The code can be downloaded or forked from \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms of the Apache 2.0 license.
 
-In order to implement both the RBFNN and the evolutionary algorithm, two JavaScript libraries have been developed by our research group, namely {\em jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em jsEO}\footnote{\url{http://bit.ly/js-EO}}. The first one implements the nets and also the LMS training algorithm to get the weights once a net has been built. The second one, {\em jsEO} REFRENCE-EVOSTAR??? is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new kind of individuals and operators by means of inheritance (as defined in object-oriented programming).
+In order to implement both the RBFNN and the evolutionary algorithm, two JavaScript libraries have been developed by our research group, namely {\em jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em jsEO}\footnote{\url{http://bit.ly/js-EO}}. The first one implements the nets and also the LMS training algorithm to get the weights once a net has been built. The second one, {\em jsEO} REFRENCE-EVOSTAR??? is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new kind of individuals and operators by means of inheritance (as defined in object-oriented programming). Figure \ref{fig:class_diagram} graphically shows the set of dependencies between the algorithm and the rest of libraries. 
+
+
+As a standard evolutionary algorithm, the skeleton of jsEvRBF is the following:
+
+
+\begin{lstlisting}
+(1) Create, train and evaluate an initial population \
+        of _p_ individuals.
+(2) During _n_ generations do:
+   (2.1) Select a subpopulation of _q_ individuals
+   (2.2.) Create _q_ new individuals applying an operator \
+          to any of the ones in subpopulation
+   (2.3) Train and evaluate the _q_ new individuals
+   (2.4) Join and sort both old and new populations
+   (2.5) Remove the _q_ worst individuals
+(3) Send the forecasting done by the best individual \
+   in last generation to the server
+\end{lstlisting}
+
+
+\begin{figure}[!ht]
+\includegraphics[width=120mm]{class-diagram.jpg}
+\caption{Class diagram of the jsEvRBF algorithm, showing the way it depends on the jsEO general framework and the jsRBFNN library.}
+\label{fig:class_diagram}
+\end{figure}
+
+
+The individuals are RBFNN, any of them composed of a set of hidden neurons implemented as a vector of objects. Every hidden neuron stores its center and radius, and the global RBFNN stores the weights and bias. 
+
+With respect to the operators used in this algorithm:
+
+\begin{itemize}
+\item {\em XOver.} Takes two individuals as inputs and operates by randomly selecting a set of neurons from first individual and another set (probably of a different size) from the second one. After this, those sets are interchanged.
+
+\item {\em CenterMut.} Modifies a percentage of the centers of the individual it gets as input, just setting the new center to random values in the range defined by the input dimension.
+
+\item {\em RadiusMut.} Quite similar to the precendent, this operator modifies a percentage of the radius of the neurons belonging to the individual received, choosing a new value in the same way the {\em CenterMut} operators does.
+\end{itemize}
 
 
 
-
+3.1. Binary cross-over operator
+The binary-operator needs two RBF NNs to be applied, although it only
+changes one of them. This operator takes an uniformly random chosen number
+of consecutive hidden neurons from the first network, and another random
+sequence from the second; then it replaces the first of these sequences by the
+second one, so that the second individual remains unchanged.
+3.2. Unary operators
+Given that in a RBF NN the optimum weights from hidden-to-output
+neurons can be easily computed, the unary or mutation-like operators affect the
+hidden neuron components, centers and radii, in their quantities and values,
+but not the hidden-to-output weights.
+Centers mutator. This operator changes a given percentage of the compo-
+nents of the center of every hidden neuron. Each component of the center
+is modified by adding or subtracting a random value, which is chosen fol-
+lowing a Gaussian probability function with mean 0 and standard deviation
+0.1.
+Radii mutator. This operator is applied to one of the existing nets, but affects
+to the radii of the RBF. Radii are modified using a Gaussian function as de-
+fined previously. Radi
 
 % Specific characteristics of this implementation
 % Operators
