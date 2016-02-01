@@ -357,14 +357,35 @@ EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4} \pm 2 \times 
 
 \section{Conclusions}
 \label{sec:conclusions}
-In this paper, we have introduced the {\em jsEvRBF} algorithm; written in JavaScript, this algorithm can be executed in web-browsers when users access to a specified URL. The web page downloaded by the web-browser contains the code of this evolutionary algorithm, able to build, train and evolve RBFNN used to perform time-series forecasting over a set of data related to currency exchange.
+In this paper, we have introduced the {\em jsEvRBF} algorithm; % an algorithm or an implementation? - JJ
+written in JavaScript, this algorithm can be executed in web-browsers
+when users access to a specified URL. The web page downloaded by the
+web-browser contains the code of this evolutionary algorithm, able to
+build, train and evolve RBFNN used to perform time-series forecasting
+over a set of data related to currency exchange. % which is
+                                % interesting because... -JJ
 
-The two experiments carried out show the approach is valid, although still some research must being done in order to determine the reasons that make AppleWebKit-based browsers (mainly Chrome and Safari) not two work properly, yielding poor results.  In any case, web-browsers have been proved to be a good alternative to achieve distributing computation, minimizing the effort needed to ensure cross-platform compatibility as well as easiness of use.
+The experiments carried so far show that the approach is valid,
+although some research must still be done in order to determine the
+reasons that make AppleWebKit-based browsers (mainly Chrome and
+Safari) not work properly, yielding poor results.  % slow? some other
+                                % thing? - JJ
+In any case,
+web-browsers have been proved to be a good alternative to achieve
+distributing computation, minimizing the effort needed to ensure
+cross-platform compatibility as well as easiness of use. % This should
+                                % go to the first paragraph - JJ
 
-The experiments showed in this paper did not make use of migration, since existent algorithms with which the one has been compared did not include this possibility. Nevertheless, {\em jsEO}, the underlying library supporting {\em jsEvRBF}, has been implemented with this feature. For this reason, future work includes the use of the algorithm in an {\em island model}  framework in which good individuals be distributed to the clients running the algorithm.
+% never negative statements: say you are going to do it the future
+% - JJ
+Future work includes the use of the
+algorithm in an {\em island model}  framework in which good
+individuals be distributed to the clients running the algorithm, since {\em jsEO}, the underlying
+library supporting {\em jsEvRBF}, has been implemented with this
+feature. 
 
 
-\section*{Acknowledges}
+\section*{Acknowledgements}
 %
 % ---- Bibliography ----
 %
@@ -410,10 +431,8 @@ Whitehead, B., Choate, T.: Cooperative-competitive genetic evolution of Radial B
 \bibitem[11]{Sheta2001} 
 Sheta, A.F., de Jong, K.: Time-series forecasting using GA-tuned radial basis functions,Information Sciences 133 (3?4)  221--228, April.(2001)
 
-
-
 \end{thebibliography}
-
+% Don't like this at all... using .bib much better.
 %\addtocmark[2]{Author Index} % additional numbered TOC entry
 %\renewcommand{\indexname}{Author Index}
 %\printindex
