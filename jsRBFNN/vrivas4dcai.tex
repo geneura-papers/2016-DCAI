@@ -29,7 +29,7 @@
 %
 \author{
 V. M. Rivas\inst{1,3} \and E. Parras-Guti\'{e}rrez\inst{1}
-\and Other?\inst{2}
+\and JJ Merelo\inst{2,3}
 }
 %
 \authorrunning{V. M. Rivas et al.} % abbreviated author list (for running head)
@@ -43,8 +43,8 @@ Campus Las Lagunillas s/n, 23071, Ja\'{e}n, SPAIN\\
 \email{vrivas@ujaen.es}, 
 \texttt{http://vrivas.es}
 \and
-%Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
-%Univ. de Granada, SPAIN
+Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
+Univ. de Granada, SPAIN
 Univ. of Granada, Dept. of Computers, Architecture and Technology,\\
 C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN
 \and
@@ -53,7 +53,25 @@ GeNeura Team \\ \texttt{http://geneura.wordpress.com}
 
 \maketitle              % typeset the title of the contribution
 \begin{abstract}
-Forecasting time-series by means of genetic algorithm and neural nets is a task suitable to be performed by modern web-browsers. This paper introduces {\em jsEvRBF}, an algorithm written in JavaScript, that can be easily  spread to and executed by any device containing a web-browser just accessing an URL. The experiments show the results yielded by the algorithm over a  data set related to currencies exchange. Best results achieved  can be effectively compared against previous results in literature, though robustness of the new algorithm has to be improved.
+Using the browser for running forecasting algorithms is a challenge,
+since language support and performance varies across implementations
+of the JavaScript virtual machine and vendor. However, using them will
+provide a boost in the number of platforms available to
+scientists. % A bit of motivation for the paper
+% Papers need to have: motivation, objective. And the first sentences
+% in the paragraph will have to go in that direction.
+That is why  in this paper we present the implementation of a time series
+forecasting algorithm, {\em jsEvRBF} that uses of genetic algorithm and neural nets
+in a way that can be run in must modern web browsers. {\em jsEvRBF} is
+written in JavaScript, so that it can
+be easily delivered to and executed by any device containing a
+web-browser just accessing an URL. The experiments show the results
+yielded by the algorithm over a  data set related to currencies
+exchange. % the results are what? Good? Better? Worse?
+Best results achieved  can be effectively compared against
+previous results in literature, though robustness of the new algorithm
+has to be improved. % What was your objective? Just running it?
+                    % Running it with a decent performance? - JJ
 
 \keywords{Time-series forecasting, evolutionary computation, radial basis function neural networks, Web-based programming, volunteer computation}
 \end{abstract}
