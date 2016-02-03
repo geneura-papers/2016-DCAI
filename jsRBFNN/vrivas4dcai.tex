@@ -28,8 +28,9 @@
 %                                     \toctitle is used
 %
 \author{
-V. M. Rivas\inst{1,3} \and E. Parras-Guti\'{e}rrez\inst{1}
-\and JJ Merelo\inst{2,3}
+V.M. Rivas\inst{1,3} \and E. Parras-Guti\'{e}rrez\inst{1}
+\and JJ Merelo\inst{2,3}  \and M.G. Arenas\inst{2,3}
+\and P. Garc\'{\i}a-Fern\'{a}ndez\inst{2,3}
 }
 %
 \authorrunning{V. M. Rivas et al.} % abbreviated author list (for running head)
@@ -44,6 +45,7 @@ Campus Las Lagunillas s/n, 23071, Ja\'{e}n, SPAIN\\
 \texttt{http://vrivas.es}
 \and
 Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
+Depto. de Electr\'{o}nica y Tecnolog\'{\i}as de las Computadoras\\
 Univ. de Granada, SPAIN
 Univ. of Granada, Dept. of Computers, Architecture and Technology,\\
 C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN
@@ -61,7 +63,7 @@ scientists. % A bit of motivation for the paper
 % Papers need to have: motivation, objective. And the first sentences
 % in the paragraph will have to go in that direction.
 That is why  in this paper we present the implementation of a time series
-forecasting algorithm, {\em jsEvRBF} that uses of genetic algorithm and neural nets
+forecasting algorithm, {\em jsEvRBF} that uses genetic algorithm and neural nets
 in a way that can be run in must modern web browsers. {\em jsEvRBF} is
 written in JavaScript, so that it can
 be easily delivered to and executed by any device containing a
@@ -73,6 +75,15 @@ previous results in literature, though robustness of the new algorithm
 has to be improved. % What was your objective? Just running it?
                     % Running it with a decent performance? - JJ
 
+
+
+
+
+
+
+
+
+
 \keywords{Time-series forecasting, evolutionary computation, radial basis function neural networks, Web-based programming, volunteer computation}
 \end{abstract}
 %
@@ -81,45 +92,46 @@ has to be improved. % What was your objective? Just running it?
 %Web browsers stopped to be just simple HTML renders at the moment they allowed the executions of third-part programs included in the pages they downloaded. This way, browsers turned into wider frameworks in which multi-platform applications could be run. 
 %Flash??? reference??? and Java applets the??? are probably the best known techniques to do this, even for non-experts users. But, in fact, 
 Nowadays, most programs executed by browsers are written in a language called JavaScript, developed in an attempt to do the Web more dynamic \cite{Rauschmayer04}. 
-A vast majority (if not all) of current everyday, massively-used web pages and applications (including those related to social networks) exist thanks to this language.
-The use of this language has turned browsers into wider frameworks in which multi-platform applications are run.
+Current everyday, massively-used web pages and applications (including those related to social networks) exist thanks to this language.
+Its use has turned browsers into wider frameworks in which multi-platform applications can be run.
 %The web, as we currently use it, would not be the same without the capability that JavaScript gives to the browser to make calculus, interact with the user, or dynamically retrieve data from servers without reloading the whole page, as it's done with AJAX Reference???. 
 %Throughout the 1990s, the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include in Navigator Java, its more static programming language, so it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers the support for Java applets \cite{Champeon08}. In May 1995, Eich designed a prototype in 10 days and was named first \emph{Mocha}, coined by the founder of Netscape Marc Andreessen, then \emph{LiveScript} and finally, in December 1995, \emph{JavaScript} \cite{Eich2010}, not because of the Java programming language, but to support Sun Microsystems.
-JavaScript was standardized in 1997 by the European Computer Manufacturer's Association, or ECMA. Although, the official name of the language, according to the ECMA-262 standard, is \emph{ECMAScript} (derived from \emph{JavaScript} and \emph{ECMA}), everyone calls the language \emph{JavaScript} \cite{Flanagan06}.
+JavaScript was standardized in 1997 by the European Computer Manufacturer's Association, or ECMA. According to the ECMA-262 standard, its real name is \emph{ECMAScript}, but everyone calls the language \emph{JavaScript} \cite{Flanagan06}.
 
 % Restricciones de JavaScript
 JavaScript can be described as a general-purpose, object-based, event-driven language.
 % that can be used to write programs for both the client and the server REFERENCE-NODE???. T¡
-Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text, being later interpreted and executed by the browser itself, after having been downloaded from the server. 
+Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
 %Thus, although web browsers allow the users to change the preferences in order to disable the execution of any JavaScript code, this is rarely done in these days. Even more, most standard web users are not aware of the existence of this language, not realizing their browsers are working as programming environments in which code is analyzed, translated into a low-level language and executed. Consequently, and 
 %For safety reasons, programs written in JavaScript are executed by browsers using a sandbox model. This model imposes a series of restriction that could be summarized as: the JavaScript program inserted in a given web page cannot access any other resources than the ones contained in that web page. JavaScript programs are allowed to the client's file system to store little pieces of text (called cookies), and also when the user has to select a file to be sent across the net.
-Due to the abilities of JavaScript, in this work we propose the use of web browsers as agents able to download a web page containing a set of data, execute an evolutionary algorithm that evolves neural nets, and apply this neural nets to forecast an economic time-series. Using this approach, any device  able to execute a web browser (from computers to smart TVs) can be potentially used to run our algorithm, contributing to find new solutions.
+Due to the abilities of JavaScript, in this work we propose the use of web browsers as agents able to download a web page containing a set of data, execute an evolutionary algorithm that evolves neural nets, and apply this neural nets to forecast an economic time-series. Using this approach, any device  able to execute a web browser (from computers to smart TVs) can be potentially used to run any algorithm.
 
 % Genetic Algorithms and RBFNN
 Both the problem being considered in this paper and the algorithm used to solve it were introduced in \cite{Rivas04}. On the one hand, the problem consists on forecasting the values of the
 exchange rates between two currencies, for a four years period (data is weekly averaged). On the other hand, the algorithm (described in section \ref{sec:algorithm}) is a reduced version of {\em EvRBF}\cite{Rivas04}, an evolutionary algorithm that makes Radial Basis Function Neural Networks (RBFNN) to evolve.
 
-RBFNN are well-known feed-forward neural nets with just one hidden and one output layers  \cite{Broomhead88}
+RBFNN are well-known feed-forward neural nets with just one hidden and one output layers %\cite{Broomhead88}. They have been successfully used to solve classification, function approximation, and, as in this work, time-series forecasting 
+\cite{Broomhead88,Keogh03,Whitehead} problems.
 %The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the higher the number of inputs that will not activate the neuron. Usually, Gaussian function is selected as the activation function, but many others can also be used.
-Configuring an RBFNN in order to solve a task consists on: a) choosing the activation function for hidden neurons (usually, Gaussian function is selected), b) choosing the correct number of hidden neurons, c) setting the parameters needed to apply the activation functions (center and radius of the RBF), and d) setting the values for weights and bias. In any case, this last step can be easily computed once the rest of components have been established. Actually, the best set of weights and the bias can be computed using the Least Mean Square method. Taking this into account, the {\em EvRBF} algorithm has been designed to automatically search for the best configuration of an RBFNN that solves the problem being faced, except for the activation function to be used (i.e, the RBF) that is set a priori.
+Configuring an RBFNN in order to solve a task consists on: a) choosing the activation function for hidden neurons, b) choosing the number of hidden neurons, c) setting the parameters required by the activation functions (center and radius of the RBF), and d) setting the values for weights and bias. This last step can be easily computed once the rest of components have been established using the Least Mean Square method. {\em EvRBF} algorithm was designed to automatically search for the best configuration of an RBFNN that solves the problem being tackled, except for the activation function to be used that is always a Gaussian function.
 
 % Time-series prediction
-RBFNN have been successfully used to solve classification, function approximation, and, as in this work, time-series forecasting \cite{Broomhead88,Keogh03,Whitehead} problems.
-%Time-series can be considered as a special kind of function approximation where future values of the series are expressed as a function of past ones.
-There exist many methods in literature developed to forecast time-series references, being ARIMA \cite{BoxJenk} probably the most widely used.
 
-In the herein, the implementation of {\em EvRBF} for web browsers (called {\em jsEvRBF}) has been compared to its original implementation as well as to the methods by \cite{Sheta2001}, the one introducing the data set tackled in this paper. The paper has been organized in the following sections: section \ref{sec:algorithm} describes our algorithm; section \ref{sec:experiments} describes the problem to which the algorithm has been applied, as well as the experiments carried out and the results yielded. Finally, we draw some conclusions in section \ref{sec:conclusions}, and propose some future lines.
+%Time-series can be considered as a special kind of function approximation where future values of the series are expressed as a function of past ones.
+%There exist many methods in literature developed to forecast time-series references, being ARIMA \cite{BoxJenk} probably the most widely used.
+
+In the herein, the implementation of {\em EvRBF} for web browsers (called {\em jsEvRBF}) has been compared to its original implementation as well as to the methods by \cite{Sheta2001}, the one introducing the data set tackled in this paper. Next sections describe: the algorithm (section \ref{sec:algorithm}); the problem to which the algorithm has been applied, as well as the experiments carried out  and the results yielded (section \ref{sec:experiments}), and conlusions and future lines (section \ref{sec:conclusions}).
 
 
 \section{The {\em jsEvRBF} algorithm}
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
-{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so that it can be executed in web browsers.  As in its predecessor {\em EvRBF} \cite{Rivas04} individuals are complete RBFNN, and special operators have been programmed to cross and mutate these networks. {\em jsEvRBF} is a generational algorithm, with a fixed number of individuals, that uses tournament selection and elitist replacement. The code can be downloaded or forked from \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms of the Apache 2.0 license.
+{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so that it can be executed in web browsers.  As in {\em EvRBF} \cite{Rivas04}, its predecessor, individuals are complete RBFNN, and special operators have been created to cross and mutate them. {\em jsEvRBF} is a generational algorithm, with a fixed number of individuals, that uses tournament selection and elitist replacement\footnote{The code can be downloaded or forked from \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms of the Apache 2.0 license.}.
 
-In order to implement both the RBFNN and the evolutionary algorithm, two JavaScript libraries have been developed by our research group, namely {\em jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em jsEO}\footnote{\url{http://bit.ly/js-EO}}. The first one implements the nets and also the LMS training algorithm to get the weights once a net has been built. The second one, {\em jsEO} \cite{RivasEvoStar2014} is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new kind of individuals and operators by means of inheritance (as defined in object-oriented programming). Figure \ref{fig:class_diagram} graphically shows the set of dependencies between the algorithm and the rest of libraries. 
+In order to implement both the RBFNN and the evolutionary algorithm, two JavaScript libraries: {\em jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em jsEO}\footnote{\url{http://bit.ly/js-EO}}, have been developed by our research group. {\em jsRBFNN} implements the nets and also the LMS training algorithm. {\em jsEO} \cite{RivasEvoStar2014} is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new types of individuals and/or operators. Figure \ref{fig:class_diagram} graphically shows the dependencies between {\em jsEvRBF} and these libraries. 
 
 
-As a standard evolutionary algorithm, the skeleton of jsEvRBF is the following:
+As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the following:
 
 
 \begin{lstlisting}
@@ -177,10 +189,10 @@ Next section shows the exact values used for any of this parameters along the ex
 \section{Experiments and results}
 \label{sec:experiments}
 % The data-set
-In order to test the performance of {\em jsEvRBF}, the algorithm has been evaluated with the time-series used by Sheta and de Jong \cite{Sheta2001}. The time-series is composed of 208 weekly averaged observations representing the exchange rates between Bristish pound and US dollar from 31 December 1979 to 26 December 1983. The source of the information, thanks to the work done by Prof. Werner Antweiler from the University of British Columbia, Vancouver, Canada, is available from \url{http://pacific.commerce.ubc.ca/xr/data.html}. This data set has been used in a similar way than Sheta and de Jong: only half the data (randomly choosen) has been used to train and validate the nets, but the generalization error has been computed over the whole data set.
+In order to test the performance of {\em jsEvRBF}, the algorithm has been evaluated with the time-series used by Sheta and de Jong \cite{Sheta2001}. It is composed of 208 weekly averaged observations representing the exchange rates between Bristish pound and US dollar from 31 December 1979 to 26 December 1983\footnote{The source of the information, thanks to the work done by Prof. Werner Antweiler from the University of British Columbia, Vancouver, Canada, is available from \url{http://pacific.commerce.ubc.ca/xr/data.html}.}. This data set has been used in a similar way than Sheta and de Jong: only half the data (randomly choosen) has been used to train and validate the nets, but the generalization error has been computed over the whole data set.
 
 % Two kind of experiments?
-In order to test the {\em jsEvRBF}, two experiments have been carried out. First one has been open to a wide community of users, so that many different devices, operating systems and web browsers have been used. 
+Two experiments have been carried out using {\em jsEvRBF}. First one has been open to a wide community of users, so that many different devices, operating systems and web browsers have been used. 
 On the other hand, the second experiment has been executed in a single computer, using a single web browser, so that we can focus in the forecasting process itself.
 In any case, participating in the experiment only required to connect to an URL; no special technical knowledge was necessary to run the algorithm since it was automatically executed once the web page was loaded. 
 %Figure \ref{fig:example-of-execution} shows the page users could read when accessing the specified URL.
@@ -198,10 +210,10 @@ Information about clients and the results they yielded were received by a server
 % First one: lot of different browsers, short executions
 \subsection{First experiment: short executions, many browsers}
 \label{sec:first-experiment}
-The first experiment carried out was designed to test whether the kind of computation described by {\em jsEvRBF} could be effectively executed in different platforms. To do this, a "call for volunteer computation" in the form of messages published in Twitter and Facebook was done. Any of this two account were followed by about 500 people, although messages were also re-distributed by some of the original followers. The profile of Twiitter followers was mainly technical (IT professional and/or students), being more varied in the case of Facebook ones. 
+The first experiment carried out was designed to test whether the kind of computation described by {\em jsEvRBF} could be effectively executed in different platforms. To do this, a "call for volunteer computation" in the form of messages published in Twitter and Facebook was done. Any of these two accounts were followed by about 500 people. %, although messages were also re-distributed by some of the original followers. The profile of Twiitter followers was mainly technical (IT professional and/or students), being more varied in the case of Facebook ones. 
 
 
-Table \ref{tab:parameters-first-experiment} shows the values specified for every parameter. They differ from the ones used in previous work \cite{Rivas04} due to the lack of power of low-quality, old smartphones. An initial set of test showed that browsers running in that kind of devices usually blocked the execution of the algorithm  after a few seconds; this led us to configure the experiment in a less ambitious sense, paying more attention to the he algorithm's ability  to be executed in any device more than in its ability to perform the best forecasting.
+Table \ref{tab:parameters-first-experiment} shows the value specified for every parameter. They differ from the ones used in previous work \cite{Rivas04} due to the lack of power of low-quality, old smartphones. An initial test showed that browsers running in that kind of devices usually blocked the execution of the algorithm; this led us to configure the experiment paying more attention to the algorithm's ability  to be executed in any device more than in its ability to perform the best forecasting.
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
@@ -228,11 +240,11 @@ Table \ref{tab:parameters-first-experiment} shows the values specified for every
 \end{center}
 \end{table}
 
-This experiment was available for users from 8-Jan-2016 to 18-Jan-2016. Every time a user accessed to the URL, 15 independent executions of the algorithm were sequentially run in his/her web client. The user could stop in any moment these executions thanks to a button present in the web page (or just closing the navigator o changing to another URL). After every execution, results were sent to our server where we stored: a) the description of the client (type of navigator, version, and operating system), and b) a set of values corresponding to the error measures previously introduced at beginning of this section.
+This experiment was available for users from 8-Jan-2016 to 18-Jan-2016. Every time a user accessed to the URL, 15 independent executions of the algorithm were sequentially run in his/her web client. The user could easily stop these executions in any moment these executions. After every execution, results were sent to our server to store a description of the web browser, and a set of error values including MSE among others. 
 
-The analysis of the data stored shows that a total of $165$ different access were made to the page during the cited period, resulting in $2304$ executions of the algorithm, i.e.,  $13.9$ executions in average per client (very close to the maximum, established to $15$ as can be seen in table \ref{tab:parameters-first-experiment}). Up to 25 different versions of browser were detected, more than half were Chrome browsers ($58.79\%$), followed by Safari ($26.06\%$). Unfortunately, only $80\%$ of the solutions were valid, since in some executions performed by Chrome and Safari browsers (i.e., those based on AppleWebKit, not on Gecko) a $NaN$ error appeared when training the nets.  This can be considered one of our first conclusions since, even having used standard javaScript code, there exist differences in the way browsers compile it.
+The analysis of the results showed that a total of $165$ different access were made to the page during the cited period, resulting in $2304$ executions, i.e.,  $13.9$ executions in average per client. Up to 25 different versions of browser were detected, more than a half were Chrome browsers ($58.79\%$), followed by Safari ($26.06\%$) and Firefox($15.15\%$). Unfortunately, only $80\%$ of the solutions were valid, since in some executions performed by Chrome and Safari browsers (i.e., those based on AppleWebKit) a $NaN$ error appeared when training the nets.  This can be considered one of our first conclusions since, even having used standard javaScript code, there exist differences in the way browsers compile it.
 
-With respect to forecasting, table \ref{tab:comparison-first-experiment} shows the MSE of the algorithm and compares with results from previous papers by \cite{Rivas04} and \cite{Sheta2001}. The average MSE of {\em jsEvRBF} with respect to the rest of methods is quite high ($2$ orders of magnitude). This is also due to the previously cited non-valid solutions found by AppleWebKit-based browsers: once the training fails, nets can't evolve and no better solutions than those found in initial generations are built.  As table \ref{tab:comparison-first-experiment} shows, the best solution found by the entire set of browsers is $6 \times 10^{-4}$, similar to the average error found by the original {\em EvRBF} algorithm. This is true not only for the best solution: the average MSE of the best 50 solutions is still $6 \times10^{-4}$, while the average MSE of the best 500 solutions is equal to that value for the MSE-LSE algorithm. In any case, the algorithm, as it is currently implemented, shows a lack of robustness that has to be tackled and fixed, in order to compete with existing algorithms.
+With respect to forecasting, table \ref{tab:comparison-first-experiment} shows the MSE of the algorithm and compares with results from previous papers by Rivas \cite{Rivas04} and Sheta \cite{Sheta2001}. The average MSE of {\em jsEvRBF} with respect to the rest of methods is quite high ($2$ orders of magnitude). This is also due to the previously cited non-valid solutions found by AppleWebKit-based browsers: once the training fails, nets can't evolve and no better solutions than those found in initial generations are built.  As table \ref{tab:comparison-first-experiment} shows, the best solution found by the entire set of browsers is $6 \times 10^{-4}$, similar to the average error found by the original {\em EvRBF} algorithm. This is true not only for the best solution: the average MSE of the best 50 solutions is still $6 \times10^{-4}$, while the average MSE of the best 500 solutions is equal to that value for the MSE-LSE algorithm. In any case, the algorithm, as it is currently implemented, shows a lack of robustness that needs to be tackled and fixed.
 
 %Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works. 
 
@@ -245,9 +257,9 @@ With respect to forecasting, table \ref{tab:comparison-first-experiment} shows t
 \begin{tabular}{lcc}
 {\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
 \hline
-MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
+EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4}$ \\
 MSE-GA & $9 \times 10^{-4}$ & N/A \\
-EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4} \pm 2 \times 10^{-4}$ \\
+MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
 {\em jsEvRBF} & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6\time10^{-4}$  \\
 \hline
 \end{tabular}
@@ -296,11 +308,11 @@ EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4} \pm 2 \times 
 \subsection{Second experiment: long executions, one browser}
 \label{sec:second-experiment}
 
-Once detected the error introduced by AppleWebKit-based browsers, a second experiment was carried out in a more controlled environment, and with a configuration similar to the original experiments in \cite{Rivas04}. These new executions of the algorithms were run on a Firefox 44 browser, over an Ubuntu distribution. The set of parameters for this experiments are the ones showed in table \ref{tab:parameters-second-experiment}.
+Once detected the error introduced by AppleWebKit-based browsers, a second experiment was carried out in a more controlled environment, and with a configuration similar to the original experiments in \cite{Rivas04}. These new executions were run using a Firefox 44 browser, and configured as showed in table \ref{tab:parameters-second-experiment}.
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Configuration of parameters for the second experiment. As in the first one. the number of samples ({\em trnSamples} and {\em valSamples}) is still approximated since they were randomly chosen in every execution. Values that differ from experiment 1 have been highlighted in {\bf bold}}
+\caption{Configuration of parameters for the second experiment. As in the first one, the number of samples ({\em trnSamples} and {\em valSamples}) is still approximated since they were randomly chosen in every execution. Values that differ from experiment 1 have been highlighted in {\bf bold}}
 \label{tab:parameters-second-experiment}
 \begin{center}
 \begin{tabular}{rr|rr}
@@ -324,7 +336,7 @@ Once detected the error introduced by AppleWebKit-based browsers, a second exper
 \end{center}
 \end{table}
 
-The results for this second experiments, averaged over 10 executions of the algorithm, were clearly better than those yielded in first one, as can be seen in table \ref{tab:comparison-second-experiment}. Although the original {\em EvRBF} algorithm still yield the best result ($6 \times 10^{-4} \pm 2 \times 10^{-4}$), {\em jsEvRBF} can be compared in this occasion with it ($8 \times 10^{-4} \pm 2 \times 10^{-7}$), and also with MSE-LSE ($12 \times 10^{-4}$) and MSE-GA ($9 \times 10^{-4}$). Further study must be done to determine the causes that makes the new algorithm been not so accurate as the original one, but probably the absence of some of the operators that have not been yet programed could be the reason.
+The results for this second experiments, averaged over 10 executions of the algorithm, were clearly better than those yielded in first one, as can be seen in table \ref{tab:comparison-second-experiment}. Although the original {\em EvRBF} algorithm still yields the best result ($6 \times 10^{-4} \pm 2 \times 10^{-4}$), {\em jsEvRBF} can be compared in this occasion with it ($8 \times 10^{-4} \pm 2 \times 10^{-7}$), and is lower than MSE-GA ($9 \times 10^{-4}$) and MSE-LSE ($12 \times 10^{-4}$). Further study must be done to determine the causes that makes the new algorithm being not so accurate as the original one, but probably the absence of some of the operators not yet programed could be the reason.
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
@@ -334,10 +346,10 @@ The results for this second experiments, averaged over 10 executions of the algo
 \begin{tabular}{lcc}
 {\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
 \hline
-MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
-MSE-GA & $9 \times 10^{-4}$ & N/A \\
 EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4} \pm 2 \times 10^{-4}$ \\
-{\em jsEvRBF} & $8 \times 10^{-4} \pm 2 \times 10^{-7}$ & $6\time10^{-4}$  \\
+{\em jsEvRBF} & $8 \times 10^{-4} \pm 2 \times 10^{-7}$ & $6\times10^{-4}$  \\
+MSE-GA & $9 \times 10^{-4}$ & N/A \\
+MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
 \hline
 \end{tabular}
 \end{center}
@@ -375,7 +387,9 @@ EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4} \pm 2 \times 
 
 \section{Conclusions}
 \label{sec:conclusions}
-In this paper, we have introduced the {\em jsEvRBF} algorithm; % an algorithm or an implementation? - JJ
+In this paper, web-browsers have been proved to be a good alternative to achieve
+distributing computation, minimizing the effort needed to ensure
+cross-platform compatibility as well as easiness of use. To show it, we have introduced the {\em jsEvRBF} algorithm;
 written in JavaScript, this algorithm can be executed in web-browsers
 when users access to a specified URL. The web page downloaded by the
 web-browser contains the code of this evolutionary algorithm, able to
@@ -386,13 +400,8 @@ over a set of data related to currency exchange. % which is
 The experiments carried so far show that the approach is valid,
 although some research must still be done in order to determine the
 reasons that make AppleWebKit-based browsers (mainly Chrome and
-Safari) not work properly, yielding poor results.  % slow? some other
-                                % thing? - JJ
-In any case,
-web-browsers have been proved to be a good alternative to achieve
-distributing computation, minimizing the effort needed to ensure
-cross-platform compatibility as well as easiness of use. % This should
-                                % go to the first paragraph - JJ
+Safari) not work properly, yielding poor results with respect to forecasting error.
+
 
 % never negative statements: say you are going to do it the future
 % - JJ
@@ -403,7 +412,11 @@ library supporting {\em jsEvRBF}, has been implemented with this
 feature. 
 
 
+
 \section*{Acknowledgements}
+ This work has been supported in part by projects: TIN2011-28627-C04-02 awarded by the Spanish Ministry of Economy and Competitivity, SPIP2014-01437 (PETRA project, funded by Dirección General de Tráfico), 
+PRY142/14 (Este proyecto con num. de referencia: PRY142/14 ha sido financiado íntegramente por la Fundaci\'{o}n P\'{u}blica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'{o}n)\footnote{The description in Spanish is mandatory.}, and PYR-2014-17 GENIL project, awarded by CEI-BIOTIC Granada.
+
 %
 % ---- Bibliography ----
 %
@@ -414,10 +427,6 @@ feature.
 %Nonlinear oscillations and
 %boundary-value problems for Hamiltonian systems.
 %Arch. Rat. Mech. Anal. 78, 315--333 (1982)
-
-
-\bibitem[1]{BoxJenk}
-Box, G.E., Jenkins G.M.: Time series analysis: forecasting and control. San Francisco: Holden Day (1976)
 
 \bibitem[2]{Broomhead88}
 Broomhead, D.S., Lowe D.: Multivariable functional interpolation and adaptive networks. Complex Systems, 2, 321--355 (1988)
