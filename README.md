@@ -4,7 +4,7 @@
 http://dcai-conference.net/
 
 ## Dates 
-* Deadline: 25th January, 2016
+* Deadline: <s>25th January, 2016</s> 1st February, 2016 
 * Notification of acceptance: 22nd February, 2016
 * Camera-Ready papers: 7th March, 2016
 * Conference Celebration: 1st-3rd June, 2016
