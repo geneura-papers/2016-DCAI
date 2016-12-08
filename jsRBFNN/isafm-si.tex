@@ -10,7 +10,9 @@
 \usepackage{hyperref} %vrivas, 21-Jan-2016, for \url
 \usepackage{graphicx} %vrivas, 27-Jan-2016, for images
 \usepackage{listings}%vrivas, 27-Jan-2016, for code
-%c
+\usepackage{algorithm} %jj, dec-8-2016, for code
+\usepackage{algorithmic} %jj, dec-8-2016, for code
+
 \begin{document}
 %
 \frontmatter          % for the preliminaries
@@ -157,10 +159,19 @@ Configuring an RBFNN in order to solve a task consists on: a) choosing the activ
 %Time-series can be considered as a special kind of function approximation where future values of the series are expressed as a function of past ones.
 %There exist many methods in literature developed to forecast time-series references, being ARIMA \cite{BoxJenk} probably the most widely used.
 
-In the herein, the implementation of {\em EvRBF} for web browsers (called {\em jsEvRBF}) has been compared to its original implementation as well as to the methods used by Sheta in \cite{Sheta2001}, the work in which the data set used in this paper was introduced. Next sections describe: the algorithm (section \ref{sec:algorithm}); the problem to which the algorithm has been applied, as well as the experiments carried out  and the results yielded (section \ref{sec:experiments}), and conlusions and future lines (section \ref{sec:conclusions}).
+In the herein, the implementation of {\em EvRBF} for web browsers
+(called {\em jsEvRBF}) has been compared to its original
+implementation as well as to the methods used by Sheta in
+\cite{Sheta2001}, the work in which the data set used in this paper
+was introduced. Next sections describe: the algorithm (section
+\ref{sec:algorithm}); the problem to which the algorithm has been
+applied, as well as the experiments carried out  and the results
+yielded (section \ref{sec:experiments}), and conlusions and future
+lines (section \ref{sec:conclusions}). 
 
 
-\section{The {\em jsEvRBF} algorithm}
+\section{The {\em jsEvRBF} algorithm} %Is it an algorithm or an
+                                %implementation? - JJ
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
 {\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so that it can be executed in web browsers.  As in {\em EvRBF} \cite{Rivas04}, its predecessor, individuals are complete RBFNN, and special operators have been created to cross and mutate them. {\em jsEvRBF} is a generational algorithm, with a fixed number of individuals, that uses tournament selection and elitist replacement\footnote{The code can be downloaded or forked from \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms of the Apache 2.0 license.}.
@@ -170,21 +181,21 @@ In order to implement both the RBFNN and the evolutionary algorithm, two JavaScr
 
 As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the following:
 
+\begin{algorithm}
+\caption{jsRBF program}
+\begin{algorithmic}
+\STATE Create, train and evaluate an initial population of $p$ individuals.
+\FOR{generation = 1 \TO n}
 
-\begin{lstlisting}
-(1) Create, train and evaluate an initial population \
-        of _p_ individuals.
-(2) During _n_ generations do:
-   (2.1) Select a subpopulation of _q_ individuals
-   (2.2.) Create _q_ new individuals applying an operator \
-          to each one in subpopulation
-   (2.3) Train and evaluate the _q_ new individuals
-   (2.4) Join and sort both old and new populations
-   (2.5) Remove the _q_ worst individuals
-(3) Send the forecasting done by the best individual \
-   in last generation to the server
-\end{lstlisting}
-
+   \STATE{Select a subpopulation of $q$ individuals}
+   \STATE{Create $q$ new individuals applying an operator to each one in subpopulation}
+   \STATE{Train and evaluate the $q$ new individuals}
+   \STATE{Join and sort both old and new populations}
+   \STATE{Remove the $q$ worst individuals}
+\ENDFOR
+\STATE Send the forecasting done by the best individual in last generation to the server
+\end{algorithmic}
+\end{algorithm}
 
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{class-diagram.jpg}
