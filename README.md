@@ -1,5 +1,6 @@
 # 2016-DCAI
-13th International Conference on Distributed Computing and Artificial Intelligence (DCAI'16) - Seville (Spain)
+* 13th International Conference on Distributed Computing and Artificial Intelligence (DCAI'16) - Seville (Spain)
+* Extended version for ISAFM (Deadline January, 2017)
 
 http://dcai-conference.net/
 
