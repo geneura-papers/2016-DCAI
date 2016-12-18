@@ -57,7 +57,7 @@ GeNeura Team \\ \texttt{http://geneura.wordpress.com}
 
 \maketitle              % typeset the title of the contribution
 \begin{abstract}
-##### REESCRIBIR ABSTRACT CUANDO HAYAMOS HECHO TODO LO DEMAS
+%##### REESCRIBIR ABSTRACT CUANDO HAYAMOS HECHO TODO LO DEMAS
 This paper presents the implementation of a time series
 forecasting algorithm, {\em jsEvRBF}, that uses genetic algorithm and neural nets
 in a way that can be run in must modern web browsers. Using browsers to run forecasting algorithms is a challenge,
@@ -106,8 +106,8 @@ applications \cite{Rauschmayer04}. % Don't know about this
                                 % reference. Isn't it too recent? - JJ
                                 
                                 
-#### CITA En la que dice que Flash se dejó de usar en favor de HTML por el mismo Adobe                                Winokur, D. (2011). Flash to focus on PC browsing and mobile apps; Adobe to more aggressively contribute to HTML5. Retrieved, September 26, 2013 from http://blogs.adobe.com/conversations/2011/11/flash-focus.html
-
+% CITA En la que dice que Flash se dejó de usar en favor de HTML por el mismo Adobe                                Winokur, D. (2011). Flash to focus on PC browsing and mobile apps; Adobe to more aggressively contribute to HTML5. Retrieved, September 26, 2013 from http://blogs.adobe.com/conversations/2011/11/flash-focus.html
+% Add to bibliography if needed - JJ
 
 Current everyday massively-used web pages and web applications (including those related to social networks) exist thanks to this language.
 Its use has turned browsers into wider frameworks in which multi-platform applications can be run.
@@ -121,7 +121,9 @@ JavaScript was standardized in 1997 by the European Computer Manufacturer's Asso
 
 % Restricciones de JavaScript
 JavaScript can be described as a general-purpose, object-based, event-driven language.
-% that can be used to write programs for both the client and the server REFERENCE-NODE???. T¡
+% that can be used to write programs for both the client and the
+% server REFERENCE-NODE???. T¡
+% Why comment??- JJ
 Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
 %Thus, although web browsers allow the users to change the preferences
 %in order to disable the execution of any JavaScript code, this is
@@ -180,7 +182,15 @@ lines (section \ref{sec:conclusions}).
                                 %implementation? - JJ
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
-{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so that it can be executed in web browsers.  As in {\em EvRBF} \cite{Rivas04}, its predecessor, individuals are complete RBFNN, and special operators have been created to cross and mutate them. {\em jsEvRBF} is a generational algorithm, with a fixed number of individuals, that uses tournament selection and elitist replacement\footnote{The code can be downloaded or forked from \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms of the Apache 2.0 license.}.
+{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so
+that it can be executed in web browsers.  As in {\em EvRBF}
+\cite{Rivas04}, its predecessor, individuals are complete RBFNN, and
+special operators have been created to cross and mutate them. {\em
+  jsEvRBF} is a generational algorithm, with a fixed number of
+individuals, that uses tournament selection and elitist
+replacement\footnote{The code can be downloaded or forked from
+  \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms
+  of the Apache 2.0 license.}. 
 
 In order to implement both the RBFNN and the evolutionary algorithm, two JavaScript libraries: {\em jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em jsEO}\footnote{\url{http://bit.ly/js-EO}}, have been developed by our research group. {\em jsRBFNN} implements the nets and also the LMS training algorithm. {\em jsEO} \cite{RivasEvoStar2014} is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new types of individuals and/or operators. Figure \ref{fig:class_diagram} graphically shows the dependencies between {\em jsEvRBF} and these libraries. 
 
@@ -243,7 +253,20 @@ Next section shows the values used for these parameters along the execution of t
 \section{Experiments and results}
 \label{sec:experiments}
 % The data-set
-The {\em jsEvRBF} algorithm has been evaluated with the time-series used by Sheta and de Jong \cite{Sheta2001}. It is composed of 208 weekly averaged observations representing the exchange rates between Bristish pound and US dollar from 31 December 1979 to 26 December 1983\footnote{The source of the information, thanks to the work done by Prof. Werner Antweiler from the University of British Columbia, Vancouver, Canada, is available from \url{http://pacific.commerce.ubc.ca/xr/data.html}.}. This data set has been used in a similar way than Sheta and de Jong: only half the data (randomly chosen) has been used to train and validate the nets, but the generalization error has been computed over the whole data set.
+The {\em jsEvRBF} algorithm has been evaluated with the time-series
+used by Sheta and de Jong \cite{Sheta2001}. %These kind of claims
+                                %should go to the state of the art - JJ
+It is composed of 208
+weekly averaged observations representing the exchange rates between
+Bristish pound and US dollar from 31 December 1979 to 26 December
+1983\footnote{The source of the information, thanks to the work done
+  by Prof. Werner Antweiler from the University of British Columbia,
+  Vancouver, Canada, is available from
+  \url{http://pacific.commerce.ubc.ca/xr/data.html}.}. This data set
+has been used in a similar way than Sheta and de Jong: only half the
+data (randomly chosen) has been used to train and validate the nets,
+but the generalization error has been computed over the whole data
+set. 
 
 % Two kind of experiments?
 Two experiments have been carried out using {\em jsEvRBF}. First one has been open to a wide community of users, so that many different devices, operating systems and web browsers have been used. 
@@ -262,6 +285,8 @@ Information about clients and the results they yielded were received by a server
 %\end{figure}
 
 % First one: lot of different browsers, short executions
+% Proposal; supress this experiment, since it has got an error, and
+% repeat it all over again - JJ
 \subsection{First experiment: short executions, many browsers}
 \label{sec:first-experiment}
 The first experiment carried out was designed to test whether the kind of computation described by {\em jsEvRBF} could be effectively executed in different platforms. To do this, a "call for volunteer computation" in the form of messages published in Twitter and Facebook was done. Any of these two accounts were followed by about 500 people. %, although messages were also re-distributed by some of the original followers. The profile of Twiitter followers was mainly technical (IT professional and/or students), being more varied in the case of Facebook ones. 
