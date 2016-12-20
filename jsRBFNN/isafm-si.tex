@@ -12,50 +12,42 @@
 \usepackage{listings}%vrivas, 27-Jan-2016, for code
 \usepackage{algorithm} %jj, dec-8-2016, for code
 \usepackage{algorithmic} %jj, dec-8-2016, for code
+\usepackage{authblk} %jj, dec-20-2016, for authors
 
 \begin{document}
 %
-\frontmatter          % for the preliminaries
-%
-\pagestyle{headings}  % switches on printing of running heads
-\addtocmark{Volunteer computing for forecasting} % additional mark in the TOC
 
-%
-\mainmatter              % start of the contributions
-%
 \title{Forecasting using evolutionary neural nets implemented in a
   volunteer computing system}
 %Nuevo título propuesto. 
 %
-\titlerunning{TITULO VIEJO: Web browser-based forecasting ######BUSCAR NUEVO TITULO####}  % abbreviated title (for running head)
-%                                     also used for the TOC unless
-%                                     \toctitle is used
-%
-\author{
-V.M. Rivas\inst{1,3} \and E. Parras-Guti\'{e}rrez\inst{1}
-\and JJ Merelo\inst{2,3}  \and M.G. Arenas\inst{2,3}
-\and P. Garc\'{\i}a-Fern\'{a}ndez\inst{2,3}
-}
-%
-\authorrunning{V. M. Rivas et al.} % abbreviated author list (for running head)
-%
-%%%% list of authors for the TOC (use if author list has to be modified)
-\tocauthor{V M. Rivas}
-%
-%\institute{Depto. de Informatica, Univ. de Jaen, SPAIN,\\
-\institute{Univ. of Jaen, Dept of Computer Sciences,\\
+
+% Author according to authblk
+\author[1,3]{V.M. Rivas}
+\author[1]{E. Parras-Guti\'{e}rrez}
+\author[2,3]{JJ Merelo}
+\author[2,3]{M.G. Arenas}
+\author[4]{P. Garc\'{\i}a-Fern\'{a}ndez}
+
+% Affiliations according to authblk
+\affil[1]{Univ. of Jaen, Dept of Computer Sciences,\\
 Campus Las Lagunillas s/n, 23071, Ja\'{e}n, SPAIN\\
-\email{vrivas@ujaen.es}, 
-\texttt{http://vrivas.es}
-\and
-Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
-Depto. de Electr\'{o}nica y Tecnolog\'{\i}as de las Computadoras\\
+\texttt{vrivas@ujaen.es}, 
+\texttt{http://vrivas.es}}
+
+\affil[2]{Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
 Univ. de Granada, SPAIN
 Univ. of Granada, Dept. of Computers, Architecture and Technology,\\
-C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN
-\and
-GeNeura Team \\ \texttt{http://geneura.wordpress.com}
+C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
+
+\affil[3]{GeNeura Team \\
+  \url{http://geneura.wordpress.com}
 }
+
+\affil[4]{Depto. de Electr\'{o}nica y Tecnolog\'{\i}as de las
+  Computadoras\\
+ Univ. de Granada, SPAIN
+ Univ. of Granada, Dept. of Electronics and Computer Technology}
 
 \maketitle              % typeset the title of the contribution
 \begin{abstract}
@@ -80,18 +72,10 @@ previous results in literature, though robustness of the new algorithm
 has to be improved. % What was your objective? Just running it?
                     % Running it with a decent performance? - JJ
 
-
-
-
-
-
-
-
-
-
-\keywords{Time-series forecasting, evolutionary computation, radial basis function neural networks, Web-based programming, volunteer computation}
 \end{abstract}
 %
+\textit{Keywords}: Time-series forecasting, evolutionary computation, radial basis function neural networks, Web-based programming, volunteer computation
+
 \section{Introduction}
 % Web-based computing
 Web browsers stopped to be just simple HTML renderers at the moment
