@@ -133,12 +133,18 @@ this approach, any device  able to execute a web browser (from
 computers to smart TVs) can be potentially used to run our algorithm. 
 
 % Genetic Algorithms and RBFNN
-Both the problem being considered in this paper and the algorithm used to solve it were introduced in \cite{Rivas04}. On the one hand, the problem consists on forecasting the values of the
-exchange rates between two currencies, for a four years period (data
-is weekly averaged). On the other hand, the algorithm (described in
+Both the problem being considered in this paper and the algorithm used
+to solve it were introduced in \cite{rivas03:EvRBF}. On the one hand,
+the problem consists on forecasting the values of the exchange rates
+between two currencies for a four years period; data is averaged
+weekly. %This needs a citation. Where did you obtain data?
+% Besides, could you use our own traffic data? - JJ
+On the other hand, the algorithm (described in
 section \ref{sec:algorithm}) is a reduced version of {\em EvRBF}
-\cite{Rivas04}, an evolutionary algorithm that makes Radial Basis
-Function Neural Networks (RBFNN) to evolve. 
+\cite{rivas03:EvRBF}, an evolutionary algorithm that makes Radial Basis
+Function Neural Networks (RBFNN) to evolve.
+% Now you're talking. You should say exactly what you have reduced,
+% and make a more extensive description of EvRBF - JJ
 
 RBFNN are well-known feed-forward neural nets with just one hidden and
 one output layers. %\cite{Broomhead88}.  
@@ -169,9 +175,14 @@ lines (section \ref{sec:conclusions}).
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
 {\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so
-that it can be executed in web browsers.  As in {\em EvRBF}
-\cite{Rivas04}, its predecessor, individuals are complete RBFNN, and
-special operators have been created to cross and mutate them. {\em
+that it can be executed in web browsers.
+%Once again, you are mixing implementation and algorithm. Is it an
+%algorithm or an implementation? ~ JJ
+As in {\em EvRBF}
+\cite{rivas03:EvRBF}, its predecessor, individuals are complete RBFNN, and
+special operators have been created to cross and mutate them. %The
+                                %same special algorithms or others? - JJ
+{\em
   jsEvRBF} is a generational algorithm, with a fixed number of
 individuals, that uses tournament selection and elitist
 replacement\footnote{The code can be downloaded or forked from
@@ -278,7 +289,7 @@ Information about clients and the results they yielded were received by a server
 The first experiment carried out was designed to test whether the kind of computation described by {\em jsEvRBF} could be effectively executed in different platforms. To do this, a "call for volunteer computation" in the form of messages published in Twitter and Facebook was done. Any of these two accounts were followed by about 500 people. %, although messages were also re-distributed by some of the original followers. The profile of Twiitter followers was mainly technical (IT professional and/or students), being more varied in the case of Facebook ones. 
 
 
-Table \ref{tab:parameters-first-experiment} shows the value specified for every parameter. They differ from the ones used in previous work \cite{Rivas04} due to the lack of power of low-quality, old smartphones. An initial test showed that browsers running in that kind of devices usually blocked the execution of the algorithm; this led us to configure the experiment paying more attention to the algorithm's ability  to be executed in any device more than in its ability to perform the best forecasting.
+Table \ref{tab:parameters-first-experiment} shows the value specified for every parameter. They differ from the ones used in previous work \cite{rivas03:EvRBF} due to the lack of power of low-quality, old smartphones. An initial test showed that browsers running in that kind of devices usually blocked the execution of the algorithm; this led us to configure the experiment paying more attention to the algorithm's ability  to be executed in any device more than in its ability to perform the best forecasting.
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
@@ -325,9 +336,11 @@ when training the nets.  This can be considered one of our first
 conclusions since, even having used standard javaScript code, there
 exist differences in the way browsers compile it. 
 
+%Never start a paragraph with "with respect to". With respect to what?
+%- JJ
 With respect to forecasting, table
 \ref{tab:comparison-first-experiment} shows the MSE of the algorithm
-and compares with results from previous papers by Rivas \cite{Rivas04}
+and compares with results from previous papers by Rivas et al.  \cite{rivas03:EvRBF}
 and Sheta \cite{Sheta2001}. The average MSE of {\em jsEvRBF} with
 respect to the rest of methods is quite high ($2$ orders of
 magnitude). This is also due to the previously cited non-valid
@@ -349,8 +362,10 @@ shows a lack of robustness that needs to be tackled and fixed.
 \setlength{\tabcolsep}{10pt}
 \begin{table}
 \caption{First experiment: comparison of MSE yielded by the {\em
-    jsEvRBF} algorithm and the ones cited in \cite{Rivas04}. Errors
+    jsEvRBF} algorithm and the ones cited in \cite{rivas03:EvRBF}. Errors
   have been computed over the full set of data.}
+%They should be referred to by name, not by where they are cited. This
+%will disappear, anyway - JJ
 \label{tab:comparison-first-experiment}
 \begin{center}
 \begin{tabular}{lcc}
@@ -407,7 +422,7 @@ MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
 \subsection{Second experiment: long executions, one browser}
 \label{sec:second-experiment}
 
-Once detected the error introduced by AppleWebKit-based browsers, a second experiment was carried out in a more controlled environment, and with a configuration similar to the original experiments in \cite{Rivas04}. These new executions were run using a Firefox 44 browser, and configured as showed in table \ref{tab:parameters-second-experiment}.
+Once detected the error introduced by AppleWebKit-based browsers, a second experiment was carried out in a more controlled environment, and with a configuration similar to the original experiments in \cite{rivas03:EvRBF}. These new executions were run using a Firefox 44 browser, and configured as showed in table \ref{tab:parameters-second-experiment}.
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
@@ -439,7 +454,7 @@ The results for this second experiment, averaged over 10 executions of the algor
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Second experiment: comparison of MSE yielded by the {\em jsEvRBF} algorithm and the ones cited in \cite{Rivas04}. Errors have computed over the full set of data, having executing the algorithm 10 times.}
+\caption{Second experiment: comparison of MSE yielded by the {\em jsEvRBF} algorithm and the ones cited in \cite{rivas03:EvRBF}. Errors have computed over the full set of data, having executing the algorithm 10 times.}
 \label{tab:comparison-second-experiment}
 \begin{center}
 \begin{tabular}{lcc}
