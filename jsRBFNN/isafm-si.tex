@@ -189,7 +189,19 @@ replacement\footnote{The code can be downloaded or forked from
   \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms
   of the Apache 2.0 license.}. 
 
-In order to implement both the RBFNN and the evolutionary algorithm, two JavaScript libraries: {\em jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em jsEO}\footnote{\url{http://bit.ly/js-EO}}, have been developed by our research group. {\em jsRBFNN} implements the nets and also the LMS training algorithm. {\em jsEO} \cite{RivasEvoStar2014} is a more complex framework that allows the generation of many kinds of evolutionary algorithms, making easier the task of creating new types of individuals and/or operators. Figure \ref{fig:class_diagram} graphically shows the dependencies between {\em jsEvRBF} and these libraries. 
+In order to implement both the RBFNN and the evolutionary algorithm,
+two JavaScript libraries: {\em
+  jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em
+  jsEO}\footnote{\url{http://bit.ly/js-EO}}, have been developed by
+our research group. {\em jsRBFNN} implements the neural nets and also the LMS
+training algorithm. %This should be explained somewhere. This is a
+                    %financial journal - JJ
+{\em jsEO} \cite{EvoStar2014:jsEO} is a more
+complex framework that allows the generation of many kinds of
+evolutionary algorithms, making easier the task of creating new types
+of individuals and/or operators. Figure \ref{fig:class_diagram}
+graphically shows the dependencies between {\em jsEvRBF} and these
+libraries.  
 
 
 As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the following:
