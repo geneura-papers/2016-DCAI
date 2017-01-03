@@ -17,7 +17,7 @@
 \begin{document}
 %
 
-\title{Forecasting using evolutionary neural nets implemented in a
+\title{Time series forecasting using evolutionary neural nets implemented in a
   volunteer computing system}
 %Nuevo título propuesto. 
 %
@@ -168,11 +168,49 @@ In the herein, the implementation of {\em EvRBF} for web browsers
 (called {\em jsEvRBF}) has been compared to its original
 implementation as well as to the methods used by Sheta in
 \cite{Sheta2001}, the work in which the data set used in this paper
-was introduced. Next sections describe: the algorithm (section
-\ref{sec:algorithm}); the problem to which the algorithm has been
-applied, as well as the experiments carried out  and the results
-yielded (section \ref{sec:experiments}), and conlusions and future
-lines (section \ref{sec:conclusions}). 
+was introduced.
+
+The rest of the paper is organized as follows: the state of the art in
+distributed computing for financial prediction is presented in the
+next section; our approach to this problem follows in Section
+\ref{sec:algorithm}; the experimental setup to test our method and its
+results are presented in Section \ref{sec:experiments}, and finally
+and conclusions are drawn and future
+lines of work presented in Section \ref{sec:conclusions}.
+
+\section{State of the art}
+
+Prediction of time series, specially financial ones, is considered a
+hard problem requiring a great amount of computational resources,
+since the model space that is explored is generally huge, so parallel
+computing has been used at the same time than Genetic Programming,
+\cite{santini2001genetic}, a technique that evolves rules and
+expressions or neural networks \cite{niska2004evolving}, in which case
+the parallel implementation is used to explore more efficiently the
+space of different parallel architectures.
+
+This is probably the reason why it has not been approached using
+volunteer computing, which eschews fixed computing infraestructures,
+relying on the computing resources lent by strangers
+\cite{daniel:euromicro09,gecco07:workshop:dcor,DBLP:journals/corr/abs-0801-1210,DBLP:conf/gecco/MereloCGCRV16,baratloo1996charlotte,hwang2009determinants,web:BOINC}. Although
+in these kind of networks a high sustained performance is difficult to
+achieve \cite{DBLP:conf/lion/LaredoGFMACG11}, in the short term a
+  good performance is achievable, with the only cost of setting up the
+  experiment. That is why it has been applied successfully to protein
+  structure prediction \cite{taufer2006predictor} and other
+  experiments launched from the BOINC platform \cite{boinc_grid04}. In
+  general, success has been met with the constraints of the difficulty
+  in predicting the true performance of the meta-computer created by
+  the experiment and its volunteers \cite{Merelo2016}. In fact, one of
+  the major applications of non-volunteer computing in financial
+  technology seems to be {\em illegal} bitcoin mining using the
+  resources of infected computers \cite{plohmann2012case}. 
+
+We have already published the proof of concept and preliminary results
+for this method in \cite{DBLP:conf/dcai/RivasPMAG16}. In this paper we
+correct errors found and describe further experiments that measure the
+performance obtained with different browsers and in different
+conditions. 
 
 
 \section{The {\em jsEvRBF} algorithm} %Is it an algorithm or an
@@ -282,161 +320,39 @@ data (randomly chosen) has been used to train and validate the nets,
 but the generalization error has been computed over the whole data
 set. 
 
-% Two kind of experiments?
-Two experiments have been carried out using {\em jsEvRBF}. First one has been open to a wide community of users, so that many different devices, operating systems and web browsers have been used. 
-On the other hand, the second experiment has been executed in a single computer, using a single web browser, so that we can focus in the forecasting process itself.
-In any case, participating in the experiment only required to connect to an URL; no special technical knowledge was necessary to run the algorithm since it was automatically executed once the web page was loaded. 
-%Figure \ref{fig:example-of-execution} shows the page users could read when accessing the specified URL.
-% As can be seen, it emulated the look of a paper and need not actions to be performed by the user.
+Two experiments have been carried out using {\em jsEvRBF}. One of them
+has been open to a wide community of users, so that many different
+devices, operating systems and web browsers have been used.  We have
+also tested the algorithm in a single computer, using a single web
+browser, so that we can focus in the forecasting process itself and
+also assess the differences among different browser. 
+In any case, participating in the experiment only required to connect
+to an URL; no special technical knowledge was necessary to run the
+algorithm since it was automatically executed once the web page was
+loaded. Figure \ref{fig:example-of-execution} shows the page users
+could read when accessing the specified URL.  As can be seen, it
+emulated the look of a paper and needs no action to be performed by
+the user.
 
-Information about clients and the results they yielded were received by a server programed also in JavaScript (using {\em node.js}) and stored in a No-SQL database managed by {\em Mongo}; the language to query the database was JavaScript too.
-
-%
-%\begin{figure}[!ht]
-%\includegraphics[width=120mm]{example-of-execution.png}
-%\caption{The look of the web page in which the {\em jsEvRBF} algorithm was loaded and executed.}
-%\label{fig:example-of-execution}
-%\end{figure}
-
-% First one: lot of different browsers, short executions
-% Proposal; supress this experiment, since it has got an error, and
-% repeat it all over again - JJ
-\subsection{First experiment: short executions, many browsers}
-\label{sec:first-experiment}
-The first experiment carried out was designed to test whether the kind of computation described by {\em jsEvRBF} could be effectively executed in different platforms. To do this, a "call for volunteer computation" in the form of messages published in Twitter and Facebook was done. Any of these two accounts were followed by about 500 people. %, although messages were also re-distributed by some of the original followers. The profile of Twiitter followers was mainly technical (IT professional and/or students), being more varied in the case of Facebook ones. 
-
-
-Table \ref{tab:parameters-first-experiment} shows the value specified for every parameter. They differ from the ones used in previous work \cite{rivas03:EvRBF} due to the lack of power of low-quality, old smartphones. An initial test showed that browsers running in that kind of devices usually blocked the execution of the algorithm; this led us to configure the experiment paying more attention to the algorithm's ability  to be executed in any device more than in its ability to perform the best forecasting.
-
-\setlength{\tabcolsep}{10pt}
-\begin{table}
-\caption{Values for parameters in the first experiment. The number of samples ({\em trnSamples} and {\em valSamples}) are approximated as they were randomly chosen in every execution:  approximately $45\%$ of data were used for training, and $5\%$ for validation.}
-\label{tab:parameters-first-experiment}
-\begin{center}
-\begin{tabular}{rr|rr}
-{\bf Parameter} & {\bf Value} & 
-{\bf Parameter} & {\bf Value}\\
-\hline
-{\em trnSamples} & $\approx 90$ &
-{\em valSamples} & $\approx 15$  \\
-{\em inputDimension} &   1 &
-{\em numNeurons} &  7 \\
-{\em popSize} &  10 &
-{\em numGenerations} & 10  \\
-{\em tournamentSize} &  2 &
-{\em replaceRate} &   0.8 \\
-{\em xOverRate} &  {\em Not used}&
-{\em mutRate} &   1.0  \\
-{\em mutPower} &  0.5 & {\em Executions per page load} & 15\\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-This experiment was available for users from 8-Jan-2016 to
-18-Jan-2016. Every time a user accessed to the URL, 15 independent
-executions of the algorithm were sequentially run in his/her web
-client. The user could easily stop these executions at any
-moment. After every execution, results were sent to our server to
-store a description of the web browser, and a set of error values
-including MSE among others.  
-
-The analysis of the results showed that a total of $165$ different
-access were made to the page during the cited period, resulting in
-$2304$ executions, i.e.,  $13.9$ executions in average per client. Up
-to 25 different versions of browser were detected, more than a half
-were Chrome browsers ($58.79\%$), followed by Safari ($26.06\%$) and
-Firefox($15.15\%$). Unfortunately, only $80\%$ of the solutions were
-valid, since in some executions performed by Chrome and Safari
-browsers (i.e., those based on AppleWebKit) a $NaN$ error appeared
-when training the nets.  This can be considered one of our first
-conclusions since, even having used standard javaScript code, there
-exist differences in the way browsers compile it. 
-
-%Never start a paragraph with "with respect to". With respect to what?
-%- JJ
-With respect to forecasting, table
-\ref{tab:comparison-first-experiment} shows the MSE of the algorithm
-and compares with results from previous papers by Rivas et al.  \cite{rivas03:EvRBF}
-and Sheta \cite{Sheta2001}. The average MSE of {\em jsEvRBF} with
-respect to the rest of methods is quite high ($2$ orders of
-magnitude). This is also due to the previously cited non-valid
-solutions found by AppleWebKit-based browsers: once the training
-fails, nets can't evolve and no better solutions than those found in
-initial generations are built.  As table
-\ref{tab:comparison-first-experiment} shows, the best solution found
-by the entire set of browsers is $6 \times 10^{-4}$, similar to the
-average error found by the original {\em EvRBF} algorithm. This is
-true not only for the best solution: the average MSE of the best 50
-solutions is still $6 \times10^{-4}$, while the average MSE of the
-best 500 solutions is equal to that value for the MSE-LSE
-algorithm. In any case, the algorithm, as it is currently implemented,
-shows a lack of robustness that needs to be tackled and fixed. 
-
-%Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works. 
+Information about clients and the results they yielded were received
+by a server programed also in JavaScript (using {\em node.js}) and
+stored in a No-SQL database managed by {\em Mongo}; the language to
+query the database was JavaScript too. The proof of concept results
+have been published in \cite{DBLP:conf/dcai/2016de}; they showed some
+promise of the method, as well as significant differences among
+browsers. In this paper we report a new set of experiments and update
+single-browser performance with updated browser versions. 
 
 
-\setlength{\tabcolsep}{10pt}
-\begin{table}
-\caption{First experiment: comparison of MSE yielded by the {\em
-    jsEvRBF} algorithm and the ones cited in \cite{rivas03:EvRBF}. Errors
-  have been computed over the full set of data.}
-%They should be referred to by name, not by where they are cited. This
-%will disappear, anyway - JJ
-\label{tab:comparison-first-experiment}
-\begin{center}
-\begin{tabular}{lcc}
-{\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
-\hline
-EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4}$ \\
-MSE-GA & $9 \times 10^{-4}$ & N/A \\
-MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
-{\em jsEvRBF} & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6\time10^{-4}$  \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-%% Codigo para conseguir la tabla (previamente, copiar los datos en a
-%var tmp="";
-%var dob=false;
-%a.forEach( function(e){
-%tmp+=e.measure+" & $"+ parseFloat( e.values.average).toExponential(4)+" \\pm "+parseFloat(e.values.desvest).toExponential(4)+"$ "+((dob)?"\\":" & ")+"\n";
-%dob=!(dob);
-%})
-
-%\setlength{\tabcolsep}{3pt}
-%\begin{table}
-%\caption{First experiment: complete set of error measures yielded {\em jsEvRBF} computed over the entire set of data.}
-%\label{tab:all-error-values-experiment-1}
-%\begin{center}
-%\begin{tabular}{lc|lc}
-%{\bf Error Measure} & {\bf Value} & {\bf Error measure} & {\bf Value} \\
-%\hline
-%
-%MSE & $2.0916e-2 \pm 5.3016e+0$ &
-%RMSE & $9.6086e-2 \pm 2.1416e+1$ \\
-%MAE & $8.0802e-2 \pm 1.5650e+1$ &
-%MdAE & $8.1066e-2 \pm 2.0277e+1$ \\
-%MAPE & $4.6095e+0 \pm 5.6024e+4$ &
-%MdAPE & $4.3373e+0 \pm 6.1799e+4$ \\
-%RMSPE & $5.6733e+0 \pm 8.3952e+4$ &
-%RMdSPE & $4.3373e+0 \pm 6.1799e+4$ \\
-%sMAPE & $4.3511e+0 \pm 4.0497e+4$ &
-%sMdAPE & $4.1231e+0 \pm 4.9165e+4$ \\
-%MASE & $4.4171e+0 \pm 4.6814e+4$ &
-%RMSSE & $5.2422e+0 \pm 6.3764e+4$ \\
-%MdASE & $4.4267e+0 \pm 6.0254e+4$ \\
-%
-%\hline
-%\end{tabular}
-%\end{center}
-%\end{table}
-
-
+\begin{figure}[!ht]
+\includegraphics[width=120mm]{example-of-execution.png}
+\caption{The look of the web page in which the {\em jsEvRBF} algorithm was loaded and executed.}
+\label{fig:example-of-execution}
+\end{figure}
+% Maybe add new version of this screen - JJ
 
 % Second one: only one browser, complete executions
-\subsection{Second experiment: long executions, one browser}
+\subsection{Testing single-browser performance}
 \label{sec:second-experiment}
 
 Once detected the error introduced by AppleWebKit-based browsers, a second experiment was carried out in a more controlled environment, and with a configuration similar to the original experiments in \cite{rivas03:EvRBF}. These new executions were run using a Firefox 44 browser, and configured as showed in table \ref{tab:parameters-second-experiment}.
@@ -557,6 +473,6 @@ individuals be distributed to the clients running the algorithm.
 %
 
 \bibliographystyle{apalike}
-\bibliography{dcai,geneura}
+\bibliography{dcai,geneura,volunteer}
  
 \end{document}
