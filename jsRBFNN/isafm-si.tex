@@ -182,7 +182,26 @@ computing has been used at the same time than Genetic Programming,
 \cite{santini2001genetic}, a technique that evolves rules and
 expressions or neural networks \cite{niska2004evolving}, in which case
 the parallel implementation is used to explore more efficiently the
-space of different parallel architectures. 
+space of different parallel architectures.
+
+This is probably the reason why it has not been approached using
+volunteer computing, which eschews fixed computing infraestructures,
+relying on the computing resources lent by strangers
+\cite{daniel:euromicro09,gecco07:workshop:dcor,DBLP:journals/corr/abs-0801-1210,DBLP:conf/gecco/MereloCGCRV16,baratloo1996charlotte,hwang2009determinants,web:BOINC}. Although
+in these kind of networks a high sustained performance is difficult to
+achieve \cite{{DBLP:conf/lion/LaredoGFMACG11}, in the short term a
+  good performance is achievable, with the only cost of setting up the
+  experiment. That is why it has been applied successfully to protein
+  structure prediction \cite{taufer2006predictor} and other
+  experiments launched from the BOINC platform \cite{boinc_grid04}. In
+  general, success has been met with the constraints of the difficulty
+  in predicting the true performance of the meta-computer created by
+  the experiment and its volunteers \cite{Merelo2016}. In fact, one of
+  the major applications of non-volunteer computing in financial
+  technology seems to be {\em illegal} bitcoin mining using the
+  resources of infected computers \cite{plohmann2012case}. 
+
+
 
 
 \section{The {\em jsEvRBF} algorithm} %Is it an algorithm or an
@@ -567,6 +586,6 @@ individuals be distributed to the clients running the algorithm.
 %
 
 \bibliographystyle{apalike}
-\bibliography{dcai,geneura}
+\bibliography{dcai,geneura,volunteer}
  
 \end{document}
