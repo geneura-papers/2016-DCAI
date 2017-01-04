@@ -105,11 +105,8 @@ participation. These results guarantee the viability of the proposal.
 Web browsers stopped to be just simple HTML renderers at the moment
 they allowed the executions of third-part programs included in the
 pages they downloaded. This way, browsers turned into wider
-frameworks in which multi-platform applications could be executed.  
-Flash??? reference??? and Java applets the??? are probably the best
-known techniques to do this, even for non-experts users. But, in
-%fact,  
-Nowadays, most programs executed by browsers are written in a language
+frameworks in which multi-platform applications could be executed. An example of this is the Flash Player experience, since its usage were drastically reduced by HTML when de browsers were able to do the work \cite{Winokur11}. 
+But, Nowadays, most programs executed by browsers are written in a language
 called JavaScript, which was initially introduced to make interaction
 with web pages more similar to what was available in desktop
 applications \cite{Rauschmayer04}. % Don't know about this
@@ -117,7 +114,7 @@ applications \cite{Rauschmayer04}. % Don't know about this
                                 
                                 
 % CITA En la que dice que Flash se dejó de usar en favor de HTML por el mismo Adobe                                Winokur, D. (2011). Flash to focus on PC browsing and mobile apps; Adobe to more aggressively contribute to HTML5. Retrieved, September 26, 2013 from http://blogs.adobe.com/conversations/2011/11/flash-focus.html
-% Add to bibliography if needed - JJ
+% Add to bibliography if needed - JJ- añadida, Maribel, y he añadido una frase en este primer párrafo haciendo referencia a Flash
 
 Current everyday massively-used web pages and web applications (including those related to social networks) exist thanks to this language.
 Its use has turned browsers into wider frameworks in which multi-platform applications can be run.
@@ -229,23 +226,23 @@ We have already published the proof of concept and preliminary results
 for this method in \cite{DBLP:conf/dcai/RivasPMAG16}. In this paper we
 correct errors found and describe further experiments that measure the
 performance obtained with different browsers and in different
-conditions. 
+conditions. In the same way, {\em jsEvRBF} has been evaluated with the same time-series
+used by Sheta and de Jong \cite{Sheta2001} and the results were published in \cite{DBLP:conf/dcai/RivasPMAG16} For this paper, we extend the state of the art including new experiments and new results. %These kind of claims
+                                %should go to the state of the art - JJ, Ok, lo cambio, Maribel
 
 
-\section{The {\em jsEvRBF} algorithm} %Is it an algorithm or an
-                                %implementation? - JJ
+\section{The {\em jsEvRBF} implementation} %Is it an algorithm or an
+                                %implementation? - JJ, Yo creo que es una implementación, el algoritmo no es nuevo.
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
-{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so
+{\em jsEvRBF} is an evolutionary algorithm implemented in JavaScript, so
 that it can be executed in web browsers.
 %Once again, you are mixing implementation and algorithm. Is it an
-%algorithm or an implementation? ~ JJ
-As in {\em EvRBF}
-\cite{rivas03:EvRBF}, its predecessor, individuals are complete RBFNN, and
+%algorithm or an implementation? ~ JJ, hecho, Maribel
+As in {\em EvRBF} \cite{rivas03:EvRBF}, its predecessor, individuals are complete RBFNN, and
 special operators have been created to cross and mutate them. %The
-                                %same special algorithms or others? - JJ
-{\em
-  jsEvRBF} is a generational algorithm, with a fixed number of
+                                %same special algorithms or others? - JJ- No entiendo  lo que quieres decir J, Maribel
+{\em jsEvRBF} is a generational algorithm, with a fixed number of
 individuals, that uses tournament selection and elitist
 replacement\footnote{The code can be downloaded or forked from
   \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms
@@ -323,11 +320,7 @@ Next section shows the values used for these parameters along the execution of t
 % Operators
 \section{Experiments and results}
 \label{sec:experiments}
-% The data-set
-The {\em jsEvRBF} algorithm has been evaluated with the time-series
-used by Sheta and de Jong \cite{Sheta2001}. %These kind of claims
-                                %should go to the state of the art - JJ
-It is composed of 208
+The data-set is composed of 208
 weekly averaged observations representing the exchange rates between
 Bristish pound and US dollar from 31 December 1979 to 26 December
 1983\footnote{The source of the information, thanks to the work done
