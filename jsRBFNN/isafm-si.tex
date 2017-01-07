@@ -37,7 +37,7 @@ Campus Las Lagunillas s/n, 23071, Ja\'{e}n, SPAIN\\
 
 \affil[2]{Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
 Univ. de Granada, SPAIN
-Univ. of Granada, Dept. of Computers, Architecture and Technology,\\
+Univ. of Granada, Dept. of Computers, Architecture and Technology\\
 C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
 
 \affil[3]{GeNeura Team \\
@@ -102,55 +102,51 @@ participation. These results guarantee the viability of the proposal.
 
 \section{Introduction}
 % Web-based computing
-Web browsers stopped to be just simple HTML renderers at the moment
-they allowed the executions of third-part programs included in the
-pages they downloaded. This way, browsers turned into wider
-frameworks in which multi-platform applications could be executed. An example of this is the Flash Player experience, since its usage were drastically reduced by HTML when de browsers were able to do the work \cite{Winokur11}. 
-But, Nowadays, most programs executed by browsers are written in a language
-called JavaScript, which was initially introduced to make interaction
-with web pages more similar to what was available in desktop
-applications \cite{Rauschmayer04}. % Don't know about this
-                                % reference. Isn't it too recent? - JJ
-                                
-                                
+Modern web browsers (namely Firefox, Chrome, Edge, Safari and many others) differ from their initial predecessors in that they can do more than render HTML code, show pictures and allow to navigate using links. In fact, as far as browsers allow the executions of third-part programs (applets) included in the
+pages they downloaded, they have turned into wider
+frameworks in which multi-platform applications can be executed. 
+Furthermore, new versions can natively decode and execute code that previously needed to be handled by a plug-in. An example of this is the Flash Player experience, since its usage has drastically reduced by HTML now that browsers are able to do a similar work \cite{Winokur11}. 
 % CITA En la que dice que Flash se dejó de usar en favor de HTML por el mismo Adobe                                Winokur, D. (2011). Flash to focus on PC browsing and mobile apps; Adobe to more aggressively contribute to HTML5. Retrieved, September 26, 2013 from http://blogs.adobe.com/conversations/2011/11/flash-focus.html
 % Add to bibliography if needed - JJ- añadida, Maribel, y he añadido una frase en este primer párrafo haciendo referencia a Flash
+Actually, most of the programs interpreted and executed by browsers themselves are written in JavaScript, a programming language that was initially introduced \footnote{Press release announcing JavaScript, "Netscape and Sun announce JavaScript", PR Newswire, December 4, 1995. \url{http://bit.ly/JSPRESS}} to build interactive applications
+with web pages more similar to what was available in desktop
+applications \cite{Rauschmayer04}. % Don't know about this reference. Isn't it too recent? - JJ - I've added a footnote citing the press release where JavaScript was announced.
+The web, as we currently use it, would not be the same without the
+capability that JavaScript gives to the browser to make calculus,
+interact with the user, or dynamically retrieve data from servers
+without reloading the whole page, as it's done with AJAX\cite{powell2008ajax}. %Reference???.  
 
-Current everyday massively-used web pages and web applications (including those related to social networks) exist thanks to this language.
-Its use has turned browsers into wider frameworks in which multi-platform applications can be run.
-%The web, as we currently use it, would not be the same without the
-%capability that JavaScript gives to the browser to make calculus,
-%interact with the user, or dynamically retrieve data from servers
-%without reloading the whole page, as it's done with AJAX
-%Reference???.  
-%Throughout the 1990s, the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include in Navigator Java, its more static programming language, so it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers the support for Java applets \cite{Champeon08}. In May 1995, Eich designed a prototype in 10 days and was named first \emph{Mocha}, coined by the founder of Netscape Marc Andreessen, then \emph{LiveScript} and finally, in December 1995, \emph{JavaScript} \cite{Eich2010}, not because of the Java programming language, but to support Sun Microsystems.
+Briefly, the history of JavaScript starts in the 1990s: the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include in Navigator Java, its more static programming language, so it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers the support for Java applets \cite{Champeon08}. In May 1995, Eich designed a prototype in 10 days and was named first \emph{Mocha}, coined by the founder of Netscape Marc Andreessen, then \emph{LiveScript} and finally, in December 1995, \emph{JavaScript} \cite{Eich2010}, not because of the Java programming language, but to support Sun Microsystems.
 JavaScript was standardized in 1997 by the European Computer Manufacturer's Association, or ECMA. According to the ECMA-262 standard, its real name is \emph{ECMAScript}, but everyone calls the language \emph{JavaScript} \cite{Flanagan06}.
 
+
+%%Current everyday massively-used web pages and web applications (including those related to social networks) exist thanks to this language.
+%% Its use has turned browsers into wider frameworks in which multi-platform applications can be run.
+
+
+
 % Restricciones de JavaScript
-JavaScript can be described as a general-purpose, object-based, event-driven language.
-% that can be used to write programs for both the client and the
-% server REFERENCE-NODE???. T¡
-% Why comment??- JJ
+JavaScript can be described as a general-purpose, object-based, event-driven language. Initially intended to be used only in clients, nowadays can be used to write programs for both the client (the browser) and the server thanks to frameworks like \emph{node.js}~\cite{rauch2012smashing}
+% Why comment??- JJ - Because I wrote too much in the initial version and I had to reduce it according to the congress rules.
 Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
-%Thus, although web browsers allow the users to change the preferences
-%in order to disable the execution of any JavaScript code, this is
-%rarely done in these days. Even more, most standard web users are not
-%aware of the existence of this language, not realizing their browsers
-%are working as programming environments in which code is analyzed,
-%translated into a low-level language and executed. Consequently, and  
-%For safety reasons, programs written in JavaScript are executed by
-%browsers using a sandbox model. This model imposes a series of
-%restriction that could be summarized as: the JavaScript program
-%inserted in a given web page cannot access any other resources than
-%the ones contained in that web page. JavaScript programs are allowed
-%to the client's file system to store little pieces of text (called
-%cookies), and also when the user has to select a file to be sent
-%across the net. 
-Due to the capabilities of JavaScript, in this work we propose the use
-of web browsers as agents able to download a web page containing a set
-of data, execute an evolutionary algorithm that evolves neural nets,
-and apply this neural nets to forecast an economic time-series. Using
-this approach, any device  able to execute a web browser (from
+Thus, although web browsers allow the users to change the preferences
+in order to disable the execution of any JavaScript code, this is
+rarely done in these days. Even more, most standard web users are not
+aware of the existence of this language, not realising their browsers
+are working as programming environments in which code is analysed,
+translated into a low-level language and executed. Consequently, and  
+for safety reasons, programs written in JavaScript are executed by
+browsers using a sandbox model. This model imposes a series of
+restriction that could be summarised as: the JavaScript program
+inserted in a given web page cannot access any other resources than
+the ones contained in that web page. This means that JavaScript programs are not allowed
+to access the client's file system but only to store little pieces of text (called
+cookies), and also when the user has to select a file to be sent
+across the net. 
+
+The capabilities of JavaScript have led us to consider web browsers as agents that can download a web page containing a set
+of data and the code of an evolutionary algorithm. This way, browsers can execute that algorithm, which is built to evolve neural nets. These neural nets can be applied to forecast an economic time-series. The whole process, from downloading the web page to obtain the forecasted values is done by the browser. Thus, using
+this approach, any physical device in which a web browser can be installed (from
 computers to smart TVs) can be potentially used to run our algorithm. 
 
 % Genetic Algorithms and RBFNN
