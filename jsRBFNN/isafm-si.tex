@@ -17,9 +17,9 @@
 \begin{document}
 %
 
-\title{Forecasting using evolutionary neural nets implemented in a volunteer computing system}
-%Nuevo título propuesto. 
-%
+
+\title{Time series forecasting using evolutionary neural nets implemented in a
+  volunteer computing system}
 
 % Author according to authblk
 \author[1,3]{V.M. Rivas}
@@ -31,12 +31,12 @@
 % Affiliations according to authblk
 \affil[1]{Univ. of Jaen, Dept of Computer Sciences,\\
 Campus Las Lagunillas s/n, 23071, Ja\'{e}n, SPAIN\\
-\texttt{vrivas@ujaen.es}, 
+\texttt{vrivas@ujaen.es},
 \texttt{http://vrivas.es}}
 
 \affil[2]{Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
 Univ. de Granada, SPAIN
-Univ. of Granada, Dept. of Computers, Architecture and Technology,\\
+Univ. of Granada, Dept. of Computers, Architecture and Technology\\
 C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
 
 \affil[3]{GeNeura Team \\
@@ -50,26 +50,50 @@ C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
 
 \maketitle              % typeset the title of the contribution
 \begin{abstract}
-%##### REESCRIBIR ABSTRACT CUANDO HAYAMOS HECHO TODO LO DEMAS
-This paper presents the implementation of a time series
-forecasting algorithm, {\em jsEvRBF}, that uses genetic algorithm and neural nets
-in a way that can be run in must modern web browsers. Using browsers to run forecasting algorithms is a challenge,
-since language support and performance varies across implementations
-of the JavaScript virtual machine and vendor. However, their use will
-provide a boost in the number of platforms available for
-scientists. % A bit of motivation for the paper
-% Papers need to have: motivation, objective. And the first sentences
-% in the paragraph will have to go in that direction.
-{\em jsEvRBF} is
-written in JavaScript, so that it can
-be easily delivered to and executed by any device containing a
-web-browser just accessing an URL. The experiments show the results
-yielded by the algorithm over a  data set related to currencies
-exchange. % the results are what? Good? Better? Worse?
-Best results achieved  can be effectively compared against
-previous results in literature, though robustness of the new algorithm
-has to be improved. % What was your objective? Just running it?
-                    % Running it with a decent performance? - JJ
+%##### NUEVA PROPUESTA DE ABSTRACT--- Maribel
+{\em JsEvRBF} is a forecasting method that uses a genetic algorithm
+for evolving radial basis function neural nets. The implementation
+presented in this paper is able to run in most modern web browsers,
+consequently everybody is allowed to contribute the algorithm
+results participating in the experiments using their own browsers. The
+use of browsers for experimentation is an interesting idea because the
+scientists could use the huge number of inactive web browsers included
+in each device as computation power, but it is a great challenge
+too because the language support and performance varies as the
+JavaScript Virtual Machine implementation changes hampering the same
+algorithm is run in the same version or each browser.
+The presented
+results include a description of the experimentation process using
+volunteers, which is one of the goals of this paper, and the
+forecasting results using a currencies exchange dataset which are
+comparable with previous results without the volunteer
+participation. These results guarantee the viability of the proposal.
+
+%#### cuando tengamos nuevos resultados puedo concretar un poco m ï¿½s la ï¿½ltima frase, que la he dejado un poco ambigï¿½a
+% You can't say "the presented results do this". Say what you intented
+% to prove and to what extent it has been proved.
+% And please check below for the classical structure of an abstract:
+% motivation, objective, methods, advance on results - JJ
+
+%This paper presents the implementation of a time series
+%forecasting algorithm, {\em jsEvRBF}, that uses genetic algorithm and neural nets
+%in a way that can be run in must modern web browsers. Using browsers to run forecasting algorithms is a challenge,
+%since language support and performance varies across implementations
+%of the JavaScript virtual machine and vendor. However, their use will
+%provide a boost in the number of platforms available for
+%scientists. % A bit of motivation for the paper
+%% Papers need to have: motivation, objective. And the first sentences
+%% in the paragraph will have to go in that direction.
+%{\em jsEvRBF} is
+%written in JavaScript, so that it can
+%be easily delivered to and executed by any device containing a
+%web-browser just accessing an URL. The experiments show the results
+%yielded by the algorithm over a  data set related to currencies
+%exchange. % the results are what? Good? Better? Worse?
+%Best results achieved  can be effectively compared against
+%previous results in literature, though robustness of the new algorithm
+%has to be improved. % What was your objective? Just running it?
+%                    % Running it with a decent performance? - JJ
 
 \end{abstract}
 %
@@ -77,66 +101,58 @@ has to be improved. % What was your objective? Just running it?
 
 \section{Introduction}
 % Web-based computing
-Web browsers stopped to be just simple HTML renderers at the moment
-they allowed the executions of third-part programs included in the
-pages they downloaded. This way, browsers turned into wider
-frameworks in which multi-platform applications could be executed.  
-Flash??? reference??? and Java applets the??? are probably the best
-known techniques to do this, even for non-experts users. But, in
-%fact,  
-Nowadays, most programs executed by browsers are written in a language
-called JavaScript, which was initially introduced to make interaction
+Modern web browsers (namely Firefox, Chrome, Edge, Safari and many others) differ from their initial predecessors in that they can do more than render HTML code, show pictures and allow to navigate using links. In fact, as far as browsers allow the executions of third-part programs (applets) included in the
+pages they downloaded, they have turned into wider
+frameworks in which multi-platform applications can be executed.
+Furthermore, new versions can natively decode and execute code that previously needed to be handled by a plug-in. An example of this is the Flash Player experience, since its usage has drastically reduced by HTML now that browsers are able to do a similar work \cite{Winokur11}.
+% CITA En la que dice que Flash se dejï¿½ de usar en favor de HTML por el mismo Adobe                                Winokur, D. (2011). Flash to focus on PC browsing and mobile apps; Adobe to more aggressively contribute to HTML5. Retrieved, September 26, 2013 from http://blogs.adobe.com/conversations/2011/11/flash-focus.html
+% Add to bibliography if needed - JJ- aï¿½adida, Maribel, y he aï¿½adido una frase en este primer pï¿½rrafo haciendo referencia a Flash
+Actually, most of the programs interpreted and executed by browsers themselves are written in JavaScript, a programming language that was initially introduced \footnote{Press release announcing JavaScript, "Netscape and Sun announce JavaScript", PR Newswire, December 4, 1995. \url{http://bit.ly/JSPRESS}} to build interactive applications
 with web pages more similar to what was available in desktop
-applications \cite{Rauschmayer04}. % Don't know about this
-                                % reference. Isn't it too recent? - JJ
-                                
-                                
-% CITA En la que dice que Flash se dejó de usar en favor de HTML por el mismo Adobe                                Winokur, D. (2011). Flash to focus on PC browsing and mobile apps; Adobe to more aggressively contribute to HTML5. Retrieved, September 26, 2013 from http://blogs.adobe.com/conversations/2011/11/flash-focus.html
-% Add to bibliography if needed - JJ
+applications \cite{Rauschmayer04}. % Don't know about this reference. Isn't it too recent? - JJ - I've added a footnote citing the press release where JavaScript was announced.
+The web, as we currently use it, would not be the same without the
+capability that JavaScript gives to the browser to make calculus,
+to interact with the user, or to dynamically retrieve data from servers
+without reloading the whole page, as it's done with AJAX\cite{powell2008ajax}. %Reference???.
 
-Current everyday massively-used web pages and web applications (including those related to social networks) exist thanks to this language.
-Its use has turned browsers into wider frameworks in which multi-platform applications can be run.
-%The web, as we currently use it, would not be the same without the
-%capability that JavaScript gives to the browser to make calculus,
-%interact with the user, or dynamically retrieve data from servers
-%without reloading the whole page, as it's done with AJAX
-%Reference???.  
-%Throughout the 1990s, the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include in Navigator Java, its more static programming language, so it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers the support for Java applets \cite{Champeon08}. In May 1995, Eich designed a prototype in 10 days and was named first \emph{Mocha}, coined by the founder of Netscape Marc Andreessen, then \emph{LiveScript} and finally, in December 1995, \emph{JavaScript} \cite{Eich2010}, not because of the Java programming language, but to support Sun Microsystems.
+Briefly, the history of JavaScript starts in the 1990s: the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include in Navigator Java, its more static programming language, so it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers the support for Java applets \cite{Champeon08}. In May 1995, Eich designed a prototype in 10 days and was named first \emph{Mocha}, coined by the founder of Netscape Marc Andreessen, then \emph{LiveScript} and finally, in December 1995, \emph{JavaScript} \cite{Eich2010}, not because of the Java programming language, but to support Sun Microsystems.
 JavaScript was standardized in 1997 by the European Computer Manufacturer's Association, or ECMA. According to the ECMA-262 standard, its real name is \emph{ECMAScript}, but everyone calls the language \emph{JavaScript} \cite{Flanagan06}.
 
+
+%%Current everyday massively-used web pages and web applications (including those related to social networks) exist thanks to this language.
+%% Its use has turned browsers into wider frameworks in which multi-platform applications can be run.
+
+
+
 % Restricciones de JavaScript
-JavaScript can be described as a general-purpose, object-based, event-driven language.
-% that can be used to write programs for both the client and the
-% server REFERENCE-NODE???. T¡
-% Why comment??- JJ
+JavaScript can be described as a general-purpose, object-based, event-driven language. Initially intended to be used only in clients, nowadays can be used to write programs for both the client (the browser) and the server thanks to frameworks like \emph{node.js}~\cite{rauch2012smashing}
+% Why comment??- JJ - Because I wrote too much in the initial version and I had to reduce it according to the congress rules.
 Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
-%Thus, although web browsers allow the users to change the preferences
-%in order to disable the execution of any JavaScript code, this is
-%rarely done in these days. Even more, most standard web users are not
-%aware of the existence of this language, not realizing their browsers
-%are working as programming environments in which code is analyzed,
-%translated into a low-level language and executed. Consequently, and  
-%For safety reasons, programs written in JavaScript are executed by
-%browsers using a sandbox model. This model imposes a series of
-%restriction that could be summarized as: the JavaScript program
-%inserted in a given web page cannot access any other resources than
-%the ones contained in that web page. JavaScript programs are allowed
-%to the client's file system to store little pieces of text (called
-%cookies), and also when the user has to select a file to be sent
-%across the net. 
-Due to the capabilities of JavaScript, in this work we propose the use
-of web browsers as agents able to download a web page containing a set
-of data, execute an evolutionary algorithm that evolves neural nets,
-and apply this neural nets to forecast an economic time-series. Using
-this approach, any device  able to execute a web browser (from
-computers to smart TVs) can be potentially used to run our algorithm. 
+Thus, although web browsers allow the users to change the preferences
+in order to disable the execution of any JavaScript code, this is
+rarely done in these days. Even more, most standard web users are not
+aware of the existence of this language, not realising their browsers
+are working as programming environments in which code is analysed,
+translated into a low-level language and executed. Consequently, and
+for safety reasons, programs written in JavaScript are executed by
+browsers using a sandbox model. This model imposes a series of
+restriction that could be summarised as: the JavaScript program
+inserted in a given web page cannot access any other resources than
+the ones contained in that web page. This means that JavaScript programs are not allowed
+to access the client's file system but only to store little pieces of text (called
+cookies), and also when the user has to select a file to be sent
+across the net.
+
+The capabilities of JavaScript have led us to consider web browsers as agents that can download a web page containing a set
+of data and the code of an evolutionary algorithm. This way, browsers can execute that algorithm, which is built to evolve neural nets. These neural nets can be applied to forecast an economic time-series. The whole process, from downloading the web page to obtain the forecasted values is done by the browser. Thus, using
+this approach, any physical device in which a web browser can be installed (from
+computers to smart TVs) can be potentially used to run our algorithm.
 
 % Genetic Algorithms and RBFNN
 Both the problem being considered in this paper and the algorithm used
 to solve it were introduced in \cite{rivas03:EvRBF}. On the one hand,
 the problem consists on forecasting the values of the exchange rates
-between two currencies for a four years period; data is averaged
-weekly. %This needs a citation. Where did you obtain data?
+between two currencies for a four years period; data is weekly averaged. %This needs a citation. Where did you obtain data?
 % Besides, could you use our own traffic data? - JJ
 On the other hand, the algorithm (described in
 section \ref{sec:algorithm}) is a reduced version of {\em EvRBF}
@@ -146,10 +162,10 @@ Function Neural Networks (RBFNN) to evolve.
 % and make a more extensive description of EvRBF - JJ
 
 RBFNN are well-known feed-forward neural nets with just one hidden and
-one output layers. %\cite{Broomhead88}.  
+one output layers. %\cite{Broomhead88}.
 They have been successfully used to solve classification, function
 approximation, and, as in this work, time-series forecasting problems
-\cite{Broomhead88,Keogh03,Whitehead}. 
+\cite{Broomhead88,Keogh03,Whitehead}.
 %The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the higher the number of inputs that will not activate the neuron. Usually, Gaussian function is selected as the activation function, but many others can also be used.
 Configuring an RBFNN in order to solve a task consists on: a) choosing the activation function for hidden neurons, b) choosing the number of hidden neurons, c) setting the parameters required by the activation functions (i.e., center and radius of the RBF), and d) setting the values for weights and bias. This last step can be easily computed once the rest of components have been established using the Least Mean Square method. {\em EvRBF} algorithm was designed to automatically search for the best configuration of an RBFNN that solves the problem being tackled, except for the activation function to be used that is always a Gaussian function.
 
@@ -162,51 +178,83 @@ In the herein, the implementation of {\em EvRBF} for web browsers
 (called {\em jsEvRBF}) has been compared to its original
 implementation as well as to the methods used by Sheta in
 \cite{Sheta2001}, the work in which the data set used in this paper
-was introduced. Next sections describe: the algorithm (section
-\ref{sec:algorithm}); the problem to which the algorithm has been
-applied, as well as the experiments carried out  and the results
-yielded (section \ref{sec:experiments}), and conlusions and future
-lines (section \ref{sec:conclusions}). 
+was introduced.
+
+The rest of the paper is organized as follows: the state of the art in
+distributed computing for financial prediction is presented in the
+next section; our approach to this problem follows in Section
+\ref{sec:algorithm}; the experimental setup to test our method and its
+results are presented in Section \ref{sec:experiments}, and finally
+and conclusions are drawn and future
+lines of work presented in Section \ref{sec:conclusions}.
+
+\section{State of the art}
+
+Prediction of time series, specially financial ones, is considered a
+hard problem requiring a great amount of computational resources,
+since the model space that is explored is generally huge, so parallel
+computing has been used at the same time than Genetic Programming,
+\cite{santini2001genetic}, a technique that evolves rules and
+expressions or neural networks of different types \cite{niska2004evolving,Mora2010,DBLP:conf/iwann/ArenasPRCJG09,RIIACastillo2008}, in which case
+the parallel implementation is used to explore more efficiently the
+space of different parallel architectures.
+
+This is probably the reason why it has not been approached using
+volunteer computing, which eschews fixed computing infraestructures,
+relying on the computing resources lent by strangers
+\cite{daniel:euromicro09,gecco07:workshop:dcor,DBLP:journals/corr/abs-0801-1210,DBLP:conf/gecco/MereloCGCRV16,baratloo1996charlotte,hwang2009determinants,web:BOINC}. Although
+in these kind of networks a high sustained performance is difficult to
+achieve \cite{DBLP:conf/lion/LaredoGFMACG11}, in the short term a
+  good performance is achievable, with the only cost of setting up the
+  experiment. That is why it has been applied successfully to protein
+  structure prediction \cite{taufer2006predictor} and other
+  experiments launched from the BOINC platform \cite{boinc_grid04}. In
+  general, success has been met with the constraints of the difficulty
+  in predicting the true performance of the meta-computer created by
+  the experiment and its volunteers \cite{Merelo2016}. In fact, one of
+  the major applications of non-volunteer computing in financial
+  technology seems to be {\em illegal} bitcoin mining using the
+  resources of infected computers \cite{plohmann2012case}.
+
+We have already published the proof of concept and preliminary results
+for this method in \cite{DBLP:conf/dcai/RivasPMAG16}. In this paper we
+correct errors found and describe further experiments that measure the
+performance obtained with different browsers and in different
+conditions. In the same way, {\em jsEvRBF} has been evaluated with the same time-series
+used by Sheta and de Jong \cite{Sheta2001} and the results were published in \cite{DBLP:conf/dcai/RivasPMAG16} For this paper, we extend the state of the art including new experiments and new results. %These kind of claims
+                                %should go to the state of the art - JJ, Ok, lo cambio, Maribel
 
 
-\section{The {\em jsEvRBF} algorithm} %Is it an algorithm or an
-                                %implementation? - JJ
+\section{The {\em jsEvRBF} implementation} %Is it an algorithm or an
+                                %implementation? - JJ, Yo creo que es una implementaciï¿½n, el algoritmo no es nuevo.
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
-{\em jsEvRBF} is an evolutionary algorithm written in JavaScript, so
-that it can be executed in web browsers.
-%Once again, you are mixing implementation and algorithm. Is it an
-%algorithm or an implementation? ~ JJ
-As in {\em EvRBF}
-\cite{rivas03:EvRBF}, its predecessor, individuals are complete RBFNN, and
-special operators have been created to cross and mutate them. %The
-                                %same special algorithms or others? - JJ
-{\em
-  jsEvRBF} is a generational algorithm, with a fixed number of
-individuals, that uses tournament selection and elitist
-replacement\footnote{The code can be downloaded or forked from
+{\em jsEvRBF} denotes the implementation in JavaScript of our previously existing evolutionary algorithm {\em EvRBF} \cite{rivas03:EvRBF} ; writing this algorithm in JavaScript allows it execution in web browsers.
+The main feature of this algorithm is that individuals are complete RBFNN, and, for this reason,
+the operators have been specifically designed to cross and mutate them. The only difference of the new implementation with respect to the original algorithm is the number of operators that have been implemented: while {\em EvRBF} had 6 different operators, {\em jsEvRBF} has only 3, those that can be executed faster in the browser.%The
+                                %same special algorithms or others? - JJ- No entiendo  lo que quieres decir J, Maribel
+Apart from using RBFNN as individuals, {\em jsEvRBF} is a standard generational algorithm. The number of individuals in every generation remains fixed; it uses tournament selection to choose the individuals to reproduce , and elitist replacement  makes best individuals to form part of every new generation\footnote{The code can be downloaded or forked from
   \url{http://bit.ly/jsEvRBF}; its use is restricted under the terms
-  of the Apache 2.0 license.}. 
+  of the Apache 2.0 license.}.
 
-In order to implement both the RBFNN and the evolutionary algorithm,
-two JavaScript libraries: {\em
-  jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}} and {\em
-  jsEO}\footnote{\url{http://bit.ly/js-EO}}, have been developed by
-our research group. {\em jsRBFNN} implements the neural nets and also the LMS
+The implementation of both the library for RBFNN ( {\em
+  jsRBFNN}\footnote{\url{http://bit.ly/jsRBFNN}}) and the library for the evolutionary algorithm  {\em
+  jsEO}\footnote{\url{http://bit.ly/js-EO}}, have been also written by
+our research group. Thus, {\em jsRBFNN} implements the neural nets and also the LMS
 training algorithm. %This should be explained somewhere. This is a
                     %financial journal - JJ
-{\em jsEO} \cite{EvoStar2014:jsEO} is a more
+And {\em jsEO} \cite{EvoStar2014:jsEO} is a more
 complex framework that allows the generation of many kinds of
 evolutionary algorithms, making easier the task of creating new types
 of individuals and/or operators. Figure \ref{fig:class_diagram}
 graphically shows the dependencies between {\em jsEvRBF} and these
-libraries.  
+libraries.
 
 
-As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the following:
+The skeleton of the evolutionary algorithm is the standard one:
 
 \begin{algorithm}
-\caption{jsRBF program}
+\caption{jsEvRBF program}
 \begin{algorithmic}
 \STATE Create, train and evaluate an initial population of $p$ individuals.
 \FOR{generation = 1 \TO n}
@@ -223,27 +271,27 @@ As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the follo
 
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{class-diagram.jpg}
-\caption{Class diagram of the jsEvRBF algorithm, showing the way it depends on the jsEO general framework and the jsRBFNN library.}
+\caption{{\em jsEvRBF's} class diagram: dependencies on the \emph{jsEO} general framework and the \emph{jsRBFNN} library, are also shown.}
 \label{fig:class_diagram}
 \end{figure}
 
 
-%The individuals are RBFNN, any of them composed of a set of hidden neurons implemented as a vector of objects. Every hidden neuron stores its center and radius, and the global RBFNN stores the weights and bias. 
-The fitness is computed using the inverse of the RMSE, so the greater the fitness, the better the individual. 
+%The individuals are RBFNN, any of them composed of a set of hidden neurons implemented as a vector of objects. Every hidden neuron stores its center and radius, and the global RBFNN stores the weights and bias.
+In order to compare individuals, so that best ones can be chosen to reproduce and worst ones disappear in every new generation, the fitness of every individual is computed as the inverse of the RMSE. Using the inverse allows to magnify the differences between individuals, so that the greater the fitness, the better the individual.
 
-With respect to the operators used in this algorithm:
+The operators used in {\em jsEvRBF's} are the following:
 
 \begin{itemize}
-\item {\em XOver.} Takes two individuals as inputs and operates by randomly selecting a set of neurons from first individual and another set (probably of a different size) from the second one. After this, those sets are interchanged.
-\item {\em CenterMut.} Modifies a percentage of the centers of one individual setting them to random values in the range defined by the input dimension.
-\item {\em RadiusMut.} Quite similar to the precendent, this operator modifies a percentage of the radius of the neurons of one individual, choosing a new value in the same way the {\em CenterMut} operators does.
+\item {\em Crossover (namely XOver).} Takes two individuals as inputs and operates by randomly selecting a set of neurons from first individual and another set (probably of a different size) from the second one. After this, those sets are interchanged.
+\item {\em Center mutator (namely CenterMut.} Modifies a given percentage of the centers of one individual by setting them to random values in the range defined by the input dimension.
+\item {\em Radius mutator (namelu RadiusMut.)} Similarly to \emph{CenterMut}, this operator modifies a percentage of the radius of the neurons of one individual, choosing a new value in the same way explained before.
 \end{itemize}
 
 
-Finally, the following set of parameters has to be established in order to run the {\em jsEvRBF} algorithm:
+Finally, in order to run the algorithm the parameters that have to be fixed are the following:
 \begin{itemize}
-\item{\em trnSamples}: Set of samples to train the nets; it will be also used to select the centers of the RBF of the individuals composing the initial population.
-\item{\em valSamples}: Set of samples to compute fitness.
+\item{\em trnSamples}: Set of samples to train the nets; some of them, randomly chosen, it will be used as centers for the RBF of the individuals composing the initial population.
+\item{\em valSamples}: Set of samples to compute fitness of every new created individual.
 \item{\em inputDimension}: Dimension of inputs.
 \item{\em numNeurons}: Number of neurons for individuals of the first population.
 \item{\em popSize}: Number of individuals per population.
@@ -255,182 +303,57 @@ Finally, the following set of parameters has to be established in order to run t
 \item{\em mutPower}: Determines the number of neurons that will be changed by mutator operators, when applied to an individual.
 \end{itemize}
 
-Next section shows the values used for these parameters along the execution of the experiments.
+The exact value used in each of these parameters for the experiments carried out is described in the next section.
 % Specific characteristics of this implementation
 % Operators
 \section{Experiments and results}
 \label{sec:experiments}
-% The data-set
-The {\em jsEvRBF} algorithm has been evaluated with the time-series
-used by Sheta and de Jong \cite{Sheta2001}. %These kind of claims
-                                %should go to the state of the art - JJ
-It is composed of 208
+The data used in our experiments is composed of 208
 weekly averaged observations representing the exchange rates between
 Bristish pound and US dollar from 31 December 1979 to 26 December
 1983\footnote{The source of the information, thanks to the work done
   by Prof. Werner Antweiler from the University of British Columbia,
   Vancouver, Canada, is available from
-  \url{http://pacific.commerce.ubc.ca/xr/data.html}.}. This data set
-has been used in a similar way than Sheta and de Jong: only half the
+  \url{http://pacific.commerce.ubc.ca/xr/data.html}.}. This data set is exactly the same and
+has been used in the same way than Sheta and de Jong in Sheta in
+\cite{Sheta2001}; thus,  only half the
 data (randomly chosen) has been used to train and validate the nets,
-but the generalization error has been computed over the whole data
-set. 
+while the whole data set has been used to compute the generalisation power of the best neural net found in every execution of the algorithm.
 
-% Two kind of experiments?
-Two experiments have been carried out using {\em jsEvRBF}. First one has been open to a wide community of users, so that many different devices, operating systems and web browsers have been used. 
-On the other hand, the second experiment has been executed in a single computer, using a single web browser, so that we can focus in the forecasting process itself.
-In any case, participating in the experiment only required to connect to an URL; no special technical knowledge was necessary to run the algorithm since it was automatically executed once the web page was loaded. 
-%Figure \ref{fig:example-of-execution} shows the page users could read when accessing the specified URL.
-% As can be seen, it emulated the look of a paper and need not actions to be performed by the user.
+In order to test the capabilities of web browsers in financial time-series forecasting,
+two experiments have been carried out using {\em jsEvRBF}.  in our previous work (???CITA) One of them
+has been open to a wide community of users, so that many different
+devices, operating systems and web browsers have been used.  We have
+also tested the algorithm in a single computer, using a single web
+browser, so that we can focus in the forecasting process itself and
+also assess the differences among different browser.
+In any case, participating in the experiment only required to connect
+to an URL; no special technical knowledge was necessary to run the
+algorithm since it was automatically executed once the web page was
+loaded. Figure \ref{fig:example-of-execution} shows the page users
+could read when accessing the specified URL.  As can be seen, it
+emulated the look of a paper and needs no action to be performed by
+the user.
 
-Information about clients and the results they yielded were received by a server programed also in JavaScript (using {\em node.js}) and stored in a No-SQL database managed by {\em Mongo}; the language to query the database was JavaScript too.
-
-%
-%\begin{figure}[!ht]
-%\includegraphics[width=120mm]{example-of-execution.png}
-%\caption{The look of the web page in which the {\em jsEvRBF} algorithm was loaded and executed.}
-%\label{fig:example-of-execution}
-%\end{figure}
-
-% First one: lot of different browsers, short executions
-% Proposal; supress this experiment, since it has got an error, and
-% repeat it all over again - JJ
-\subsection{First experiment: short executions, many browsers}
-\label{sec:first-experiment}
-The first experiment carried out was designed to test whether the kind of computation described by {\em jsEvRBF} could be effectively executed in different platforms. To do this, a "call for volunteer computation" in the form of messages published in Twitter and Facebook was done. Any of these two accounts were followed by about 500 people. %, although messages were also re-distributed by some of the original followers. The profile of Twiitter followers was mainly technical (IT professional and/or students), being more varied in the case of Facebook ones. 
-
-
-Table \ref{tab:parameters-first-experiment} shows the value specified for every parameter. They differ from the ones used in previous work \cite{rivas03:EvRBF} due to the lack of power of low-quality, old smartphones. An initial test showed that browsers running in that kind of devices usually blocked the execution of the algorithm; this led us to configure the experiment paying more attention to the algorithm's ability  to be executed in any device more than in its ability to perform the best forecasting.
-
-\setlength{\tabcolsep}{10pt}
-\begin{table}
-\caption{Values for parameters in the first experiment. The number of samples ({\em trnSamples} and {\em valSamples}) are approximated as they were randomly chosen in every execution:  approximately $45\%$ of data were used for training, and $5\%$ for validation.}
-\label{tab:parameters-first-experiment}
-\begin{center}
-\begin{tabular}{rr|rr}
-{\bf Parameter} & {\bf Value} & 
-{\bf Parameter} & {\bf Value}\\
-\hline
-{\em trnSamples} & $\approx 90$ &
-{\em valSamples} & $\approx 15$  \\
-{\em inputDimension} &   1 &
-{\em numNeurons} &  7 \\
-{\em popSize} &  10 &
-{\em numGenerations} & 10  \\
-{\em tournamentSize} &  2 &
-{\em replaceRate} &   0.8 \\
-{\em xOverRate} &  {\em Not used}&
-{\em mutRate} &   1.0  \\
-{\em mutPower} &  0.5 & {\em Executions per page load} & 15\\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-This experiment was available for users from 8-Jan-2016 to
-18-Jan-2016. Every time a user accessed to the URL, 15 independent
-executions of the algorithm were sequentially run in his/her web
-client. The user could easily stop these executions at any
-moment. After every execution, results were sent to our server to
-store a description of the web browser, and a set of error values
-including MSE among others.  
-
-The analysis of the results showed that a total of $165$ different
-access were made to the page during the cited period, resulting in
-$2304$ executions, i.e.,  $13.9$ executions in average per client. Up
-to 25 different versions of browser were detected, more than a half
-were Chrome browsers ($58.79\%$), followed by Safari ($26.06\%$) and
-Firefox($15.15\%$). Unfortunately, only $80\%$ of the solutions were
-valid, since in some executions performed by Chrome and Safari
-browsers (i.e., those based on AppleWebKit) a $NaN$ error appeared
-when training the nets.  This can be considered one of our first
-conclusions since, even having used standard javaScript code, there
-exist differences in the way browsers compile it. 
-
-%Never start a paragraph with "with respect to". With respect to what?
-%- JJ
-With respect to forecasting, table
-\ref{tab:comparison-first-experiment} shows the MSE of the algorithm
-and compares with results from previous papers by Rivas et al.  \cite{rivas03:EvRBF}
-and Sheta \cite{Sheta2001}. The average MSE of {\em jsEvRBF} with
-respect to the rest of methods is quite high ($2$ orders of
-magnitude). This is also due to the previously cited non-valid
-solutions found by AppleWebKit-based browsers: once the training
-fails, nets can't evolve and no better solutions than those found in
-initial generations are built.  As table
-\ref{tab:comparison-first-experiment} shows, the best solution found
-by the entire set of browsers is $6 \times 10^{-4}$, similar to the
-average error found by the original {\em EvRBF} algorithm. This is
-true not only for the best solution: the average MSE of the best 50
-solutions is still $6 \times10^{-4}$, while the average MSE of the
-best 500 solutions is equal to that value for the MSE-LSE
-algorithm. In any case, the algorithm, as it is currently implemented,
-shows a lack of robustness that needs to be tackled and fixed. 
-
-%Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works. 
+Information about clients and the results they yielded were received
+by a server programed also in JavaScript (using {\em node.js}) and
+stored in a No-SQL database managed by {\em Mongo}; the language to
+query the database was JavaScript too. The proof of concept results
+have been published in \cite{DBLP:conf/dcai/2016de}; they showed some
+promise of the method, as well as significant differences among
+browsers. In this paper we report a new set of experiments and update
+single-browser performance with updated browser versions.
 
 
-\setlength{\tabcolsep}{10pt}
-\begin{table}
-\caption{First experiment: comparison of MSE yielded by the {\em
-    jsEvRBF} algorithm and the ones cited in \cite{rivas03:EvRBF}. Errors
-  have been computed over the full set of data.}
-%They should be referred to by name, not by where they are cited. This
-%will disappear, anyway - JJ
-\label{tab:comparison-first-experiment}
-\begin{center}
-\begin{tabular}{lcc}
-{\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
-\hline
-EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4}$ \\
-MSE-GA & $9 \times 10^{-4}$ & N/A \\
-MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
-{\em jsEvRBF} & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6\time10^{-4}$  \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-%% Codigo para conseguir la tabla (previamente, copiar los datos en a
-%var tmp="";
-%var dob=false;
-%a.forEach( function(e){
-%tmp+=e.measure+" & $"+ parseFloat( e.values.average).toExponential(4)+" \\pm "+parseFloat(e.values.desvest).toExponential(4)+"$ "+((dob)?"\\":" & ")+"\n";
-%dob=!(dob);
-%})
-
-%\setlength{\tabcolsep}{3pt}
-%\begin{table}
-%\caption{First experiment: complete set of error measures yielded {\em jsEvRBF} computed over the entire set of data.}
-%\label{tab:all-error-values-experiment-1}
-%\begin{center}
-%\begin{tabular}{lc|lc}
-%{\bf Error Measure} & {\bf Value} & {\bf Error measure} & {\bf Value} \\
-%\hline
-%
-%MSE & $2.0916e-2 \pm 5.3016e+0$ &
-%RMSE & $9.6086e-2 \pm 2.1416e+1$ \\
-%MAE & $8.0802e-2 \pm 1.5650e+1$ &
-%MdAE & $8.1066e-2 \pm 2.0277e+1$ \\
-%MAPE & $4.6095e+0 \pm 5.6024e+4$ &
-%MdAPE & $4.3373e+0 \pm 6.1799e+4$ \\
-%RMSPE & $5.6733e+0 \pm 8.3952e+4$ &
-%RMdSPE & $4.3373e+0 \pm 6.1799e+4$ \\
-%sMAPE & $4.3511e+0 \pm 4.0497e+4$ &
-%sMdAPE & $4.1231e+0 \pm 4.9165e+4$ \\
-%MASE & $4.4171e+0 \pm 4.6814e+4$ &
-%RMSSE & $5.2422e+0 \pm 6.3764e+4$ \\
-%MdASE & $4.4267e+0 \pm 6.0254e+4$ \\
-%
-%\hline
-%\end{tabular}
-%\end{center}
-%\end{table}
-
-
+\begin{figure}[!ht]
+\includegraphics[width=120mm]{example-of-execution.png}
+\caption{The look of the web page in which the {\em jsEvRBF} algorithm was loaded and executed.}
+\label{fig:example-of-execution}
+\end{figure}
+% Maybe add new version of this screen - JJ
 
 % Second one: only one browser, complete executions
-\subsection{Second experiment: long executions, one browser}
+\subsection{Testing single-browser performance}
 \label{sec:second-experiment}
 
 Once detected the error introduced by AppleWebKit-based browsers, a second experiment was carried out in a more controlled environment, and with a configuration similar to the original experiments in \cite{rivas03:EvRBF}. These new executions were run using a Firefox 44 browser, and configured as showed in table \ref{tab:parameters-second-experiment}.
@@ -441,7 +364,7 @@ Once detected the error introduced by AppleWebKit-based browsers, a second exper
 \label{tab:parameters-second-experiment}
 \begin{center}
 \begin{tabular}{rr|rr}
-{\bf Parameter} & {\bf Value} & 
+{\bf Parameter} & {\bf Value} &
 {\bf Parameter} & {\bf Value}\\
 \hline
 {\em trnSamples} & $\approx 90$ &
@@ -454,7 +377,7 @@ Once detected the error introduced by AppleWebKit-based browsers, a second exper
 {\em replaceRate} &   {\bf 0.2} \\
 {\em xOverRate} &  {\bf 0.2}&
 {\em mutRate} &   {\bf 0.8}  \\
-{\em mutPower} &  0.5 & 
+{\em mutPower} &  0.5 &
 {\em Executions per page load} &  {\bf 1} \\
 \hline
 \end{tabular}
@@ -491,17 +414,17 @@ MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
 %{\bf Error Measure} & {\bf Value} & {\bf Error measure} & {\bf Value} \\
 %\hline
 %
-%MSE & $7.5601e-4 \pm 1.6728e-7$  & 
+%MSE & $7.5601e-4 \pm 1.6728e-7$  &
 %RMSE & $2.7398e-2 \pm 5.3461e-5$ \\
-%MAE & $2.1099e-2 \pm 3.4528e-5$  & 
+%MAE & $2.1099e-2 \pm 3.4528e-5$  &
 %MdAE & $1.6385e-2 \pm 4.0988e-5$ \\
-%MAPE & $1.1091e+0 \pm 1.0119e-1$  & 
+%MAPE & $1.1091e+0 \pm 1.0119e-1$  &
 %MdAPE & $8.7471e-1 \pm 1.2897e-1$ \\
-%RMSPE & $1.4293e+0 \pm 1.5105e-1$  & 
+%RMSPE & $1.4293e+0 \pm 1.5105e-1$  &
 %RMdSPE & $8.7471e-1 \pm 1.2897e-1$ \\
-%sMAPE & $1.1065e+0 \pm 9.8722e-2$  & 
+%sMAPE & $1.1065e+0 \pm 9.8722e-2$  &
 %sMdAPE & $8.7381e-1 \pm 1.2609e-1$ \\
-%MASE & $1.1515e+0 \pm 1.0601e-1$  & 
+%MASE & $1.1515e+0 \pm 1.0601e-1$  &
 %RMSSE & $1.4940e+0 \pm 1.6138e-1$ \\
 %MdASE & $8.9537e-1 \pm 1.2759e-1$  \\
 %\hline
@@ -515,7 +438,7 @@ MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
 Web-browsers have been proved to be a good alternative to achieve
 distributing computation, minimizing the effort needed to ensure
 cross-platform compatibility and easiness of use. To show it, we have
-introduced the {\em jsEvRBF} algorithm; 
+introduced the {\em jsEvRBF} algorithm;
 written in JavaScript, this algorithm can be executed in web-browsers
 when users access to a specified URL. The web page downloaded by the
 browser contains the code of this evolutionary algorithm, able to
@@ -530,27 +453,27 @@ Safari) not work properly.
 
 Future work includes the use of the
 algorithm in an {\em island model}  framework in which good
-individuals be distributed to the clients running the algorithm. 
+individuals be distributed to the clients running the algorithm.
 %since {\em jsEO}, the underlying
 %library supporting {\em jsEvRBF}, has been implemented with this
-%feature. 
+%feature.
 
 
 
 \section*{Acknowledgements}
- This work has been supported in part by:  
+ This work has been supported in part by:
  Ministerio de Ministerio espa\~{n}ol de Econom\'{\i}a y Competitividad under (preselected as granted) project TIN2014-56494-C4-3-P (UGR-EPHEMECH)
  , CEI2015-MP-V17 of the Microprojects program 2015 from CEI BioTIC Granada
- , PROY-PP2015-06 (Plan Propio 2015 UGR), 
- and 
- PRY142/14 (Este proyecto con num. de referencia: PRY142/14 ha sido financiado íntegramente por la Fundaci\'{o}n P\'{u}blica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'{o}n)\footnote{The description in Spanish is mandatory.}.
- 
+ , PROY-PP2015-06 (Plan Propio 2015 UGR),
+ and
+ PRY142/14 (Este proyecto con num. de referencia: PRY142/14 ha sido financiado ï¿½ntegramente por la Fundaci\'{o}n P\'{u}blica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'{o}n)\footnote{The description in Spanish is mandatory.}.
+
 
 %
 % ---- Bibliography ----
 %
 
 \bibliographystyle{apalike}
-\bibliography{dcai,geneura}
- 
+\bibliography{dcai,geneura,volunteer}
+
 \end{document}
