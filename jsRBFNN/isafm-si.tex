@@ -107,7 +107,7 @@ they allowed the executions of third-part programs included in the
 pages they downloaded. This way, browsers turned into wider
 frameworks in which multi-platform applications could be executed.  
 Flash??? reference??? and Java applets the??? are probably the best
-known techniques to do this, even for non-experts users. But, in
+known techniques to do this, even for non-experts users. %But, in
 %fact,  
 Nowadays, most programs executed by browsers are written in a language
 called JavaScript, which was initially introduced to make interaction
@@ -130,11 +130,14 @@ Its use has turned browsers into wider frameworks in which multi-platform applic
 JavaScript was standardized in 1997 by the European Computer Manufacturer's Association, or ECMA. According to the ECMA-262 standard, its real name is \emph{ECMAScript}, but everyone calls the language \emph{JavaScript} \cite{Flanagan06}.
 
 % Restricciones de JavaScript
-JavaScript can be described as a general-purpose, object-based, event-driven language.
+JavaScript can be described as a general-purpose, object-based,
+event-driven language. 
 % that can be used to write programs for both the client and the
 % server REFERENCE-NODE???. T¡
 % Why comment??- JJ
-Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
+Adding JavaScript programs to web pages is simple: the code is
+inserted in the HTML code in plain text; then, it is downloaded by the
+browser that, finally,  interprets and executes it. 
 %Thus, although web browsers allow the users to change the preferences
 %in order to disable the execution of any JavaScript code, this is
 %rarely done in these days. Even more, most standard web users are not
@@ -176,14 +179,23 @@ They have been successfully used to solve classification, function
 approximation, and, as in this work, time-series forecasting problems
 \cite{Broomhead88,Keogh03,Whitehead}. 
 %The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the higher the number of inputs that will not activate the neuron. Usually, Gaussian function is selected as the activation function, but many others can also be used.
-Configuring an RBFNN in order to solve a task consists on: a) choosing the activation function for hidden neurons, b) choosing the number of hidden neurons, c) setting the parameters required by the activation functions (i.e., center and radius of the RBF), and d) setting the values for weights and bias. This last step can be easily computed once the rest of components have been established using the Least Mean Square method. {\em EvRBF} algorithm was designed to automatically search for the best configuration of an RBFNN that solves the problem being tackled, except for the activation function to be used that is always a Gaussian function.
+Configuring an RBFNN in order to solve a task consists on: a) choosing
+the activation function for hidden neurons, b) choosing the number of
+hidden neurons, c) setting the parameters required by the activation
+functions (i.e., center and radius of the RBF), and d) setting the
+values for weights and bias. This last step can be easily computed
+once the rest of components have been established using the Least Mean
+Square method. {\em EvRBF} algorithm was designed to automatically
+search for the best configuration of an RBFNN that solves the problem
+being tackled, except for the activation function to be used that is
+always a Gaussian function. 
 
 % Time-series prediction
 
 %Time-series can be considered as a special kind of function approximation where future values of the series are expressed as a function of past ones.
 %There exist many methods in literature developed to forecast time-series references, being ARIMA \cite{BoxJenk} probably the most widely used.
 
-In the herein, the implementation of {\em EvRBF} for web browsers
+In this paper the implementation of {\em EvRBF} for web browsers
 (called {\em jsEvRBF}) has been compared to its original
 implementation as well as to the methods used by Sheta in
 \cite{Sheta2001}, the work in which the data set used in this paper
@@ -226,7 +238,7 @@ achieve \cite{DBLP:conf/lion/LaredoGFMACG11,DBLP:conf/gecco/MereloCGCRV16}, in t
   resources of infected computers \cite{plohmann2012case}. 
 
 We have already published the proof of concept and preliminary results
-for this method in \cite{DBLP:conf/dcai/RivasPMAG16}. In this paper we
+for this method in \cite{DBLP:conf/dcai/RivasPMAG16}. In that paper we
 correct errors found and describe further experiments that measure the
 performance obtained with different browsers and in different
 conditions. 
@@ -266,14 +278,14 @@ graphically shows the dependencies between {\em jsEvRBF} and these
 libraries.  
 
 
-As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the following:
+As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is
+as follows:
 
 \begin{algorithm}
 \caption{jsRBF program}
 \begin{algorithmic}
 \STATE Create, train and evaluate an initial population of $p$ individuals.
 \FOR{generation = 1 \TO n}
-
    \STATE{Select a subpopulation of $q$ individuals}
    \STATE{Create $q$ new individuals applying an operator to each one in subpopulation}
    \STATE{Train and evaluate the $q$ new individuals}
@@ -287,7 +299,7 @@ As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the follo
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{class-diagram.jpg}
 \caption{Class diagram of the jsEvRBF algorithm, showing the way it depends on the jsEO general framework and the jsRBFNN library.}
-\label{fig:class_diagram}
+\label{fig:class_diagram} % Do we need this thing? ~JJ
 \end{figure}
 
 
@@ -303,7 +315,9 @@ With respect to the operators used in this algorithm:
 \end{itemize}
 
 
-Finally, the following set of parameters has to be established in order to run the {\em jsEvRBF} algorithm:
+Finally, the following set of parameters has to be established in
+order to run the {\em jsEvRBF} algorithm: % What's the point of this?
+                                % - JJ
 \begin{itemize}
 \item{\em trnSamples}: Set of samples to train the nets; it will be also used to select the centers of the RBF of the individuals composing the initial population.
 \item{\em valSamples}: Set of samples to compute fitness.
