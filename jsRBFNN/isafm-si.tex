@@ -346,12 +346,20 @@ data (randomly chosen) has been used to train and validate the nets,
 while the whole data set has been used to compute the generalisation power of the best neural net found in every execution of the algorithm.
 
 In order to test the capabilities of web browsers in financial time-series forecasting,
-two experiments have been carried out using {\em jsEvRBF}.  in our previous work (???CITA) One of them
-has been open to a wide community of users, so that many different
-devices, operating systems and web browsers have been used.  We have
+two experiments have been carried out using {\em jsEvRBF},
+additionally to those performed in our previous work
+\cite{DBLP:conf/dcai/RivasPMAG16}.
+In order to prove the performance in a volunteer computing set up, we
+have effectively opened the system to a wide community of users, so that many different
+devices, used from many operating systems and web browsers have
+participated in it. Besides, and in order to have an indea of the
+baseline performance of every browser, we have
 also tested the algorithm in a single computer, using a single web
 browser, so that we can focus in the forecasting process itself and
-also assess the differences among different browser.
+also assess the differences among different browser; this will also
+help, in the case of a controlled environment such as an office or
+laboratory, to choose the browser with the best performance
+available. 
 In any case, participating in the experiment only required to connect
 to an URL; no special technical knowledge was necessary to run the
 algorithm since it was automatically executed once the web page was
@@ -381,7 +389,17 @@ single-browser performance with updated browser versions.
 \subsection{Testing single-browser performance}
 \label{sec:second-experiment}
 
-Once detected the error introduced by AppleWebKit-based browsers, a second experiment was carried out in a more controlled environment, and with a configuration similar to the original experiments in \cite{rivas03:EvRBF}. These new executions were run using a Firefox 44 browser, and configured as showed in table \ref{tab:parameters-second-experiment}.
+Our intention with this experiment was to measure the performance of
+single browsers, which arises from the implementation of the
+JavaScript virtual machine they use. It will give us a base of
+comparison with other languages or frameworks, and can be used also to
+decide on a particular browser in case that aspect of the experiment
+can be controlled. The configuration, similarly to that used in
+\cite{rivas03:EvRBF}, was % This has to be explicited, a citation is
+                          % not enough. 
+. These new executions were run using a Firefox 44
+browser, and configured as showed in table
+\ref{tab:parameters-second-experiment}. 
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
