@@ -125,7 +125,12 @@ JavaScript was standardized in 1997 by the European Computer Manufacturer's Asso
 
 
 % Restricciones de JavaScript
-JavaScript can be described as a general-purpose, object-based, event-driven language. Initially intended to be used only in clients, nowadays can be used to write programs for both the client (the browser) and the server thanks to frameworks like \emph{node.js}~\cite{rauch2012smashing}
+JavaScript can be described as a general-purpose, object-based,
+event-driven language. Although it was designed to be used only in the
+browser, independent implementations were soon released and nowadays
+it is used to write programs for both the client (the browser) and the
+server thanks to frameworks like
+\emph{node.js}~\cite{rauch2012smashing} 
 % Why comment??- JJ - Because I wrote too much in the initial version and I had to reduce it according to the congress rules.
 Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
 Thus, although web browsers allow the users to change the preferences
@@ -146,7 +151,7 @@ across the net.
 The capabilities of JavaScript have led us to consider web browsers as agents that can download a web page containing a set
 of data and the code of an evolutionary algorithm. This way, browsers can execute that algorithm, which is built to evolve neural nets. These neural nets can be applied to forecast an economic time-series. The whole process, from downloading the web page to obtain the forecasted values is done by the browser. Thus, using
 this approach, any physical device in which a web browser can be installed (from
-computers to smart TVs) can be potentially used to run our algorithm.
+computers to smart TVs) can be potentially used to run our algorithm. 
 
 % Genetic Algorithms and RBFNN
 Both the problem being considered in this paper and the algorithm used
@@ -230,12 +235,21 @@ for this method in \cite{DBLP:conf/dcai/RivasPMAG16}. In that paper we
 correct errors found and describe further experiments that measure the
 performance obtained with different browsers and in different
 conditions. In the same way, {\em jsEvRBF} has been evaluated with the same time-series
-used by Sheta and de Jong \cite{Sheta2001} and the results were published in \cite{DBLP:conf/dcai/RivasPMAG16} For this paper, we extend the state of the art including new experiments and new results. %These kind of claims
-                                %should go to the state of the art - JJ, Ok, lo cambio, Maribel
+used by Sheta and de Jong \cite{Sheta2001} and the results were
+published in \cite{DBLP:conf/dcai/RivasPMAG16}. For this paper, we
+extend the state of the art including new experiments and new
+results. %These kind of claims 
+                                %should go to the state of the art -
+                                %JJ, Ok, lo cambio, Maribel 
 
 
 \section{The {\em jsEvRBF} implementation} %Is it an algorithm or an
-                                %implementation? - JJ, Yo creo que es una implementaciï¿½n, el algoritmo no es nuevo.
+                                %implementation? - JJ, Yo creo que es
+                                %una implementaciï¿½n, el algoritmo no
+                                %es nuevo.
+%Eso es lo que yo digo. Pero en este caso es un método basado en un
+%algoritmo, habría que decirlo así, no simplemente "implementation",
+%porqeu es algo más - JJ
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
 {\em jsEvRBF} denotes the implementation in JavaScript of our previously existing evolutionary algorithm {\em EvRBF} \cite{rivas03:EvRBF} ; writing this algorithm in JavaScript allows it execution in web browsers.
