@@ -158,7 +158,8 @@ Both the problem being considered in this paper and the algorithm used
 to solve it were introduced in \cite{rivas03:EvRBF}. On the one hand,
 the problem consists on forecasting the values of the exchange rates
 between two currencies for a four years period; data is weekly averaged. %This needs a citation. Where did you obtain data?
-% Besides, could you use our own traffic data? - JJ
+% Besides, could you use our own traffic data? - JJ 
+% Yes of course... but I'd have to change the code to deal with trn+trn+tst files.
 On the other hand, the algorithm (described in
 section \ref{sec:algorithm}) is a reduced version of {\em EvRBF}
 \cite{rivas03:EvRBF}, an evolutionary algorithm that makes Radial Basis
@@ -171,7 +172,7 @@ one output layers. %\cite{Broomhead88}.
 They have been successfully used to solve classification, function
 approximation, and, as in this work, time-series forecasting problems
 \cite{Broomhead88,Keogh03,Whitehead}.
-%The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the higher the number of inputs that will not activate the neuron. Usually, Gaussian function is selected as the activation function, but many others can also be used.
+The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the higher the number of inputs that will not activate the neuron. Usually, Gaussian function is selected as the activation function, but many others can also be used.
 Configuring an RBFNN in order to solve a task consists on: a) choosing
 the activation function for hidden neurons, b) choosing the number of
 hidden neurons, c) setting the parameters required by the activation
@@ -266,7 +267,7 @@ The implementation of both the library for RBFNN ( {\em
 our research group. Thus, {\em jsRBFNN} implements the neural nets and also the LMS
 training algorithm. %This should be explained somewhere. This is a
                     %financial journal - JJ
-And {\em jsEO} \cite{EvoStar2014:jsEO} is a more
+Regarding  {\em jsEO} \cite{EvoStar2014:jsEO}, it is a more
 complex framework that allows the generation of many kinds of
 evolutionary algorithms, making easier the task of creating new types
 of individuals and/or operators. Figure \ref{fig:class_diagram}
@@ -295,7 +296,7 @@ as follows:
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{class-diagram.jpg}
 \caption{Class diagram of the jsEvRBF algorithm, showing the way it depends on the jsEO general framework and the jsRBFNN library.}
-\label{fig:class_diagram} % Do we need this thing? ~JJ
+\label{fig:class_diagram} % Do we need this thing? ~JJ -  I really like it. BTW, I wish we had realised in EO that eo wasn't a class, but an Interface  ~vrivas
 \end{figure}
 
 
@@ -314,6 +315,7 @@ The operators used in {\em jsEvRBF's} are the following:
 Finally, the following set of parameters has to be set in
 order to run the {\em jsEvRBF} algorithm: % What's the point of this?
                                 % - JJ
+                                % In my opininion, if someone wants to reproduce our algorithm, they need to know the parameters we are using.
 \begin{itemize}
 \item{\em trnSamples}: Set of samples to train the nets; some of them, randomly chosen, it will be used as centers for the RBF of the individuals composing the initial population.
 \item{\em valSamples}: Set of samples to compute fitness of every new created individual.
@@ -349,27 +351,27 @@ In order to test the capabilities of web browsers in financial time-series forec
 two experiments have been carried out using {\em jsEvRBF},
 additionally to those performed in our previous work
 \cite{DBLP:conf/dcai/RivasPMAG16}.
-In order to prove the performance in a volunteer computing set up, we
+For the first experiment (see section \ref{sec:first-experiment}) and in order to test the performance in a volunteer computing set up, we
 have effectively opened the system to a wide community of users, so that many different
 devices, used from many operating systems and web browsers have
-participated in it. Besides, and in order to have an indea of the
-baseline performance of every browser, we have
-also tested the algorithm in a single computer, using a single web
+participated in it. Besides, the second experiment (section \ref{sec:second-experiment}) is intended to give an idea of the
+baseline performance of every browser. For this reason, we have
+also tested the algorithm in isolated computers, using a single web
 browser, so that we can focus in the forecasting process itself and
 also assess the differences among different browser; this will also
 help, in the case of a controlled environment such as an office or
 laboratory, to choose the browser with the best performance
 available. 
 In any case, participating in the experiment only required to connect
-to an URL; no special technical knowledge was necessary to run the
+to the URL: \url{http://150.214.178.89}; no special technical knowledge was necessary to run the
 algorithm since it was automatically executed once the web page was
 loaded. Figure \ref{fig:example-of-execution} shows the page users
-could read when accessing the specified URL.  As can be seen, it
-emulated the look of a paper and needs no action to be performed by
-the user.
+could read when accessing the specified URL.  
+Every time an user accessed that URL, the web page containing the algorithm was loaded in their computer and $10$ complete, independent executions of the algorithm were done. Once finished every execution, the results of forecasting the whole data set yielded in that execution was sent to the sever. After then $10$ executions have finished, the page was reloaded again if the user did not close the window in less than $10$ seconds. 
 
-Information about clients and the results they yielded were received
-by a server programed also in JavaScript (using {\em node.js}) and
+
+Public information (browser and operating system versions) about the clients executing the algorithm and the results they yielded were received
+by a server programmed also in JavaScript (using {\em node.js}) and
 stored in a No-SQL database managed by {\em Mongo}; the language to
 query the database was JavaScript too. The proof of concept results
 have been published in \cite{DBLP:conf/dcai/2016de}; they showed some
@@ -384,28 +386,14 @@ single-browser performance with updated browser versions.
 \label{fig:example-of-execution}
 \end{figure}
 % Maybe add new version of this screen - JJ
+% Yes, of course. The web pages has changed.
 
-% Second one: only one browser, complete executions
-\subsection{Testing single-browser performance}
-\label{sec:second-experiment}
-
-Our intention with this experiment was to measure the performance of
-single browsers, which arises from the implementation of the
-JavaScript virtual machine they use. It will give us a base of
-comparison with other languages or frameworks, and can be used also to
-decide on a particular browser in case that aspect of the experiment
-can be controlled. The configuration, similarly to that used in
-\cite{rivas03:EvRBF}, was % This has to be explicited, a citation is
-                          % not enough. 
-. These experiments used the algorithm configuration shown in Table
-\ref{tab:parameters-second-experiment}. % Say something about this
-                                % configuration. Is it average? Good?
-                                % Bad? - JJ
+The values used to run the algorithm are shown in table \ref{tab:parameters-experiments}. These values are exactly the same than those used in the first version of the algorithm introduced in \cite{rivas03:EvRBF}
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Configuration of parameters for the second experiment. As in the first one, the number of samples ({\em trnSamples} and {\em valSamples}) is still approximated since they were randomly chosen in every execution. Values that differ from experiment 1 have been highlighted in {\bf bold}}
-\label{tab:parameters-second-experiment}
+\caption{Configuration of parameters for the experiments. The number of samples ({\em trnSamples} and {\em valSamples}) is still approximated since they were randomly chosen in every execution.}
+\label{tab:parameters-experiments}
 \begin{center}
 \begin{tabular}{rr|rr}
 {\bf Parameter} & {\bf Value} &
@@ -414,21 +402,57 @@ can be controlled. The configuration, similarly to that used in
 {\em trnSamples} & $\approx 90$ &
 {\em valSamples} & $\approx 15$  \\
 {\em inputDimension} &   1 &
-{\em numNeurons} &  {\bf 10} \\
-{\em popSize} &  {\bf 15} &
+{\em numNeurons} &  10 \\
+{\em popSize} &  15 &
 {\em numGenerations} & 10  \\
-{\em tournamentSize} &  {\bf 3} &
-{\em replaceRate} &   {\bf 0.2} \\
-{\em xOverRate} &  {\bf 0.2}&
-{\em mutRate} &   {\bf 0.8}  \\
+{\em tournamentSize} &  3 &
+{\em replaceRate} &   0.2 \\
+{\em xOverRate} &  0.2&
+{\em mutRate} &   0.8  \\
 {\em mutPower} &  0.5 &
-{\em Executions per page load} &  {\bf 1} \\
+{\em Executions per page load} & 1 \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-The results for this second experiment, averaged over 10 executions of the algorithm, were clearly better than those yielded in first one, as can be seen in table \ref{tab:comparison-second-experiment}. Although the original {\em EvRBF} algorithm still yields the best result ($6 \times 10^{-4} \pm 2 \times 10^{-4}$), {\em jsEvRBF} can be compared in this occasion with it ($8 \times 10^{-4} \pm 2 \times 10^{-7}$), and is lower than MSE-GA ($9 \times 10^{-4}$) and MSE-LSE ($12 \times 10^{-4}$). Further study must be done to determine the causes that makes the new algorithm being not so accurate as the original one, but probably the absence of some of the operators not yet programmed could be the reason.
+% Second one: only one browser, complete executions
+\subsection{Testing implementation's validity and user's willingness}
+\label{sec:first-experiment}
+The first experiment was designed to check the willingness of web users when asked to participate in  a volunteer computation experiment. In this sense, a call to participate in the experiment was made using social networks (Facebook and Twitter).The experiment was open for two weeks (from 29/Dec/2016 to 13/Jan/2017), and users only had to open in their browsers the previously cited URL. 
+Along the 15 days that lasted the experiment, $41853$ executions done by $55$ users were completed; thus, in average, every user ran almost $761$ times the algorithm. The most used operating system was Android ( $54.5\%$) of users, followed by Windows and Mac OS ($18.2\%$ any of them), and Linux ($9.1\%$). Regarding the browsers, Chrome was the preferred by users ($69.1\%$), followed by  Firefox in $20.0\%$, and finally Safari, that was used in $10.9\%$ of the cases. These first results clearly shows the validity of the implementation regarding its multi-platform availability and easiness of use, but also the difficulties that arise when trying to involve users in this kind of volunteer computation, since only $55$ users agreed to execute our algorithm.  
+
+With respect to the accuracy of the forecasting, the MSE of the best solution found along all the executions was $6\times10^{-4}$. As can be see in table \ref{tab:comparison-first-experiment}, this solution is as good as the average one found by the original algorithm (EvRBF) and much better that our previous results published in the congress. The later is due to the fact that every executions has finished with valid values, since new versions of Safari and Chrome browsers (i.e., AppleWebKit-based browsers) are not affected by the \em{NaN} error we found in our previous work. Taking into account the $41853$ executions, the MSE turns to be $2 \times 10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
+
+%Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works. 
+
+
+\setlength{\tabcolsep}{10pt}
+\begin{table}
+\caption{First experiment: comparison of MSE yielded by the {\em jsEvRBF} algorithm and the ones cited in \cite{Rivas04}. Row {\em jsEvRBF'16} includes the results presented in PAAMS congress, while row {\em jsEvRBF'17} belongs to this new set of experiments. Errors have computed over the full set of data.}
+\label{tab:comparison-first-experiment}
+\begin{center}
+\begin{tabular}{lcc}
+{\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
+\hline
+\bf EvRBF & $\mathbf{6 \times 10^{-4} \pm 2 \times 10^{-4}}$ &$\mathbf{4 \times 10^{-4}}$ \\
+MSE-GA & $9 \times 10^{-4}$ & N/A \\
+MSE-LSE &  $1 \times 10^{-3}$ & N/A \\
+{\em jsEvRBF'17} & $\mathit{2 \times 10^{-3} \pm 8 \times 10^{0}}$ & $\mathit{6 \times 10^{-4}}$  \\
+jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6 \times10^{-4}$  \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% Second one: only one browser, complete executions
+\subsection{Testing single-browser performance}
+\label{sec:second-experiment}
+
+This second experiment is intended to detect the different behaviour of {\em jsEvRBF} depending of the browser in which it is executed. Although the JavaScript language is the same for any browser, the implementation of the
+JavaScript virtual machine they use introduces some differences that may affect to the complete process. In order to control the results yielded by each browser, the web page was loaded only once in any of them; thus, the results presented in this paper are averaged over $10$ executions. 
+
+Table \ref{tab:results-per-browser-second-experiment} shows the results yielded by the different browsers.
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
