@@ -101,7 +101,11 @@ participation. These results guarantee the viability of the proposal.
 
 \section{Introduction}
 % Web-based computing
-Modern web browsers (namely Firefox, Chrome, Edge, Safari and many others) differ from their initial predecessors in that they can do more than render HTML code, show pictures and allow to navigate using links. In fact, as far as browsers allow the executions of third-part programs (applets) included in the
+Modern web browsers such as Firefox, Chrome, Edge, Safari and many
+others differ from their predecessors in that they can do more than
+render HTML code, show pictures and allow to navigate using links. In
+fact, as far as browsers allow the executions of third-part programs
+(applets) included in them
 pages they downloaded, they have turned into wider
 frameworks in which multi-platform applications can be executed.
 Furthermore, new versions can natively decode and execute code that previously needed to be handled by a plug-in. An example of this is the Flash Player experience, since its usage has drastically reduced by HTML now that browsers are able to do a similar work \cite{Winokur11}.
@@ -342,15 +346,18 @@ Bristish pound and US dollar from 31 December 1979 to 26 December
   by Prof. Werner Antweiler from the University of British Columbia,
   Vancouver, Canada, is available from
   \url{http://pacific.commerce.ubc.ca/xr/data.html}.}. This data set is exactly the same and
-has been used in the same way than Sheta and de Jong in Sheta in
-\cite{Sheta2001}; thus,  only half the
-data (randomly chosen) has been used to train and validate the nets,
-while the whole data set has been used to compute the generalisation power of the best neural net found in every execution of the algorithm.
+has been used in the same way than Sheta and de Jong in
+\cite{Sheta2001}; thus, only one randomly chosen half of the
+dataset has been used to train and validate the obtained neural nets,
+while the whole data set has been used to compute the generalisation
+power of the best neural net found in every execution of the
+algorithm.
 
 In order to test the capabilities of web browsers in financial time-series forecasting,
 two experiments have been carried out using {\em jsEvRBF},
 additionally to those performed in our previous work
 \cite{DBLP:conf/dcai/RivasPMAG16}.
+% This has to be revised, since experiments are different now. - JJ
 For the first experiment (see section \ref{sec:first-experiment}) and in order to test the performance in a volunteer computing set up, we
 have effectively opened the system to a wide community of users, so that many different
 devices, used from many operating systems and web browsers have
@@ -419,17 +426,53 @@ The values used to run the algorithm are shown in table \ref{tab:parameters-expe
 % Second one: only one browser, complete executions
 \subsection{Testing implementation's validity and user's willingness}
 \label{sec:first-experiment}
-The first experiment was designed to check the willingness of web users when asked to participate in  a volunteer computation experiment. In this sense, a call to participate in the experiment was made using social networks (Facebook and Twitter).The experiment was open for two weeks (from 29/Dec/2016 to 13/Jan/2017), and users only had to open in their browsers the previously cited URL. 
-Along the 15 days that lasted the experiment, $41853$ executions done by $55$ users were completed; thus, in average, every user ran almost $761$ times the algorithm. The most used operating system was Android ( $54.5\%$) of users, followed by Windows and Mac OS ($18.2\%$ any of them), and Linux ($9.1\%$). Regarding the browsers, Chrome was the preferred by users ($69.1\%$), followed by  Firefox in $20.0\%$, and finally Safari, that was used in $10.9\%$ of the cases. These first results clearly shows the validity of the implementation regarding its multi-platform availability and easiness of use, but also the difficulties that arise when trying to involve users in this kind of volunteer computation, since only $55$ users agreed to execute our algorithm.  
+The first experiment was designed to check the willingness of web
+users when asked to participate in a volunteer computation
+experiment. In this sense, a call for participation in the experiment was
+made using social networks, mainly Facebook and Twitter. The experiment was
+open for two weeks (from 29/Dec/2016 to 13/Jan/2017), and users only
+had to open in their browsers the previously cited URL.  
+Along the 15 days that lasted the experiment, $41853$ executions done
+by $55$ users were completed; thus, in average, every user ran the
+experiment close to 
+$761$ times. % Next should go in a table - JJ 
+The most widely used operating system was Android
+( $54.5\%$) of users, followed by Windows and Mac OS ($18.2\%$ any of
+them), and Linux ($9.1\%$). %Next to another table - JJ
+Regarding the browsers, Chrome was the
+preferred by users ($69.1\%$), followed by  Firefox in $20.0\%$, and
+finally Safari, that was used in $10.9\%$ of the cases. These first
+results clearly show the validity of the implementation regarding its
+multi-platform availability and easiness of use, but also the
+difficulties that arise when trying to involve users in this kind of
+volunteer computation, since only $55$ users agreed to execute our
+algorithm. It also shows the kind of users that can be expected:
+users from mobile devices, most of them using the default browser,
+Chrome. 
 
-With respect to the accuracy of the forecasting, the MSE of the best solution found along all the executions was $6\times10^{-4}$. As can be see in table \ref{tab:comparison-first-experiment}, this solution is as good as the average one found by the original algorithm (EvRBF) and much better that our previous results published in the congress. The later is due to the fact that every executions has finished with valid values, since new versions of Safari and Chrome browsers (i.e., AppleWebKit-based browsers) are not affected by the \em{NaN} error we found in our previous work. Taking into account the $41853$ executions, the MSE turns to be $2 \times 10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
+With respect to the accuracy of the forecasting performed in each
+experiment, the MSE of the best 
+solution found along all the executions was $6\times10^{-4}$. As can
+be see in table \ref{tab:comparison-first-experiment}, this solution
+is as good as the average one found by the original algorithm (EvRBF)
+and much better that our previously published results \cite{DBLP:conf/dcai/RivasPMAG16}. The later is due to the fact that every executions has
+finished with valid values, since new versions of Safari and Chrome
+browsers (i.e., AppleWebKit-based browsers) are not affected by the
+\em{NaN} error we found in our previous work. Taking into account the
+$41853$ executions, the MSE turns to be $2 \times
+10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded
+by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}. 
 
 %Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works. 
 
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{First experiment: comparison of MSE yielded by the {\em jsEvRBF} algorithm and the ones cited in \cite{Rivas04}. Row {\em jsEvRBF'16} includes the results presented in PAAMS congress, while row {\em jsEvRBF'17} belongs to this new set of experiments. Errors have computed over the full set of data.}
+\caption{First experiment: comparison of MSE yielded by the {\em
+    jsEvRBF} algorithm and the ones cited in \cite{Rivas04}. Row {\em
+    jsEvRBF'16} includes the results presented in PAAMS congress,
+  while row {\em jsEvRBF'17} belongs to this new set of
+  experiments. Errors have computed over the full set of data.} 
 \label{tab:comparison-first-experiment}
 \begin{center}
 \begin{tabular}{lcc}
