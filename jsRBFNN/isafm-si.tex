@@ -51,6 +51,8 @@ C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
 \maketitle              % typeset the title of the contribution
 \begin{abstract}
 %##### NUEVA PROPUESTA DE ABSTRACT--- Maribel
+% Victor: Ojo: máximo 100 palabras según las normas de la publicación
+% http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1099-1174/homepage/ForAuthors.html
 {\em JsEvRBF} is a forecasting method that uses a genetic algorithm
 for evolving radial basis function neural nets. The implementation
 presented in this paper is able to run in most modern web browsers,
@@ -381,7 +383,7 @@ single-browser performance with updated browser versions.
 
 
 \begin{figure}[!ht]
-\includegraphics[width=120mm]{example-of-execution.png}
+\includegraphics[width=120mm]{example-of-execution-isafm.png}
 \caption{The look of the web page in which the {\em jsEvRBF} algorithm was loaded and executed.}
 \label{fig:example-of-execution}
 \end{figure}
@@ -390,60 +392,17 @@ single-browser performance with updated browser versions.
 
 The values used to run the algorithm are shown in table \ref{tab:parameters-experiments}. These values are exactly the same than those used in the first version of the algorithm introduced in \cite{rivas03:EvRBF}
 
-\setlength{\tabcolsep}{10pt}
-\begin{table}
-\caption{Configuration of parameters for the experiments. The number of samples ({\em trnSamples} and {\em valSamples}) is still approximated since they were randomly chosen in every execution.}
-\label{tab:parameters-experiments}
-\begin{center}
-\begin{tabular}{rr|rr}
-{\bf Parameter} & {\bf Value} &
-{\bf Parameter} & {\bf Value}\\
-\hline
-{\em trnSamples} & $\approx 90$ &
-{\em valSamples} & $\approx 15$  \\
-{\em inputDimension} &   1 &
-{\em numNeurons} &  10 \\
-{\em popSize} &  15 &
-{\em numGenerations} & 10  \\
-{\em tournamentSize} &  3 &
-{\em replaceRate} &   0.2 \\
-{\em xOverRate} &  0.2&
-{\em mutRate} &   0.8  \\
-{\em mutPower} &  0.5 &
-{\em Executions per page load} & 1 \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
 
-% Second one: only one browser, complete executions
 \subsection{Testing implementation's validity and user's willingness}
 \label{sec:first-experiment}
 The first experiment was designed to check the willingness of web users when asked to participate in  a volunteer computation experiment. In this sense, a call to participate in the experiment was made using social networks (Facebook and Twitter).The experiment was open for two weeks (from 29/Dec/2016 to 13/Jan/2017), and users only had to open in their browsers the previously cited URL. 
 Along the 15 days that lasted the experiment, $41853$ executions done by $55$ users were completed; thus, in average, every user ran almost $761$ times the algorithm. The most used operating system was Android ( $54.5\%$) of users, followed by Windows and Mac OS ($18.2\%$ any of them), and Linux ($9.1\%$). Regarding the browsers, Chrome was the preferred by users ($69.1\%$), followed by  Firefox in $20.0\%$, and finally Safari, that was used in $10.9\%$ of the cases. These first results clearly shows the validity of the implementation regarding its multi-platform availability and easiness of use, but also the difficulties that arise when trying to involve users in this kind of volunteer computation, since only $55$ users agreed to execute our algorithm.  
 
-With respect to the accuracy of the forecasting, the MSE of the best solution found along all the executions was $6\times10^{-4}$. As can be see in table \ref{tab:comparison-first-experiment}, this solution is as good as the average one found by the original algorithm (EvRBF) and much better that our previous results published in the congress. The later is due to the fact that every executions has finished with valid values, since new versions of Safari and Chrome browsers (i.e., AppleWebKit-based browsers) are not affected by the \em{NaN} error we found in our previous work. Taking into account the $41853$ executions, the MSE turns to be $2 \times 10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
+With respect to the accuracy of the forecasting, the MSE of the best solution found along all the executions was $6\times10^{-4}$. As can be see in table \ref{tab:comparison-first-experiment}, this solution is as good as the average one found by the original algorithm (EvRBF) and much better that our previous results published in the congress. The later is due to the fact that every executions has finished with valid values, since new versions of Safari and Chrome browsers (i.e., AppleWebKit-based browsers) are less affected by the \em{NaN} error we found in our previous work. Taking into account the $41853$ executions, the MSE turns to be $2 \times 10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 
 %Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works. 
 
 
-\setlength{\tabcolsep}{10pt}
-\begin{table}
-\caption{First experiment: comparison of MSE yielded by the {\em jsEvRBF} algorithm and the ones cited in \cite{Rivas04}. Row {\em jsEvRBF'16} includes the results presented in PAAMS congress, while row {\em jsEvRBF'17} belongs to this new set of experiments. Errors have computed over the full set of data.}
-\label{tab:comparison-first-experiment}
-\begin{center}
-\begin{tabular}{lcc}
-{\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
-\hline
-\bf EvRBF & $\mathbf{6 \times 10^{-4} \pm 2 \times 10^{-4}}$ &$\mathbf{4 \times 10^{-4}}$ \\
-MSE-GA & $9 \times 10^{-4}$ & N/A \\
-MSE-LSE &  $1 \times 10^{-3}$ & N/A \\
-{\em jsEvRBF'17} & $\mathit{2 \times 10^{-3} \pm 8 \times 10^{0}}$ & $\mathit{6 \times 10^{-4}}$  \\
-jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6 \times10^{-4}$  \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
 
 % Second one: only one browser, complete executions
 \subsection{Testing single-browser performance}
@@ -454,26 +413,7 @@ JavaScript virtual machine they use introduces some differences that may affect 
 
 Table \ref{tab:results-per-browser-second-experiment} shows the results yielded by the different browsers.
 
-\setlength{\tabcolsep}{10pt}
-\begin{table}
-\caption{Single-browser experiment: comparison of MSE yielded by the {\em
-    jsEvRBF} algorithm and the ones cited in
-  \cite{rivas03:EvRBF}. Errors have computed over the full set of
-  data, having executing the algorithm 10 times.} % 
-\label{tab:comparison-second-experiment}
-\begin{center}
-\begin{tabular}{lcc}
-{\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
-\hline
-EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4} \pm 2 \times 10^{-4}$ \\
-{\em jsEvRBF} & $8 \times 10^{-4} \pm 2 \times 10^{-7}$ & $6\times10^{-4}$  \\
-MSE-GA & $9 \times 10^{-4}$ & N/A \\
-MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
-\hline
-\end{tabular}
-\end{center}
-% Mark the best and draw some conclusion - JJ
-\end{table}
+
 
 %Finally, and as we did before, table \ref{tab:all-error-values-experiment-2} summarizes the values computed for this experiment with regard to the complete set of error measures.
 %
@@ -547,5 +487,79 @@ individuals be distributed to the clients running the algorithm.
 
 \bibliographystyle{apalike}
 \bibliography{dcai,geneura,volunteer}
+
+\newpage
+\setlength{\tabcolsep}{10pt}
+\begin{table}
+\caption{Configuration of parameters for the experiments. The number of samples ({\em trnSamples} and {\em valSamples}) is still approximated since they were randomly chosen in every execution.}
+\label{tab:parameters-experiments}
+\begin{center}
+\begin{tabular}{rr|rr}
+{\bf Parameter} & {\bf Value} &
+{\bf Parameter} & {\bf Value}\\
+\hline
+{\em trnSamples} & $\approx 90$ &
+{\em valSamples} & $\approx 15$  \\
+{\em inputDimension} &   1 &
+{\em numNeurons} &  10 \\
+{\em popSize} &  15 &
+{\em numGenerations} & 10  \\
+{\em tournamentSize} &  3 &
+{\em replaceRate} &   0.2 \\
+{\em xOverRate} &  0.2&
+{\em mutRate} &   0.8  \\
+{\em mutPower} &  0.5 &
+{\em Executions per page load} & 1 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% Second one: only one browser, complete executions
+
+
+
+\clearpage
+
+\setlength{\tabcolsep}{10pt}
+\begin{table}
+\caption{First experiment: comparison of MSE yielded by the {\em jsEvRBF} algorithm and the ones cited in \cite{rivas03:EvRBF}. Row {\em jsEvRBF'16} includes the results presented in PAAMS congress, while row {\em jsEvRBF'17} belongs to this new set of experiments. Errors have computed over the full set of data.}
+\label{tab:comparison-first-experiment}
+\begin{center}
+\begin{tabular}{lcc}
+{\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
+\hline
+\bf EvRBF & $\mathbf{6 \times 10^{-4} \pm 2 \times 10^{-4}}$ &$\mathbf{4 \times 10^{-4}}$ \\
+MSE-GA & $9 \times 10^{-4}$ & N/A \\
+MSE-LSE &  $1 \times 10^{-3}$ & N/A \\
+{\em jsEvRBF'17} & $\mathit{2 \times 10^{-3} \pm 8 \times 10^{0}}$ & $\mathit{6 \times 10^{-4}}$  \\
+jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6 \times10^{-4}$  \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\clearpage
+
+\setlength{\tabcolsep}{10pt}
+\begin{table}
+\caption{Single-browser experiment: comparison of MSE yielded by the {\em
+    jsEvRBF} algorithm and the ones cited in
+  \cite{rivas03:EvRBF}. Errors have computed over the full set of
+  data, having executing the algorithm 10 times.} % 
+\label{tab:comparison-second-experiment}
+\begin{center}
+\begin{tabular}{lcc}
+{\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
+\hline
+EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4} \pm 2 \times 10^{-4}$ \\
+{\em jsEvRBF} & $8 \times 10^{-4} \pm 2 \times 10^{-7}$ & $6\times10^{-4}$  \\
+MSE-GA & $9 \times 10^{-4}$ & N/A \\
+MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
+\hline
+\end{tabular}
+\end{center}
+% Mark the best and draw some conclusion - JJ
+\end{table}
 
 \end{document}
