@@ -411,12 +411,12 @@ had to open in their browsers the previously cited URL.
 Along the 15 days that lasted the experiment, $41853$ executions done
 by $55$ users were completed; thus, in average, every user ran the
 experiment close to 
-$761$ times. % Next should go in a table - JJ 
-The most widely used operating system was Android
-( $54.5\%$) of users, followed by Windows and Mac OS ($18.2\%$ any of
-them), and Linux ($9.1\%$). %Next to another table - JJ
-Regarding the browsers, Chrome was the
-preferred by users ($69.1\%$), followed by  Firefox in $20.0\%$, and
+$761$ times. % Next should go in a table - JJ - Done
+As showed in \ref{tab:ooss-first-experiment}, the most widely used operating system was Android
+($54.5\%$) of users, followed by Windows and Mac OS ($18.2\%$ any of
+them), and Linux ($9.1\%$). %Next to another table - JJ - Done
+Regarding the browsers, table \ref{tab:browsers-first-experiment} clearly shows that Chrome was the
+preferred one by users ($69.1\%$), followed by  Firefox in $20.0\%$, and
 finally Safari, that was used in $10.9\%$ of the cases. These first
 results clearly show the validity of the implementation regarding its
 multi-platform availability and easiness of use, but also the
@@ -431,14 +431,14 @@ experiment, the MSE of the best
 solution found along all the executions was $6\times10^{-4}$. As can
 be see in table \ref{tab:comparison-first-experiment}, this solution
 is as good as the average one found by the original algorithm (EvRBF)
-and much better that our previously published results \cite{DBLP:conf/dcai/RivasPMAG16}. The later is due to the fact that every executions has
+and much better that our previously published results \cite{DBLP:conf/dcai/RivasPMAG16}. The later is due to the fact that most of the executions have
 finished with valid values, since new versions of Safari and Chrome
-browsers (i.e., AppleWebKit-based browsers) are not affected by the
-\em{NaN} error we found in our previous work. Taking into account the
+browsers (i.e., AppleWebKit-based browsers) seems to be less affected by the
+{\em NaN} error we found in our previous work. Taking into account the
 $41853$ executions, the MSE turns to be $2 \times
 10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded
 by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}. 
->>>>>>> 50e8063cdbd4e1a199f61bdf787104d2744379ea
+
 
 %Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works. 
 
@@ -450,9 +450,12 @@ by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 \label{sec:second-experiment}
 
 This second experiment is intended to detect the different behaviour of {\em jsEvRBF} depending of the browser in which it is executed. Although the JavaScript language is the same for any browser, the implementation of the
-JavaScript virtual machine they use introduces some differences that may affect to the complete process. In order to control the results yielded by each browser, the web page was loaded only once in any of them; thus, the results presented in this paper are averaged over $10$ executions. 
+JavaScript virtual machine they use introduces some differences that may affect to the complete process. 
 
-Table \ref{tab:results-per-browser-second-experiment} shows the results yielded by the different browsers.
+For this experiment, $8$ different browsers were tested (see table \ref{tab:browsers-second-experiment}. They have been choosen because of their extended use and also for the availability of previous versions of some of them (this way, we could also outlight the differences along time). 
+
+
+Table \ref{tab:results-per-browser-second-experiment} shows average MSE and the corresponding standard deviation yielded by the different browsers. The experiment was carried out loading the web page only once in every browser; thus, the results presented in this paper are averaged over $10$ executions, except for Chromium and Chrome browsers. In these browsers, and despite the fact that the code used in our implementation is written in standard JavaScript, still an error appears in some executions. For this reason, table \ref{tab:results-per-browser-second-experiment} includes an extra column indicating the number of valid executions.
 
 
 
@@ -564,6 +567,46 @@ individuals be distributed to the clients running the algorithm.
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
+\caption{Operating systems used in the first experiment, the one open to any user. The values indicated the percentage of use of every operating system.}
+\label{tab:ooss-first-experiment}
+\begin{center}
+\begin{tabular}{cc}
+{\bf Operating System} & {\bf Use\%} \\
+\hline
+\bf Android & $\mathbf{54.5\%}$ \\
+Windows & $18.2\%$ \\
+Mac Os & $18.2\%$ \\
+Linux & $9.1\%$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\clearpage
+
+\setlength{\tabcolsep}{10pt}
+\begin{table}
+\caption{Browsers used by participants in the first experiment. The values indicated the percentage of use of each browser.}
+\label{tab:browsers-first-experiment}
+\begin{center}
+\begin{tabular}{cc}
+{\bf Browser} & {\bf Use\%} \\
+\hline
+\bf Chrome & $\mathbf{69.1\%}$ \\
+Firefox & $20.0\%$ \\
+Safari & $10.9\%$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\clearpage
+
+
+\setlength{\tabcolsep}{10pt}
+\begin{table}
 \caption{First experiment: comparison of MSE yielded by the {\em jsEvRBF} algorithm and the ones cited in \cite{rivas03:EvRBF}. Row {\em jsEvRBF'16} includes the results presented in PAAMS congress, while row {\em jsEvRBF'17} belongs to this new set of experiments. Errors have computed over the full set of data.}
 \label{tab:comparison-first-experiment}
 \begin{center}
@@ -582,25 +625,60 @@ jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6 \times10^{-4}$  \\
 
 \clearpage
 
+
+
+
+
+
+
+
+
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Single-browser experiment: comparison of MSE yielded by the {\em
-    jsEvRBF} algorithm and the ones cited in
-  \cite{rivas03:EvRBF}. Errors have computed over the full set of
-  data, having executing the algorithm 10 times.} % 
-\label{tab:comparison-second-experiment}
+\caption{Second experiment: browsers used to run the {\em jsEvRBF} algorithm.}
+\label{tab:browsers-second-experiment}
 \begin{center}
 \begin{tabular}{lcc}
-{\bf Method} & {\bf Average MSE} & {\bf Best MSE} \\
+{\bf Browser} & {\bf Version} & {\bf Operating System} \\
 \hline
-EvRBF & $6 \times 10^{-4} \pm 2 \times 10^{-4}$ &$4 \times 10^{-4} \pm 2 \times 10^{-4}$ \\
-{\em jsEvRBF} & $8 \times 10^{-4} \pm 2 \times 10^{-7}$ & $6\times10^{-4}$  \\
-MSE-GA & $9 \times 10^{-4}$ & N/A \\
-MSE-LSE &  $12 \times 10^{-4}$ & N/A \\
+Chrome & 55.0.2883.87 & Windows \\
+Chrome & 55.0.2883.95 & Mac OS \\
+Chromium\footnote{The open-source project behind Chrome} & 51.0.2704.79 & Linux \\
+Edge & 14.14393.0.0 & Windows \\
+Firefox & 47.0 & Linux \\
+Firefox & 50.1.0 & Linux \\
+Firefox & 50.1.0 & Mac Os \\
+Safari & 10.0.2 & Mac OS \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\clearpage
+
+\setlength{\tabcolsep}{10pt}
+\begin{table}
+\caption{Single-browser experiment:MSE and standard deviation yielded by the different browsers used to run the {\em jsEvRBF} algorithm. Values are averaged over the number of valid executions\protect\footnotemark.}
+\begin{center}
+\begin{tabular}{lcc}
+{\bf Browser}	 & \bf{MSE} 	$\mathbf{\pm}$ {\bf STD.DEV}	 & 	{\bf Valid Executions}	 \\
+\hline
+\bf Chromium 5. 0.2704.79 (Linux)	 & 	$\mathbf{7,4E-04 \pm 	1,6E-04}$	 & 	$\mathbf{5}$	 \\
+Ffirefox 47.0 (Linux)	 & 	$8,5E-04	 \pm 	1,4E-04$	 & 	$10$	 \\
+Ffirefox 50.1.0 (Mac OS)	 & 	$8,7E-04	 \pm 	3,0E-04$	 & 	$10$	 \\
+Ffirefox 50.1.0 (Linux)	 & 	$9,2E-04	 \pm 	3,1E-04$	 & 	$10$	 \\
+Chrome 55.0.2883.87 (Windows)	 & 	$1,2E-03	 \pm 	7,3E-04$	 & 	$7$	 \\
+Chrome 55.0.2883.95 (Mac OS)	 & 	$1,2E-03	 \pm 	5,2E-04$	 & 	$4$	 \\
+Edge 14.14393 (Windows)	 & 	$2,0E-02	 \pm	2,2E-02$	 & 	$10$	 \\
+Safari 10.0.2 (Mac OS)	 & 	$6,0E-02	\pm 	8,9E-02$	 & 	$10$	 \\
+
 \hline
 \end{tabular}
 \end{center}
 % Mark the best and draw some conclusion - JJ
 \end{table}
 
+\footnotetext{The number of valid executions should be $10$ for all browsers, but it is different for Chromium and Chrome browsers. The reason is the {\em NaN} value obtained in these browsers when training the neural nets in a few executions.}
+\label{tab:results-per-browser-second-experiment}
 \end{document}
