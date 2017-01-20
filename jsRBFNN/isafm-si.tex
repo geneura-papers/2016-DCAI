@@ -239,17 +239,19 @@ achieve \cite{DBLP:conf/lion/LaredoGFMACG11,DBLP:conf/gecco/MereloCGCRV16}, in t
   technology seems to be {\em illegal} bitcoin mining using the
   resources of infected computers \cite{plohmann2012case}.
 
-We have already published the proof of concept and preliminary results
-for this method in \cite{DBLP:conf/dcai/RivasPMAG16}. In that paper we
-correct errors found and describe further experiments that measure the
+We have already published the preliminary results obtained by the
+initial proof of concept in \cite{DBLP:conf/dcai/RivasPMAG16}. In that
+paper we fix errors found in the initial implementation and describe
+further experiments that measure the 
 performance obtained with different browsers and in different
 conditions. In the same way, {\em jsEvRBF} has been evaluated with the same time-series
 used by Sheta and de Jong \cite{Sheta2001} and the results were
-published in \cite{DBLP:conf/dcai/RivasPMAG16}. For this paper, we
-extend the state of the art including new experiments and new
-results. %These kind of claims
-                                %should go to the state of the art -
-                                %JJ, Ok, lo cambio, Maribel
+published in \cite{DBLP:conf/dcai/RivasPMAG16}. % Maybe mention other
+                                % experiments that use the same time
+                                % series here - JJ
+For this paper, we
+go beyond the state of the art by including new experiments and new
+results. 
 
 
 \section{The {\em jsEvRBF} implementation} %Is it an algorithm or an
@@ -304,7 +306,12 @@ as follows:
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{class-diagram.jpg}
 \caption{Class diagram of the jsEvRBF algorithm, showing the way it depends on the jsEO general framework and the jsRBFNN library.}
-\label{fig:class_diagram} % Do we need this thing? ~JJ -  I really like it. BTW, I wish we had realised in EO that eo wasn't a class, but an Interface  ~vrivas
+\label{fig:class_diagram} % Do we need this thing? ~JJ -  I really
+                          % like it. BTW, I wish we had realised in EO
+                          % that eo wasn't a class, but an Interface ~vrivas
+% we did know it was an interface. We used the STL, and in later
+% implementation, "traits" to extend it - JJ
+
 \end{figure}
 
 
@@ -323,7 +330,11 @@ The operators used in {\em jsEvRBF's} are the following:
 Finally, the following set of parameters has to be set in
 order to run the {\em jsEvRBF} algorithm: % What's the point of this?
                                 % - JJ
-                                % In my opininion, if someone wants to reproduce our algorithm, they need to know the parameters we are using.
+                                % In my opininion, if someone wants to
+                                % reproduce our algorithm, they need
+                                % to know the parameters we are using.
+% It is not an algorithm, it is an implementation. And if that is the
+% point, you should say so in the paper - JJ
 \begin{itemize}
 \item{\em trnSamples}: Set of samples to train the nets; some of them, randomly chosen, it will be used as centers for the RBF of the individuals composing the initial population.
 \item{\em valSamples}: Set of samples to compute fitness of every new created individual.
@@ -361,7 +372,7 @@ In order to test the capabilities of web browsers in financial time-series forec
 two experiments have been carried out using {\em jsEvRBF},
 additionally to those performed in our previous work
 \cite{DBLP:conf/dcai/RivasPMAG16}.
-% This has to be revised, since experiments are different now. - JJ
+% This has to be revised, since experiments are different now. - JJ - Done - Victor
 For the first experiment (see section \ref{sec:first-experiment}) and in order to test the performance in a volunteer computing set up, we
 have effectively opened the system to a wide community of users, so that many different
 devices, used from many operating systems and web browsers have
@@ -397,7 +408,7 @@ single-browser performance with updated browser versions.
 \label{fig:example-of-execution}
 \end{figure}
 % Maybe add new version of this screen - JJ
-% Yes, of course. The web pages has changed.
+% Yes, of course. The web pages has changed.- Victor
 
 The values used to run the algorithm are shown in table \ref{tab:parameters-experiments}. These values are exactly the same than those used in the first version of the algorithm introduced in \cite{rivas03:EvRBF}
 
@@ -454,11 +465,19 @@ by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 This second experiment is intended to detect the different behaviour of {\em jsEvRBF} depending of the browser in which it is executed. Although the JavaScript language is the same for any browser, the implementation of the
 JavaScript virtual machine they use introduces some differences that may affect to the complete process.
 
-For this experiment, $8$ different browsers were tested (see table \ref{tab:browsers-second-experiment}. They have been choosen because of their extended use and also for the availability of previous versions of some of them (this way, we could also outlight the differences along time).
+For this experiment, $8$ different browsers were tested (see Table
+\ref{tab:browsers-second-experiment}). They have been chosen because
+of their widespread use and the availability of old
+versions of some of them; these previous versions have allowed us to highlight the
+evolution of their performance and difference in them along time.
 
 
-Table \ref{tab:results-per-browser-second-experiment} shows average MSE and the corresponding standard deviation yielded by the different browsers. The experiment was carried out loading the web page only once in every browser; thus, the results presented in this paper are averaged over $10$ executions, except for Chromium and Chrome browsers. In these browsers, and despite the fact that the code used in our implementation is written in standard JavaScript, still an error appears in some executions. For this reason, table \ref{tab:results-per-browser-second-experiment} includes an extra column indicating the number of valid executions.
 
+Table \ref{tab:results-per-browser-second-experiment} shows average MSE and the corresponding standard deviation yielded by the different browsers. The experiment was carried out loading the web page only once in every browser; thus, the results presented in this paper are averaged over $10$ executions, except for Chromium and Chrome browsers. In these browsers, and despite the fact that the code used in our implementation is written in standard JavaScript, still an error appears in some executions. For this reason, table \ref{tab:results-per-browser-second-experiment} includes an extra column indicating the number of valid executions. The error occurs in the phase in which neural networks are trained, when computing the best weights attached to the connections between the hidden and the output layers of the nets. In an inconsistent way, Chrome and Chromium browsers reach a {\em NaN} ((\em Not a number}) value, so that the whole process becomes null. 
+
+According to results in table \ref{tab:results-per-browser-second-experiment}, and disregarding the number of valid executions, the best result is yielded by and old version of browser Chromium (version 51.0.2704.79); its average MSE is $7.4 \times 10^{-4} \pm 1.6 \times 10^{-4}$, quite similar to the reference values yielded by EvRBF (${6 \times 10^{-4} \pm 2 \times 10^{-4}}$) and Sheta's algorithm MSE-GA( $9 \times 10^{-4}$; see table \ref{tab:comparison-first-experiment}). Nevertheless, the browser Chromium is not able to complete the $10$ executions. So, is much more interesting the errors yielded by the different versions of browser Firefox that, consistently, offers the best results ($8.5 \times 10^{-4}	 \pm 	1.4 \times 10^{-4}$ for Firefox 47.0, $8.7 \times 10^{-4}	 \pm 	3.0 \times 10^{-4}$ for Firefox 50.1.0 on Mac Os, and $9.2 \times 10^{-4}	 \pm 	3.1 \times 10^{-4}$	for the latter on Linux).  Finally, worse browsers for this tasks seem to be Edge and Safari, in their most recent versions; the average MSE yielded by these browsers are $2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$	and  $6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$, respectively, i.e., two order of magnitude worse than the reference values.
+
+In order to have into account the number of valid executions, a deeper analysis has been carried out, and 
 
 
 %Finally, and as we did before, table \ref{tab:all-error-values-experiment-2} summarizes the values computed for this experiment with regard to the complete set of error measures.
@@ -520,12 +539,12 @@ individuals be distributed to the clients running the algorithm.
 
 \section*{Acknowledgements}
  This work has been supported in part by:
- Ministerio de Ministerio espa\~{n}ol de Econom\'{\i}a y Competitividad under (preselected as granted) project TIN2014-56494-C4-3-P (UGR-EPHEMECH)
+ Ministerio de Ministerio espa\~{n}ol de Econom\'{\i}a y Competitividad under project TIN2014-56494-C4-3-P (UGR-EPHEMECH)
  , CEI2015-MP-V17 of the Microprojects program 2015 from CEI BioTIC Granada
  , PROY-PP2015-06 (Plan Propio 2015 UGR),
  and
- PRY142/14 (Este proyecto con num. de referencia: PRY142/14 ha sido financiado ï¿½ntegramente por la Fundaci\'{o}n P\'{u}blica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'{o}n)\footnote{The description in Spanish is mandatory.}.
-
+ PRY142/14 (Este proyecto con num. de referencia: PRY142/14 ha sido financiado íntegramente por la Fundaci\'{o}n P\'{u}blica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'{o}n)\footnote{The description in Spanish is mandatory.}.
+% Please check which ones are current now - JJ
 
 %
 % ---- Bibliography ----
@@ -666,14 +685,14 @@ Safari & 10.0.2 & Mac OS \\
 \begin{tabular}{lcc}
 {\bf Browser}	 & \bf{MSE} 	$\mathbf{\pm}$ {\bf STD.DEV}	 & 	{\bf Valid Executions}	 \\
 \hline
-\bf Chromium 5. 0.2704.79 (Linux)	 & 	$\mathbf{7,4E-04 \pm 	1,6E-04}$	 & 	$\mathbf{5}$	 \\
-Ffirefox 47.0 (Linux)	 & 	$8,5E-04	 \pm 	1,4E-04$	 & 	$10$	 \\
-Ffirefox 50.1.0 (Mac OS)	 & 	$8,7E-04	 \pm 	3,0E-04$	 & 	$10$	 \\
-Ffirefox 50.1.0 (Linux)	 & 	$9,2E-04	 \pm 	3,1E-04$	 & 	$10$	 \\
-Chrome 55.0.2883.87 (Windows)	 & 	$1,2E-03	 \pm 	7,3E-04$	 & 	$7$	 \\
-Chrome 55.0.2883.95 (Mac OS)	 & 	$1,2E-03	 \pm 	5,2E-04$	 & 	$4$	 \\
-Edge 14.14393 (Windows)	 & 	$2,0E-02	 \pm	2,2E-02$	 & 	$10$	 \\
-Safari 10.0.2 (Mac OS)	 & 	$6,0E-02	\pm 	8,9E-02$	 & 	$10$	 \\
+\bf Chromium 51.0.2704.79 (Linux)	 & 	$\mathbf{7.4\times10^{-4} \pm 	1.6 \times 10^{-4}}$	 & 	$\mathbf{5}$	 \\
+Firefox 47.0 (Linux)	 & 	$8.5 \times 10^{-4}	 \pm 	1.4 \times 10^{-4}$	 & 	$10$	 \\
+Firefox 50.1.0 (Mac OS)	 & 	$8.7 \times 10^{-4}	 \pm 	3.0 \times 10^{-4}$	 & 	$10$	 \\
+Firefox 50.1.0 (Linux)	 & 	$9.2 \times 10^{-4}	 \pm 	3.1 \times 10^{-4}$	 & 	$10$	 \\
+Chrome 55.0.2883.87 (Windows)	 & 	$1.2 \times 10^{-3}	 \pm 	7.3 \times 10^{-4}$	 & 	$7$	 \\
+Chrome 55.0.2883.95 (Mac OS)	 & 	$1.2 \times 10^{-3}	 \pm 	5.2 \times 10^{-4}$	 & 	$4$	 \\
+Edge 14.14393 (Windows)	 & 	$2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$	 & 	$10$	 \\
+Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$	 \\
 
 \hline
 \end{tabular}
