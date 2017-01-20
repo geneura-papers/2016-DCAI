@@ -22,11 +22,11 @@
   volunteer computing system}
 
 % Author according to authblk
-\author[1,3]{V.M. Rivas}
+\author[1,4]{V.M. Rivas}
 \author[1]{E. Parras-Guti\'{e}rrez}
-\author[2,3]{JJ Merelo}
-\author[2,3]{M.G. Arenas}
-\author[4]{P. Garc\'{\i}a-Fern\'{a}ndez}
+\author[2,4]{JJ Merelo}
+\author[2,4]{M.G. Arenas}
+\author[3,4]{P. Garc\'{\i}a-Fern\'{a}ndez}
 
 % Affiliations according to authblk
 \affil[1]{Univ. of Jaen, Dept of Computer Sciences,\\
@@ -34,24 +34,26 @@ Campus Las Lagunillas s/n, 23071, Ja\'{e}n, SPAIN\\
 \texttt{vrivas@ujaen.es},
 \texttt{http://vrivas.es}}
 
-\affil[2]{Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
-Univ. de Granada, SPAIN
+\affil[2]{%Depto. de Arquitectura y Tecnolog\'{\i}as de las Computadoras\\
+%Univ. de Granada, SPAIN
 Univ. of Granada, Dept. of Computers, Architecture and Technology\\
 C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
 
-\affil[3]{GeNeura Team \\
+\affil[3]{%Depto. de Electr\'{o}nica y Tecnolog\'{\i}as de las
+  %Computadoras\\
+ %Univ. de Granada, SPAIN
+ Univ. of Granada, Dept. of Electronics and Computer Technology\\
+C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
+
+
+\affil[4]{GeNeura Team \\
   \url{http://geneura.wordpress.com}
 }
-
-\affil[4]{Depto. de Electr\'{o}nica y Tecnolog\'{\i}as de las
-  Computadoras\\
- Univ. de Granada, SPAIN
- Univ. of Granada, Dept. of Electronics and Computer Technology}
 
 \maketitle              % typeset the title of the contribution
 \begin{abstract}
 %##### NUEVA PROPUESTA DE ABSTRACT--- Maribel
-% Victor: Ojo: máximo 100 palabras según las normas de la publicación
+% Victor: Ojo: mï¿½ximo 100 palabras segï¿½n las normas de la publicaciï¿½n
 % http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1099-1174/homepage/ForAuthors.html
 {\em JsEvRBF} is a forecasting method that uses a genetic algorithm
 for evolving radial basis function neural nets. The implementation
@@ -136,7 +138,7 @@ event-driven language. Although it was initially designed to be used only in the
 browser, independent implementations running on the server were soon released; nowadays
 it is used to write programs for both the client (the browser) and the
 server thanks to frameworks like
-\emph{node.js}~\cite{rauch2012smashing} 
+\emph{node.js}~\cite{rauch2012smashing}
 % Why comment??- JJ - Because I wrote too much in the initial version and I had to reduce it according to the congress rules.
 Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
 Thus, although web browsers allow the users to change the preferences
@@ -157,14 +159,14 @@ across the net.
 The capabilities of JavaScript have led us to consider web browsers as agents that can download a web page containing a set
 of data and the code of an evolutionary algorithm. This way, browsers can execute that algorithm, which is built to evolve neural nets. These neural nets can be applied to forecast an economic time-series. The whole process, from downloading the web page to obtain the forecasted values is done by the browser. Thus, using
 this approach, any physical device in which a web browser can be installed (from
-computers to smart TVs) can be potentially used to run our algorithm. 
+computers to smart TVs) can be potentially used to run our algorithm.
 
 % Genetic Algorithms and RBFNN
 Both the problem being considered in this paper and the algorithm used
 to solve it were introduced in \cite{rivas03:EvRBF}. On the one hand,
 the problem consists on forecasting the values of the exchange rates
 between two currencies for a four years period; data is weekly averaged. %This needs a citation. Where did you obtain data?
-% Besides, could you use our own traffic data? - JJ 
+% Besides, could you use our own traffic data? - JJ
 % Yes of course... but I'd have to change the code to deal with trn+trn+tst files.
 On the other hand, the algorithm (described in
 section \ref{sec:algorithm}) is a reduced version of {\em EvRBF}
@@ -188,7 +190,7 @@ once the rest of components have been established using the Least Mean
 Square method. {\em EvRBF} algorithm was designed to automatically
 search for the best configuration of an RBFNN that solves the problem
 being tackled, except for the activation function to be used that is
-always a Gaussian function. 
+always a Gaussian function.
 
 % Time-series prediction
 
@@ -245,18 +247,18 @@ conditions. In the same way, {\em jsEvRBF} has been evaluated with the same time
 used by Sheta and de Jong \cite{Sheta2001} and the results were
 published in \cite{DBLP:conf/dcai/RivasPMAG16}. For this paper, we
 extend the state of the art including new experiments and new
-results. %These kind of claims 
+results. %These kind of claims
                                 %should go to the state of the art -
-                                %JJ, Ok, lo cambio, Maribel 
+                                %JJ, Ok, lo cambio, Maribel
 
 
 \section{The {\em jsEvRBF} implementation} %Is it an algorithm or an
                                 %implementation? - JJ, Yo creo que es
                                 %una implementaciï¿½n, el algoritmo no
                                 %es nuevo.
-%Eso es lo que yo digo. Pero en este caso es un método basado en un
-%algoritmo, habría que decirlo así, no simplemente "implementation",
-%porqeu es algo más - JJ
+%Eso es lo que yo digo. Pero en este caso es un mï¿½todo basado en un
+%algoritmo, habrï¿½a que decirlo asï¿½, no simplemente "implementation",
+%porqeu es algo mï¿½s - JJ
 \label{sec:algorithm}
 % The {\em EvRBF} general skeleton
 {\em jsEvRBF} denotes the implementation in JavaScript of our previously existing evolutionary algorithm {\em EvRBF} \cite{rivas03:EvRBF} ; writing this algorithm in JavaScript allows it execution in web browsers.
@@ -370,13 +372,13 @@ browser, so that we can focus in the forecasting process itself and
 also assess the differences among different browser; this will also
 help, in the case of a controlled environment such as an office or
 laboratory, to choose the browser with the best performance
-available. 
+available.
 In any case, participating in the experiment only required to connect
 to the URL: \url{http://150.214.178.89}; no special technical knowledge was necessary to run the
 algorithm since it was automatically executed once the web page was
 loaded. Figure \ref{fig:example-of-execution} shows the page users
-could read when accessing the specified URL.  
-Every time an user accessed that URL, the web page containing the algorithm was loaded in their computer and $10$ complete, independent executions of the algorithm were done. Once finished every execution, the results of forecasting the whole data set yielded in that execution was sent to the sever. After then $10$ executions have finished, the page was reloaded again if the user did not close the window in less than $10$ seconds. 
+could read when accessing the specified URL.
+Every time an user accessed that URL, the web page containing the algorithm was loaded in their computer and $10$ complete, independent executions of the algorithm were done. Once finished every execution, the results of forecasting the whole data set yielded in that execution was sent to the sever. After then $10$ executions have finished, the page was reloaded again if the user did not close the window in less than $10$ seconds.
 
 
 Public information (browser and operating system versions) about the clients executing the algorithm and the results they yielded were received
@@ -407,10 +409,10 @@ users when asked to participate in a volunteer computation
 experiment. In this sense, a call for participation in the experiment was
 made using social networks, mainly Facebook and Twitter. The experiment was
 open for two weeks (from 29/Dec/2016 to 13/Jan/2017), and users only
-had to open in their browsers the previously cited URL.  
+had to open in their browsers the previously cited URL.
 Along the 15 days that lasted the experiment, $41853$ executions done
 by $55$ users were completed; thus, in average, every user ran the
-experiment close to 
+experiment close to
 $761$ times. % Next should go in a table - JJ - Done
 As showed in \ref{tab:ooss-first-experiment}, the most widely used operating system was Android
 ($54.5\%$) of users, followed by Windows and Mac OS ($18.2\%$ any of
@@ -424,10 +426,10 @@ difficulties that arise when trying to involve users in this kind of
 volunteer computation, since only $55$ users agreed to execute our
 algorithm. It also shows the kind of users that can be expected:
 users from mobile devices, most of them using the default browser,
-Chrome. 
+Chrome.
 
 With respect to the accuracy of the forecasting performed in each
-experiment, the MSE of the best 
+experiment, the MSE of the best
 solution found along all the executions was $6\times10^{-4}$. As can
 be see in table \ref{tab:comparison-first-experiment}, this solution
 is as good as the average one found by the original algorithm (EvRBF)
@@ -437,10 +439,10 @@ browsers (i.e., AppleWebKit-based browsers) seems to be less affected by the
 {\em NaN} error we found in our previous work. Taking into account the
 $41853$ executions, the MSE turns to be $2 \times
 10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded
-by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}. 
+by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 
 
-%Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works. 
+%Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works.
 
 
 
@@ -450,9 +452,9 @@ by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 \label{sec:second-experiment}
 
 This second experiment is intended to detect the different behaviour of {\em jsEvRBF} depending of the browser in which it is executed. Although the JavaScript language is the same for any browser, the implementation of the
-JavaScript virtual machine they use introduces some differences that may affect to the complete process. 
+JavaScript virtual machine they use introduces some differences that may affect to the complete process.
 
-For this experiment, $8$ different browsers were tested (see table \ref{tab:browsers-second-experiment}. They have been choosen because of their extended use and also for the availability of previous versions of some of them (this way, we could also outlight the differences along time). 
+For this experiment, $8$ different browsers were tested (see table \ref{tab:browsers-second-experiment}. They have been choosen because of their extended use and also for the availability of previous versions of some of them (this way, we could also outlight the differences along time).
 
 
 Table \ref{tab:results-per-browser-second-experiment} shows average MSE and the corresponding standard deviation yielded by the different browsers. The experiment was carried out loading the web page only once in every browser; thus, the results presented in this paper are averaged over $10$ executions, except for Chromium and Chrome browsers. In these browsers, and despite the fact that the code used in our implementation is written in standard JavaScript, still an error appears in some executions. For this reason, table \ref{tab:results-per-browser-second-experiment} includes an extra column indicating the number of valid executions.
