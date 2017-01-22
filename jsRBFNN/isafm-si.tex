@@ -711,7 +711,7 @@ Safari & $10.9\%$ \\
 \end{tabular}
 \end{center}
 \end{table}
-
+% Then, the majority of the users are running the faulty algorithm? - HH
 
 \newpage
 \clearpage
@@ -747,7 +747,11 @@ jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6 \times10^{-4}$  \\
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Second experiment: browsers used to run the {\em jsEvRBF} algorithm.}
+\caption{Second experiment: browsers used to run the {\em jsEvRBF}
+  algorithm.}
+% Different computers or different virtual machines in the same
+% computer? If they are different computers, what are you comparing?
+% The random number generator? - JJ
 \label{tab:browsers-second-experiment}
 \begin{center}
 \begin{tabular}{lcc}
@@ -792,7 +796,9 @@ Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$
 \end{tabular}
 \end{center}
 \end{table}
-\footnotetext{The number of valid executions should be $10$ for all browsers, but it is different for Chromium and Chrome browsers. The reason is the {\em NaN} value obtained in these browsers when training the neural nets in a few executions.}
+\footnotetext{The number of valid executions should have been $10$ for
+  all browsers, but it is different for Chromium and Chrome browsers,
+  since there seems to be a bug that makes these browsers yield {\em NaN} when training the neural nets in a few executions.}
 
 
 \newpage
