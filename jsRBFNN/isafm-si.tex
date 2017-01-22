@@ -5,7 +5,6 @@
 %
 \documentclass{article}
 %
-\usepackage[latin]{babel}
 \usepackage{makeidx}  % allows for indexgeneration
 \usepackage{color} %vrivas, 15-Jan-2016
 \usepackage{hyperref} %vrivas, 21-Jan-2016, for \url
@@ -176,11 +175,11 @@ Function Neural Networks (RBFNN) to evolve.
 % and make a more extensive description of EvRBF - JJ
 
 RBFNN are well-known feed-forward neural nets with just one hidden and
-one output layers. %\cite{Broomhead88}.
+one output layers (see fig.\ref{fig:rbfnn}). %\cite{Broomhead88}.
 They have been successfully used to solve classification, function
 approximation, and, as in this work, time-series forecasting problems
 \cite{Broomhead88,Keogh03,Whitehead}.
-The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the smaller the number of inputs that will activate the neuron. Usually, Gaussian function is selected as the activation function, but many others can also be used.
+The neurons in the output layer (only one neuron in this work) compute a weighted sum using outputs provided by hidden neurons, multiplied by some weights previously established, and adding a bias. The neurons in the hidden layer receive the input samples concerning the problem being resolved, and apply an activation function that  is a Radial Basis Function, i.e., a function returning a value that depends on the distance from the input values to a pre-established center of the function. The shape of this function is modified by means of a radius or width: the narrower this width, the smaller the number of inputs that will activate the neuron. Usually, Gaussian function, as the one showed in fig.see fig.\ref{fig:gaussian}) is selected as the activation function, but many others can also be used.
 Configuring an RBFNN in order to solve a task consists on: a) choosing
 the activation function for hidden neurons, b) choosing the number of
 hidden neurons, c) setting the parameters required by the activation
@@ -300,16 +299,7 @@ As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the follo
 \end{algorithmic}
 \end{algorithm}
 
-\begin{figure}[!ht]
-\includegraphics[width=120mm]{class-diagram.jpg}
-\caption{Class diagram of the jsEvRBF algorithm, showing the way it depends on the jsEO general framework and the jsRBFNN library.}
-\label{fig:class_diagram} % Do we need this thing? ~JJ -  I really
-                          % like it. BTW, I wish we had realised in EO
-                          % that eo wasn't a class, but an Interface ~vrivas
-% we did know it was an interface. We used the STL, and in later
-% implementation, "traits" to extend it - JJ
 
-\end{figure}
 
 
 %The individuals are RBFNN, any of them composed of a set of hidden neurons implemented as a vector of objects. Every hidden neuron stores its center and radius, and the global RBFNN stores the weights and bias.
@@ -400,11 +390,6 @@ browsers. In this paper we report the new set of experiments and update
 single-browser performance with updated browser versions.
 
 
-\begin{figure}[!ht]
-\includegraphics[width=120mm]{example-of-execution-isafm.png}
-\caption{The look of the web page in which the {\em jsEvRBF} algorithm was loaded and executed.}
-\label{fig:example-of-execution}
-\end{figure}
 % Maybe add new version of this screen - JJ
 % Yes, of course. The web pages has changed.- Victor
 
@@ -472,9 +457,9 @@ evolution of their performance and difference in them along time.
 
 Table \ref{tab:results-per-browser-second-experiment} shows average MSE and the corresponding standard deviation yielded by the different browsers. The experiment was carried out loading the web page only once in every browser; thus, the results presented in this paper are averaged over $10$ executions, except for Chromium and Chrome browsers. In these browsers, and despite the fact that the code used in our implementation is written in standard JavaScript, still an error appears in some executions. For this reason, table \ref{tab:results-per-browser-second-experiment} includes an extra column indicating the number of valid executions. The error occurs in the phase in which neural networks are trained, when computing the best weights attached to the connections between the hidden and the output layers of the nets. In an inconsistent way, Chrome and Chromium browsers reach a {\em NaN} ({\em Not a number}) value, so that the whole process becomes null. 
 
-According to results in table \ref{tab:results-per-browser-second-experiment}, and disregarding the number of valid executions, the best result is yielded by and old version of browser Chromium (version 51.0.2704.79); its average MSE is $7.4 \times 10^{-4} \pm 1.6 \times 10^{-4}$, quite similar to the reference values yielded by EvRBF (${6 \times 10^{-4} \pm 2 \times 10^{-4}}$) and Sheta's algorithm MSE-GA( $9 \times 10^{-4}$; see table \ref{tab:comparison-first-experiment}). Nevertheless, the browser Chromium is not able to complete the $10$ executions. So, is much more interesting the errors yielded by the different versions of browser Firefox that, consistently, offers the best results ($8.5 \times 10^{-4}	 \pm 	1.4 \times 10^{-4}$ for Firefox 47.0, $8.7 \times 10^{-4}	 \pm 	3.0 \times 10^{-4}$ for Firefox 50.1.0 on Mac Os, and $9.2 \times 10^{-4}	 \pm 	3.1 \times 10^{-4}$	for the latter on Linux).  Finally, worse browsers for this tasks seem to be Edge and Safari, in their most recent versions; the average MSE yielded by these browsers are $2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$	and  $6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$, respectively, i.e., two order of magnitude worse than the reference values.
+According to the results, and disregarding the number of valid executions, the smaller MSE is yielded by an old version of browser Chromium (version 51.0.2704.79); its average MSE is $7.4 \times 10^{-4} \pm 1.6 \times 10^{-4}$, quite similar to the reference values yielded by EvRBF (${6 \times 10^{-4} \pm 2 \times 10^{-4}}$) and Sheta's algorithm MSE-GA( $9 \times 10^{-4}$; see table \ref{tab:comparison-first-experiment}). Nevertheless, the browser Chromium is not able to complete the $10$ executions. So, is much more interesting the errors yielded by the different versions of browser Firefox that, consistently, offers the best results ($8.5 \times 10^{-4}	 \pm 	1.4 \times 10^{-4}$ for Firefox 47.0, $8.7 \times 10^{-4}	 \pm 	3.0 \times 10^{-4}$ for Firefox 50.1.0 on Mac Os, and $9.2 \times 10^{-4}	 \pm 	3.1 \times 10^{-4}$	for the latter on Linux).  Finally, worse browsers for this tasks seem to be Edge and Safari, in their most recent versions; the average MSE yielded by these browsers are $2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$	and  $6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$, respectively, i.e., two order of magnitude worse than the reference values.
 
-Furthermore, a deeper analysis of the obtained results has been carried out in order to consider both accuracy and also number of valid solutions. To do this, a Friedman's test has been realised considering the MSE yielded by every browser in any of the $10$ executions (in the case of non valid solutions, a value of $1\time10^6$ has been considered; for this kind of study, the value itself does not matter, only wether values are greater or smaller than the others).  Friedman's test allows to establish a ranking among the different browsers, according to the number of times every browser beats the others. Table \ref{tab:friedman-results} shows the orderer sequence of browser with respect to their MSE (form better in te top to worse in the bottom); this table clearly shows that Firefox can be considered the best browser to this kind of tasks independently of its version. Concretely, the browser Firefox 50.1.0 executed under Mac OS appears in first position, followed by Firefox 47.0 and Firefox 50.1.0 under Linux. After them, Chromium and Chrome appear as the next best browsers, despite the fact they do not allow to run the complete set of executions. Finally, Edge and Safari turn to be the worst classified.
+Furthermore, a deeper analysis of the obtained results has been carried out in order to consider both accuracy and also number of valid solutions. To do this, a Friedman's test has been realised considering the MSE yielded by every browser in any of the $10$ executions (in the case of non valid solutions, a value of $1\time10^6$ has been considered; for this kind of study, the value itself does not matter, only wether values are greater or smaller than the others).  Friedman's test allows to establish a ranking among the different browsers, according to the number of times every browser beats the others. Table \ref{tab:friedman-results} shows the ordered sequence of browser with respect to their MSE (form better in te top to worse in the bottom); this table clearly shows that Firefox can be considered the best browser to this kind of tasks independently of its version. Concretely, the browser Firefox 50.1.0 executed under Mac OS appears in first position, followed by Firefox 47.0 and Firefox 50.1.0 under Linux. After them, Chromium and Chrome appear as the next best browsers, despite the fact they do not allow to run the complete set of executions. Finally, Edge and Safari turn to be the worst classified.
 
 Establishing Firefox 50.1.0 under Mac OS as the browser with the best results, it is possible now to perform a Holm's procedure to discover if there exist significant differences among this browser and the rest of them. The results of Holm's procedure applied to the MSE computed per every execution of every browser are showed in table  \ref{tab:holm-results}. Stating that the null hypothesis is "there exist significant differences with respect to the best result", the table shows that this hypothesis is rejected for every browser but the last $3$, i.e., Edge, Safari and Chrome (when executed on Mac). According to this analysis, we can conclude that although any browser could be used to run the algorithm, Firefox is the best choice as far as it finds the best models (i.e., the smallest MSE) and in a most robust way than Chrome does.
 
@@ -512,30 +497,16 @@ Establishing Firefox 50.1.0 under Mac OS as the browser with the best results, i
 \label{sec:conclusions}
 
 REEEESCRIBIR!!!!
+In this paper, the implementation in JavaScript of the algorithm {\em EvRBF} has been introduced. This implementation, called {\em jsEvRBF}, has been proved to make easy the execution of an evolutionary algorithm in a volunteer computing scenario. The former is due to the capability of web browsers to decode and execute programs written in JavaScript. This way, the browser turns into a multi-platform framework in which any program coded in JavaScript can be easily downloaded and executed without needing special technical knowledge by the user or installing additional software.
 
-Web-browsers have been proved to be a good alternative to achieve
-distributing computation, minimizing the effort needed to ensure
-cross-platform compatibility and easiness of use. To show it, we have
-introduced the {\em jsEvRBF} algorithm;
-written in JavaScript, this algorithm can be executed in web-browsers
-when users access to a specified URL. The web page downloaded by the
-browser contains the code of this evolutionary algorithm, able to
-build, train and evolve RBFNN used to perform time-series forecasting
-over a set of data related to currency exchange. % which is
-                                % interesting because... -JJ
+The experiments previously described have proved that {\em jsEvRBF} can be effectively used to perform a time-series forecasting task in which real data corresponding to currency exchange has been used. {\em jsEvRBF} has been able to be executed on different browsers and even different operating systems, just making the browsers to access to a given URL. By means of social networks, users were asked to connect to the specified URL and during 15 days, 55 volunteers used their own devices to execute 41853 times the algorithm. The results (measured as the Mean Square Error from expected output to yielded ones) were comparable to those obtained by previous versions of the algorithm as well as the method introduced by Sheta and De Jong\cite{Sheta2001} in their original work related to this time-series. Thus, {\em jsEvRBF} can be taken into account as a valid method to allow the execution in parallel of algorithms over a volunteer computing paradigm, and also as a valid method to perform time-series forecasting. 
 
-The experiments carried out show that the approach is valid,
-although some research must still be done in order to determine the
-reasons that make AppleWebKit-based browsers (mainly Chrome and
-Safari) not work properly.
+A second experiment has been done attempting to detect differences between the different browsers currently available. Existing errors previously reported in our paper for PAAMS 2016 (\cite{DBLP:conf/dcai/RivasPMAG16}) have disappeared in browser Safari, but still remains in Chrome. For this reason, although Chrome is a good candidate to run the algorithm, should be rejected in favor of Firefox. Effectively, Firefox has revealed itself to be the one that gets good accuracy and robustness. Considering that Firefox is currently available for any device, we can conclude that it should be the first option when choosing a web-browser to perform this kind of taks.
 
-Future work includes the use of the
-algorithm in an {\em island model}  framework in which good
-individuals be distributed to the clients running the algorithm.
-%since {\em jsEO}, the underlying
-%library supporting {\em jsEvRBF}, has been implemented with this
-%feature.
-
+Future work includes the use of the algorithm in an {\em island model}  framework , since {\em jsEO}, the underlying
+library supporting {\em jsEvRBF} has been implemented with this
+feature. In suche a framework, good
+individuals (i.e., good solutions) found by any of the browser would be distributed to the rest of them running the algorithm in that moment or even later.
 
 
 \section*{Acknowledgements}
@@ -554,8 +525,64 @@ individuals be distributed to the clients running the algorithm.
 \bibliographystyle{apalike}
 \bibliography{dcai,geneura,volunteer}
 
+
 \newpage
 \clearpage
+
+\begin{figure}[!ht]
+\includegraphics[width=120mm]{rnfbr.eps}
+\caption{Radial Basis Function Neural Network. Every neuron in the hidden layer uses a Radial Basis Function ($\phi$) as activation function. This function depends on the input ($x$), the point in the input space where the function is centred ($c_i$), and the width or radius established for the neuron ($r_i$). Weights from hidden to output layers (namely $\lambda_{ij}$) can be efficiently calculated provided that there exist enough training data.} 
+\label{fig:rbfnn} 
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!ht]
+\includegraphics[width=120mm]{gausiana.eps}
+\caption{Gaussian function: $y=e^{\frac{-||X-C||^2}{2r^2}}$; where $X$ is the input pattern, $C$ is the centre of the function and $r$ is tis width or radius.}
+\label{fig:gaussian} 
+\end{figure}
+
+
+\newpage
+\clearpage
+
+\begin{figure}[!ht]
+\includegraphics[width=120mm]{class-diagram.jpg}
+\caption{Class diagram of the jsEvRBF algorithm, showing the way it depends on the jsEO general framework and the jsRBFNN library.}
+\label{fig:class_diagram} % Do we need this thing? ~JJ -  I really
+                          % like it. BTW, I wish we had realised in EO
+                          % that eo wasn't a class, but an Interface ~vrivas
+% we did know it was an interface. We used the STL, and in later
+% implementation, "traits" to extend it - JJ
+\end{figure}
+
+\newpage
+\clearpage
+
+\begin{figure}[!ht]
+\includegraphics[width=120mm]{time-series.png}
+\caption{Time-series being forecasted in this paper. The data represent the exchange rates between Bristish pound and US dollar from 31 December 1979 to 26 December 1983\cite{Sheta2001}.}
+\label{fig:time-series} % Do we need this thing? ~JJ -  I really
+                          % like it. BTW, I wish we had realised in EO
+                          % that eo wasn't a class, but an Interface ~vrivas
+% we did know it was an interface. We used the STL, and in later
+% implementation, "traits" to extend it - JJ
+\end{figure}
+
+
+\newpage
+\clearpage
+
+\begin{figure}[!ht]
+\includegraphics[width=120mm]{example-of-execution-isafm.png}
+\caption{The look of the web page in which the {\em jsEvRBF} algorithm was loaded and executed.}
+\label{fig:example-of-execution}
+\end{figure}
+\newpage
+\clearpage
+
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
@@ -675,7 +702,34 @@ Safari & 10.0.2 & Mac OS \\
 \end{center}
 \end{table}
 
+
+
+\newpage
+\clearpage
+
+\setlength{\tabcolsep}{10pt}
+\begin{table}
+\caption{Second experiment: MSE and standard deviation yielded by the different browsers used to run the {\em jsEvRBF} algorithm. Values are averaged over the number of valid executions\protect\footnotemark.}
+\label{tab:results-per-browser-second-experiment}
+\begin{center}
+\begin{tabular}{lcc}
+{\bf Browser}	 & \bf{MSE} 	$\mathbf{\pm}$ {\bf STD.DEV}	 & 	{\bf Valid Executions}	 \\
+\hline
+\bf Chromium 51.0.2704.79 (Linux)	 & 	$\mathbf{7.4\times10^{-4} \pm 	1.6 \times 10^{-4}}$	 & 	$\mathbf{5}$	 \\
+Firefox 47.0 (Linux)	 & 	$8.5 \times 10^{-4}	 \pm 	1.4 \times 10^{-4}$	 & 	$10$	 \\
+Firefox 50.1.0 (Mac OS)	 & 	$8.7 \times 10^{-4}	 \pm 	3.0 \times 10^{-4}$	 & 	$10$	 \\
+Firefox 50.1.0 (Linux)	 & 	$9.2 \times 10^{-4}	 \pm 	3.1 \times 10^{-4}$	 & 	$10$	 \\
+Chrome 55.0.2883.87 (Windows)	 & 	$1.2 \times 10^{-3}	 \pm 	7.3 \times 10^{-4}$	 & 	$7$	 \\
+Chrome 55.0.2883.95 (Mac OS)	 & 	$1.2 \times 10^{-3}	 \pm 	5.2 \times 10^{-4}$	 & 	$4$	 \\
+Edge 14.14393 (Windows)	 & 	$2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$	 & 	$10$	 \\
+Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$	 \\
+
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 \footnotetext{The number of valid executions should be $10$ for all browsers, but it is different for Chromium and Chrome browsers. The reason is the {\em NaN} value obtained in these browsers when training the neural nets in a few executions.}
+
 
 \newpage
 \clearpage
@@ -683,12 +737,19 @@ Safari & 10.0.2 & Mac OS \\
 \setlength{\tabcolsep}{10pt}
 \begin{table}
 \caption{Ranking of browsers according to Friedman's test. Low values for column ??? indicate a better position in the ranking. }
-\label{tab:results-friedman}
+\label{tab:friedman-results}
 \begin{center}
 \begin{tabular}{clcc}
 \bf Position & {\bf Browser}	 &  {\bf Preguntar a Eli el nombre y significado de esta columna???}	 \\
 \hline
-\bf 1 & \bf Firefox 50.1.0 (Mac OS)	& $\mathbf{2.00}$\\2 & Firefox 47.0 (Linux)	& $2.70$\\3 & Firefox 50.1.0 (Linux)	& $3.00$\\4 & Chromium51.0.2704.79 (Linux)	& $4.75$\\5 & Chrome 55.0.2883.87 (Windows)	& $5.30$\\6 & Edge 14.14393	& $5.60$\\7 & Safari 10.0.2 (Mac OS)	& $5.80$\\8 & Chrome 55.0.2883.95 (Mac OS)	& $6.85$\\
+\bf 1 & \bf Firefox 50.1.0 (Mac OS)	& $\mathbf{2.00}$\\
+2 & Firefox 47.0 (Linux)	& $2.70$\\
+3 & Firefox 50.1.0 (Linux)	& $3.00$\\
+4 & Chromium51.0.2704.79 (Linux)	& $4.75$\\
+5 & Chrome 55.0.2883.87 (Windows)	& $5.30$\\
+6 & Edge 14.14393	& $5.60$\\
+7 & Safari 10.0.2 (Mac OS)	& $5.80$\\
+8 & Chrome 55.0.2883.95 (Mac OS)	& $6.85$\\
 \hline
 \end{tabular}
 \end{center}
@@ -706,7 +767,13 @@ PREGINTAR A ELI EL SIGNIFICADO DE LAS COLUMNAS rho y alpha ????}
 \begin{tabular}{cp{45mm}ccl}
 \bf i & \bf Control browser: \newline Firefox 50.1.0 (Mac OS)	&	$\mathbf{\rho}$	&	\bf $\mathbf{\alpha/i}$	&	\bf Null hypothesis	\\
 \hline
-\bf 2 & \bf Firefox 50.1.0 (Linux)		&	\bf 0.00003	&	\bf 0.00714	&	\bf Rejected	\\\bf 3 & \bf Firefox 47.0 (Linux)			&	\bf 0.00140	&	\bf 0.00833	&	\bf Rejected	\\\bf 4 & \bf Chromium 51.0.2704.79 (Linux)	&	\bf 0.00259	&	\bf 0.01000	&	\bf Rejected	\\\bf 5 & \bf Chrome 55.0.2883.87 (Windows)	&	\bf 0.00811	&	\bf 0.01250	&	\bf Rejected	\\6 & Edge 4.14393				&	0.01992	&	0.01667	&	Non Rejected	\\7 & Safari 10.0.2 (Mac OS)		&	0.71500	&	0.02500	&	Non Rejected	\\8 & Chrome 55.0.2883.95 (Mac OS)	&	0.71500	&	0.05000	&	Non Rejected	\\
+\bf 2 & \bf Firefox 50.1.0 (Linux)		&	\bf 0.00003	&	\bf 0.00714	&	\bf Rejected	\\
+\bf 3 & \bf Firefox 47.0 (Linux)			&	\bf 0.00140	&	\bf 0.00833	&	\bf Rejected	\\
+\bf 4 & \bf Chromium 51.0.2704.79 (Linux)	&	\bf 0.00259	&	\bf 0.01000	&	\bf Rejected	\\
+\bf 5 & \bf Chrome 55.0.2883.87 (Windows)	&	\bf 0.00811	&	\bf 0.01250	&	\bf Rejected	\\
+6 & Edge 4.14393				&	0.01992	&	0.01667	&	Non Rejected	\\
+7 & Safari 10.0.2 (Mac OS)		&	0.71500	&	0.02500	&	Non Rejected	\\
+8 & Chrome 55.0.2883.95 (Mac OS)	&	0.71500	&	0.05000	&	Non Rejected	\\
 \hline
 \end{tabular}
 \end{center}
