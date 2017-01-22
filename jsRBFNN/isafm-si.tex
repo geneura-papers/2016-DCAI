@@ -447,15 +447,29 @@ by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 This second experiment is intended to detect the different behaviour of {\em jsEvRBF} depending of the browser in which it is executed. Although the JavaScript language is the same for any browser, the implementation of the
 JavaScript virtual machine they use introduces some differences that may affect to the complete process.
 
-For this experiment, $8$ different browsers were tested (see Table
+For this experiment, eight different browsers were tested (see Table
 \ref{tab:browsers-second-experiment}). They have been chosen because
 of their widespread use and the availability of old
 versions of some of them; these previous versions have allowed us to highlight the
 evolution of their performance and difference in them along time.
 
-
-
-Table \ref{tab:results-per-browser-second-experiment} shows average MSE and the corresponding standard deviation yielded by the different browsers. The experiment was carried out loading the web page only once in every browser; thus, the results presented in this paper are averaged over $10$ executions, except for Chromium and Chrome browsers. In these browsers, and despite the fact that the code used in our implementation is written in standard JavaScript, still an error appears in some executions. For this reason, table \ref{tab:results-per-browser-second-experiment} includes an extra column indicating the number of valid executions. The error occurs in the phase in which neural networks are trained, when computing the best weights attached to the connections between the hidden and the output layers of the nets. In an inconsistent way, Chrome and Chromium browsers reach a {\em NaN} ({\em Not a number}) value, so that the whole process becomes null. 
+Table \ref{tab:results-per-browser-second-experiment} shows the
+average MSE and the corresponding standard deviation of the results
+yielded by the different browsers. The experiment was carried out
+loading the web page only once in every browser; thus, the results
+presented in this paper are averaged over $10$ executions, except for
+the Chromium and Chrome browsers; in these browsers, and despite the
+fact that the code used in our implementation is written in standard
+JavaScript, still an error appears in some executions. % We should fix
+                                % this - JJ
+For this reason, table \ref{tab:results-per-browser-second-experiment}
+includes an extra column indicating the number of valid
+executions. The error occurs in the phase in which neural networks are
+trained, when computing the best weights attached to the connections
+between the hidden and the output layers of the nets. In an
+inconsistent way, Chrome and Chromium browsers reach a {\em NaN} ({\em
+  Not a number}) value, so that the whole process becomes null.  % I
+                                % don't think this should go here - JJ
 
 According to the results, and disregarding the number of valid executions, the smaller MSE is yielded by an old version of browser Chromium (version 51.0.2704.79); its average MSE is $7.4 \times 10^{-4} \pm 1.6 \times 10^{-4}$, quite similar to the reference values yielded by EvRBF (${6 \times 10^{-4} \pm 2 \times 10^{-4}}$) and Sheta's algorithm MSE-GA( $9 \times 10^{-4}$; see table \ref{tab:comparison-first-experiment}). Nevertheless, the browser Chromium is not able to complete the $10$ executions. So, is much more interesting the errors yielded by the different versions of browser Firefox that, consistently, offers the best results ($8.5 \times 10^{-4}	 \pm 	1.4 \times 10^{-4}$ for Firefox 47.0, $8.7 \times 10^{-4}	 \pm 	3.0 \times 10^{-4}$ for Firefox 50.1.0 on Mac Os, and $9.2 \times 10^{-4}	 \pm 	3.1 \times 10^{-4}$	for the latter on Linux).  Finally, worse browsers for this tasks seem to be Edge and Safari, in their most recent versions; the average MSE yielded by these browsers are $2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$	and  $6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$, respectively, i.e., two order of magnitude worse than the reference values.
 
