@@ -390,11 +390,6 @@ browsers. In this paper we report the new set of experiments and update
 single-browser performance with updated browser versions.
 
 
-% Maybe add new version of this screen - JJ
-% Yes, of course. The web pages has changed.- Victor
-
-
-
 \subsection{Testing implementation's validity and user's willingness}
 \label{sec:first-experiment}
 The first experiment was designed to check the willingness of web
@@ -434,9 +429,8 @@ $41853$ executions, the MSE turns to be $2 \times
 10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded
 by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 
-
-%Finally, table \ref{tab:all-error-values-experiment-1} shows the rest of error-measure values yielded by {\em jsEvRBF}, in order to easier future works.
-
+Let us see how this would compare with single browser performance in
+the next subsection. 
 
 
 
@@ -471,11 +465,59 @@ inconsistent way, Chrome and Chromium browsers reach a {\em NaN} ({\em
   Not a number}) value, so that the whole process becomes null.  % I
                                 % don't think this should go here - JJ
 
-According to the results, and disregarding the number of valid executions, the smaller MSE is yielded by an old version of browser Chromium (version 51.0.2704.79); its average MSE is $7.4 \times 10^{-4} \pm 1.6 \times 10^{-4}$, quite similar to the reference values yielded by EvRBF (${6 \times 10^{-4} \pm 2 \times 10^{-4}}$) and Sheta's algorithm MSE-GA( $9 \times 10^{-4}$; see table \ref{tab:comparison-first-experiment}). Nevertheless, the browser Chromium is not able to complete the $10$ executions. So, is much more interesting the errors yielded by the different versions of browser Firefox that, consistently, offers the best results ($8.5 \times 10^{-4}	 \pm 	1.4 \times 10^{-4}$ for Firefox 47.0, $8.7 \times 10^{-4}	 \pm 	3.0 \times 10^{-4}$ for Firefox 50.1.0 on Mac Os, and $9.2 \times 10^{-4}	 \pm 	3.1 \times 10^{-4}$	for the latter on Linux).  Finally, worse browsers for this tasks seem to be Edge and Safari, in their most recent versions; the average MSE yielded by these browsers are $2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$	and  $6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$, respectively, i.e., two order of magnitude worse than the reference values.
+According to the results, and disregarding the number of valid
+executions, the smaller MSE is yielded by an old version of browser
+Chromium (version 51.0.2704.79); its average MSE is $7.4 \times
+10^{-4} \pm 1.6 \times 10^{-4}$, quite similar to the reference values
+yielded by EvRBF (${6 \times 10^{-4} \pm 2 \times 10^{-4}}$) and
+Sheta's algorithm MSE-GA( $9 \times 10^{-4}$; see table
+\ref{tab:comparison-first-experiment}). Nevertheless, the browser
+Chromium is not able to complete the $10$ executions. So, is much more
+interesting the errors yielded by the different versions of browser
+Firefox that, consistently, offers the best results ($8.5 \times
+10^{-4}	 \pm 	1.4 \times 10^{-4}$ for Firefox 47.0, $8.7 \times
+10^{-4}	 \pm 	3.0 \times 10^{-4}$ for Firefox 50.1.0 on Mac Os, and
+$9.2 \times 10^{-4}	 \pm 	3.1 \times 10^{-4}$	for the latter
+on Linux).  Finally, worse browsers for this tasks seem to be Edge and
+Safari, in their most recent versions; the average MSE yielded by
+these browsers are $2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$
+and  $6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$,
+respectively, i.e., two order of magnitude worse than the reference
+values. 
 
-Furthermore, a deeper analysis of the obtained results has been carried out in order to consider both accuracy and also number of valid solutions. To do this, a Friedman's test has been realised considering the MSE yielded by every browser in any of the $10$ executions (in the case of non valid solutions, a value of $1\time10^6$ has been considered; for this kind of study, the value itself does not matter, only wether values are greater or smaller than the others).  Friedman's test allows to establish a ranking among the different browsers, according to the number of times every browser beats the others. Table \ref{tab:friedman-results} shows the ordered sequence of browser with respect to their MSE (form better in te top to worse in the bottom); this table clearly shows that Firefox can be considered the best browser to this kind of tasks independently of its version. Concretely, the browser Firefox 50.1.0 executed under Mac OS appears in first position, followed by Firefox 47.0 and Firefox 50.1.0 under Linux. After them, Chromium and Chrome appear as the next best browsers, despite the fact they do not allow to run the complete set of executions. Finally, Edge and Safari turn to be the worst classified.
+Furthermore, we have analyzed further the obtained results has been
+carried out taking into account both accuracy and number of
+valid solutions. In order to do this, a Friedman's test has been performed
+considering the MSE yielded by every browser in any of the $10$
+executions (in the case of non valid solutions, a value of
+$1\time10^6$ has been considered; for this kind of study, the value
+itself does not matter, only whether values are greater or smaller than
+the others).  Friedman's test allows to establish a ranking among the
+different browsers, according to the number of times every browser
+beats the others. Table \ref{tab:friedman-results} shows the ordered
+sequence of browser with respect to their MSE (form better in te top
+to worse in the bottom); this table clearly shows that Firefox can be
+considered the best browser to this kind of tasks independently of its
+version. Concretely, the browser Firefox 50.1.0 executed under Mac OS
+appears in first position, followed by Firefox 47.0 and Firefox 50.1.0
+under Linux. After them, Chromium and Chrome appear as the next best
+browsers, despite the fact they do not allow to run the complete set
+of executions. Finally, Edge and Safari turn to be the worst
+classified. 
 
-Establishing Firefox 50.1.0 under Mac OS as the browser with the best results, it is possible now to perform a Holm's procedure to discover if there exist significant differences among this browser and the rest of them. The results of Holm's procedure applied to the MSE computed per every execution of every browser are showed in table  \ref{tab:holm-results}. Stating that the null hypothesis is "there exist significant differences with respect to the best result", the table shows that this hypothesis is rejected for every browser but the last $3$, i.e., Edge, Safari and Chrome (when executed on Mac). According to this analysis, we can conclude that although any browser could be used to run the algorithm, Firefox is the best choice as far as it finds the best models (i.e., the smallest MSE) and in a most robust way than Chrome does.
+Once it has been established that Firefox 50.1.0 under Mac OS is the
+browser with the best results, it is now possible  to perform Holm's
+procedure to discover if there exist significant differences among
+this browser and the rest of them. The results of Holm's procedure
+applied to the MSE computed per every execution of every browser are
+showed in table  \ref{tab:holm-results}. Stating that the null
+hypothesis is "there exist significant differences with respect to the
+best result", the table shows that this hypothesis is rejected for
+every browser but the last $3$, i.e., Edge, Safari and Chrome (when
+executed on Mac). According to this analysis, we can conclude that
+although any browser could be used to run the algorithm, Firefox is
+the best choice as far as it finds the best models (i.e., the smallest
+MSE) and in a most robust way than Chrome does. 
 
 %Finally, and as we did before, table \ref{tab:all-error-values-experiment-2} summarizes the values computed for this experiment with regard to the complete set of error measures.
 %
