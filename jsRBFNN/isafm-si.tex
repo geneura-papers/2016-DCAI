@@ -55,23 +55,14 @@ C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
 %##### NUEVA PROPUESTA DE ABSTRACT--- Maribel
 % Victor: Ojo: m�ximo 100 palabras seg�n las normas de la publicaci�n
 % http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1099-1174/homepage/ForAuthors.html
-{\em JsEvRBF} is a forecasting method that uses a genetic algorithm
-for evolving radial basis function neural nets. The implementation
-presented in this paper is able to run in most modern web browsers,
-consequently everybody is allowed to contribute the algorithm
-results participating in the experiments using their own browsers. The
-use of browsers for experimentation is an interesting idea because the
-scientists could use the huge number of inactive web browsers included
-in each device as computation power, but it is a great challenge
-too, because the language support and performance varies as the
-JavaScript Virtual Machine implementation changes hampering the same
-algorithm is run in the same version of each browser.
-The presented
-results include a description of the experimentation process using
-volunteers, which is one of the goals of this paper, and the
-forecasting results using a currencies exchange dataset which are
-comparable with previous results without the volunteer
-participation. These results guarantee the viability of the proposal.
+{\em jsEvRBF} is a time-series forecasting method based on genetic algorithm
+and neural nets. Written in JavaScript language, can be executed in most web browsers.
+Consequently, everybody can participate in the experiments, and
+scientists can take advantage of nowadays available browsers and devices as computation environments. 
+This is also a great challenge
+as the language support and performance varies from one browser to another.
+In this paper, {\em jsEvRBF} has been tested in a volunteer computing experiment, and also in a single-browser one.
+Both experiments are related to forecasting currencies exchange, and the results show the viability of the proposal.
 
 %#### cuando tengamos nuevos resultados puedo concretar un poco m �s la �ltima frase, que la he dejado un poco ambig�a
 % You can't say "the presented results do this". Say what you intented
@@ -419,7 +410,7 @@ Chrome.
 
 With respect to the accuracy of the forecasting performed in each
 experiment, the MSE of the best
-solution found along all the executions was $6\times10^{-4}$. As can
+solution found along all the executions was $6\times 10^{-4}$. As can
 be see in table \ref{tab:comparison-first-experiment}, this solution
 is as good as the average one found by the original algorithm (EvRBF)
 and much better that our previously published results \cite{DBLP:conf/dcai/RivasPMAG16}. The later is due to the fact that most of the executions have
@@ -427,7 +418,7 @@ finished with valid values, since new versions of Safari and Chrome
 browsers (i.e., AppleWebKit-based browsers) seems to be less affected by the
 {\em NaN} error we found in our previous work. Taking into account the
 $41853$ executions, the MSE turns to be $2 \times
-10^{-3}\pm8\times10^{-1}$, which is comparable to the results yielded
+10^{-3}\pm 5\times 10^{-3}$, which is comparable to the results yielded
 by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 
 Let us see how this would compare with single browser performance in
@@ -457,6 +448,7 @@ the Chromium and Chrome browsers; in these browsers, and despite the
 fact that the code used in our implementation is written in standard
 JavaScript, still an error appears in some executions. % We should fix
                                 % this - JJ
+				% I wish I had time - Victor
 For this reason, table \ref{tab:results-per-browser-second-experiment}
 includes an extra column indicating the number of valid
 executions. The error occurs in the phase in which neural networks are
@@ -465,6 +457,7 @@ between the hidden and the output layers of the nets. In an
 inconsistent way, Chrome and Chromium browsers reach a {\em NaN} ({\em
   Not a number}) value, so that the whole process becomes null.  % I
                                 % don't think this should go here - JJ
+				% Change it wherever you think is better, I really can't spend more time in this.
 
 According to the results, and disregarding the number of valid
 executions, the smaller MSE is yielded by an old version of browser
@@ -486,7 +479,7 @@ and  $6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$,
 respectively, i.e., two order of magnitude worse than the reference
 values. 
 
-Furthermore, we have analyzed further the obtained results has been
+Furthermore, using the techniques introduced by Garcia et al. in ~\cite{Garcia2009}, we have analyzed the obtained results has been
 carried out taking into account both accuracy and number of
 valid solutions. In order to do this, a Friedman's test has been performed
 considering the MSE yielded by every browser in any of the $10$
@@ -520,42 +513,10 @@ although any browser could be used to run the algorithm, Firefox is
 the best choice as far as it finds the best models (i.e., the smallest
 MSE) and in a most robust way than Chrome does. 
 
-%Finally, and as we did before, table \ref{tab:all-error-values-experiment-2} summarizes the values computed for this experiment with regard to the complete set of error measures.
-%
-%\setlength{\tabcolsep}{3pt}
-%\begin{table}
-%\caption{Second experiment: complete set of error measures yielded {\em jsEvRBF} computed over the entire set of data.}
-%\label{tab:all-error-values-experiment-2}
-%\begin{center}
-%\begin{tabular}{lc|lc}
-%{\bf Error Measure} & {\bf Value} & {\bf Error measure} & {\bf Value} \\
-%\hline
-%
-%MSE & $7.5601e-4 \pm 1.6728e-7$  &
-%RMSE & $2.7398e-2 \pm 5.3461e-5$ \\
-%MAE & $2.1099e-2 \pm 3.4528e-5$  &
-%MdAE & $1.6385e-2 \pm 4.0988e-5$ \\
-%MAPE & $1.1091e+0 \pm 1.0119e-1$  &
-%MdAPE & $8.7471e-1 \pm 1.2897e-1$ \\
-%RMSPE & $1.4293e+0 \pm 1.5105e-1$  &
-%RMdSPE & $8.7471e-1 \pm 1.2897e-1$ \\
-%sMAPE & $1.1065e+0 \pm 9.8722e-2$  &
-%sMdAPE & $8.7381e-1 \pm 1.2609e-1$ \\
-%MASE & $1.1515e+0 \pm 1.0601e-1$  &
-%RMSSE & $1.4940e+0 \pm 1.6138e-1$ \\
-%MdASE & $8.9537e-1 \pm 1.2759e-1$  \\
-%\hline
-%\end{tabular}
-%\end{center}
-%\end{table}
-
-% How does this compare to the experiments performed above? Is it what
-% should be expected? - JJ
 
 \section{Conclusions}
 \label{sec:conclusions}
 
-REEEESCRIBIR!!!!
 In this paper, the implementation in JavaScript of the algorithm {\em EvRBF} has been introduced. This implementation, called {\em jsEvRBF}, has been proved to make easy the execution of an evolutionary algorithm in a volunteer computing scenario. The former is due to the capability of web browsers to decode and execute programs written in JavaScript. This way, the browser turns into a multi-platform framework in which any program coded in JavaScript can be easily downloaded and executed without needing special technical knowledge by the user or installing additional software.
 
 The experiments previously described have proved that {\em jsEvRBF} can be effectively used to perform a time-series forecasting task in which real data corresponding to currency exchange has been used. {\em jsEvRBF} has been able to be executed on different browsers and even different operating systems, just making the browsers to access to a given URL. By means of social networks, users were asked to connect to the specified URL and during 15 days, 55 volunteers used their own devices to execute 41853 times the algorithm. The results (measured as the Mean Square Error from expected output to yielded ones) were comparable to those obtained by previous versions of the algorithm as well as the method introduced by Sheta and De Jong\cite{Sheta2001} in their original work related to this time-series. Thus, {\em jsEvRBF} can be taken into account as a valid method to allow the execution in parallel of algorithms over a volunteer computing paradigm, and also as a valid method to perform time-series forecasting. 
@@ -623,11 +584,7 @@ individuals (i.e., good solutions) found by any of the browser would be distribu
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{time-series.eps}
 \caption{Time-series being forecasted in this paper. The data represent the exchange rates between Bristish pound and US dollar from 31 December 1979 to 26 December 1983\cite{Sheta2001}.}
-\label{fig:time-series} % Do we need this thing? ~JJ -  I really
-                          % like it. BTW, I wish we had realised in EO
-                          % that eo wasn't a class, but an Interface ~vrivas
-% we did know it was an interface. We used the STL, and in later
-% implementation, "traits" to extend it - JJ
+\label{fig:time-series}
 \end{figure}
 
 
@@ -733,12 +690,13 @@ Safari & $10.9\%$ \\
 \bf EvRBF & $\mathbf{6 \times 10^{-4} \pm 2 \times 10^{-4}}$ &$\mathbf{4 \times 10^{-4}}$ \\
 MSE-GA & $9 \times 10^{-4}$ & N/A \\
 MSE-LSE &  $1 \times 10^{-3}$ & N/A \\
-{\em jsEvRBF'17} & $\mathit{2 \times 10^{-3} \pm 8 \times 10^{0}}$ & $\mathit{6 \times 10^{-4}}$  \\
-jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6 \times10^{-4}$  \\
+{\em jsEvRBF'17} & $\mathit{2 \times 10^{-3} \pm 5 \times 10^{-3}}$ & $\mathit{6 \times 10^{-4}}$  \\
+jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{-2}$ & $6 \times10^{-4}$  \\
 \hline
 \end{tabular}
 % Are you sure this is correct? Standard deviation two orders of
-% magnitude bigger than value? 0.002 +- 8? Really? - JJ
+% magnitude bigger than value? 0.002 +- 0.8? Really? - JJ
+% No... it's a mistake when copying from console to latex... :/
 \end{center}
 \end{table}
 
@@ -753,6 +711,7 @@ jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{0}$ & $6 \times10^{-4}$  \\
 % Different computers or different virtual machines in the same
 % computer? If they are different computers, what are you comparing?
 % The random number generator? - JJ
+% I tested all that I had close to me - Victor.
 \label{tab:browsers-second-experiment}
 \begin{center}
 \begin{tabular}{lcc}
@@ -807,11 +766,11 @@ Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Ranking of browsers according to Friedman's test. Low values for column ??? indicate a better position in the ranking. }
+\caption{Ranking of browsers according to Friedman's test. Values in column $\chi^2$ indicate the degrees of freedom for the $\chi^2$ distribution followed by the different solutions provided by each client: the lowset this value, the better the position in the ranking. }
 \label{tab:friedman-results}
 \begin{center}
 \begin{tabular}{clcc}
-\bf Position & {\bf Browser}	 &  {\bf Preguntar a Eli el nombre y significado de esta columna???}	 \\
+\bf Position & {\bf Browser}	 &  {$\mathbf{\chi^2}$} 	 \\
 \hline
 \bf 1 & \bf Firefox 50.1.0 (Mac OS)	& $\mathbf{2.00}$\\
 2 & Firefox 47.0 (Linux)	& $2.70$\\
@@ -831,23 +790,22 @@ Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Results of the Holms procedure. Control browser is Firefox 50.1.0 under Mac OS; the null hypothesis is rejected when it does not exist significant differences between the browser being considered in every row and the control browser.
-PREGINTAR A ELI EL SIGNIFICADO DE LAS COLUMNAS rho y alpha ????}
+\caption{Results of the Holms procedure. Control browser is Firefox 50.1.0 under Mac OS; the null hypothesis is rejected when it does not exist significant differences between the browser being considered in every row and the control browser. Column $\rho$ indicates the adjusted $\rho-value$ for every browser with respect to the control browser. Column  $\alpha/i$ represents the alpha level used to accept or reject the null hypothesis. As $\alpha$ has been established to $0.05$, the null hypothesis is rejected when $\rho<\alpha/i$.}
 \label{tab:holm-results}
 \begin{center}
 \begin{tabular}{cp{45mm}ccl}
 \bf i & \bf Control browser: \newline Firefox 50.1.0 (Mac OS)	&	$\mathbf{\rho}$	&	\bf $\mathbf{\alpha/i}$	&	\bf Null hypothesis	\\
 \hline
-\bf 2 & \bf Firefox 50.1.0 (Linux)		&	\bf 0.00003	&	\bf 0.00714	&	\bf Rejected	\\
-\bf 3 & \bf Firefox 47.0 (Linux)			&	\bf 0.00140	&	\bf 0.00833	&	\bf Rejected	\\
-\bf 4 & \bf Chromium 51.0.2704.79 (Linux)	&	\bf 0.00259	&	\bf 0.01000	&	\bf Rejected	\\
-\bf 5 & \bf Chrome 55.0.2883.87 (Windows)	&	\bf 0.00811	&	\bf 0.01250	&	\bf Rejected	\\
-6 & Edge 4.14393				&	0.01992	&	0.01667	&	Non Rejected	\\
-7 & Safari 10.0.2 (Mac OS)		&	0.71500	&	0.02500	&	Non Rejected	\\
-8 & Chrome 55.0.2883.95 (Mac OS)	&	0.71500	&	0.05000	&	Non Rejected	\\
+\bf 1 & \bf Firefox 50.1.0 (Linux)		&	\bf 0.00003	&	\bf 0.00714	&	\bf Rejected	\\
+\bf 2 & \bf Firefox 47.0 (Linux)			&	\bf 0.00140	&	\bf 0.00833	&	\bf Rejected	\\
+\bf 3 & \bf Chromium 51.0.2704.79 (Linux)	&	\bf 0.00259	&	\bf 0.01000	&	\bf Rejected	\\
+\bf 4 & \bf Chrome 55.0.2883.87 (Windows)	&	\bf 0.00811	&	\bf 0.01250	&	\bf Rejected	\\
+5 & Edge 4.14393				&	0.01992	&	0.01667	&	Non Rejected	\\
+6 & Safari 10.0.2 (Mac OS)		&	0.71500	&	0.02500	&	Non Rejected	\\
+7 & Chrome 55.0.2883.95 (Mac OS)	&	0.71500	&	0.05000	&	Non Rejected	\\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
-% Mark the best and draw some conclusion - JJ
+
 \end{document}
