@@ -121,9 +121,10 @@ environments \cite{Rauschmayer04}. % Don't know about this reference. Isn't it t
 The web, as we currently use it, would not be the same without the
 capability that JavaScript gives to the browser to make calculus,
 to interact with the user, or to dynamically retrieve data from servers
-without reloading the whole page, as it's done with AJAX\cite{powell2008ajax}. %Reference???.
+without reloading the whole page, as it is done with AJAX\cite{powell2008ajax}. %Reference???.
 
-Briefly, the history of JavaScript starts in the 1990s\footnote{Press release announcing JavaScript, "Netscape and Sun announce JavaScript", PR Newswire, December 4, 1995. \url{http://bit.ly/JSPRESS}}: the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include Java (its more static programming language) in Netscape Navigator. For this reason, it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers the support for Java applets \cite{Champeon08}. In May 1995, Eich designed a prototype in 10 days and was named first \emph{Mocha}, coined by the founder of Netscape Marc Andreessen, then \emph{LiveScript} and finally, in December 1995, \emph{JavaScript} \cite{Eich2010}, not because of the Java programming language, but to support Sun Microsystems.
+Briefly, the history of JavaScript starts in the 1990s\footnote{Press release announcing JavaScript, "Netscape and Sun announce JavaScript", PR Newswire, December 4, 1995. \url{http://bit.ly/JSPRESS}}: the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include Java (its more static programming language) in Netscape Navigator. For this reason, it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers %the support for 
+supporting Java applets \cite{Champeon08}. In May 1995, Eich designed a prototype in 10 days and was named first \emph{Mocha}, coined by the founder of Netscape Marc Andreessen, then \emph{LiveScript} and finally, in December 1995, \emph{JavaScript} \cite{Eich2010}, not because of the Java programming language, but to support Sun Microsystems.
 JavaScript was standardized in 1997 by the European Computer Manufacturer's Association, or ECMA. According to the ECMA-262 standard, its real name is \emph{ECMAScript}, but everyone calls the language \emph{JavaScript} \cite{Flanagan06}.
 
 
@@ -143,7 +144,7 @@ server thanks to frameworks like
 Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
 For safety reasons, any web browser allows its users to change the preferences
 in order to disable the execution of any JavaScript code; nevertheless, this is
-rarely done in these days. Even more, most standard web users are not
+rarely done in nowadays. Even more, most standard web users are not
 aware of the existence of this language, not realising their browsers
 are working as programming environments in which code is analysed,
 translated into a low-level language and executed. Consequently, in order to extreme security, programs written in JavaScript are executed by
@@ -290,7 +291,7 @@ As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the follo
 \STATE Create, train and evaluate an initial population of $p$ individuals.
 \FOR{generation = 1 \TO n}
    \STATE{Select a subpopulation of $q$ individuals}
-   \STATE{Create $q$ new individuals applying an operator to each one in subpopulation}
+   \STATE{Create $q$ new individuals applying operators to each one in subpopulation}
    \STATE{Train and evaluate the $q$ new individuals}
    \STATE{Join and sort both old and new populations}
    \STATE{Remove the $q$ worst individuals}
@@ -303,7 +304,7 @@ As a standard evolutionary algorithm, the skeleton of {\em jsEvRBF} is the follo
 
 
 %The individuals are RBFNN, any of them composed of a set of hidden neurons implemented as a vector of objects. Every hidden neuron stores its center and radius, and the global RBFNN stores the weights and bias.
-In order to compare individuals, so that best ones can be chosen to reproduce and worst ones disappear in every new generation, the fitness of every individual is computed as the inverse of the RMSE. Using the inverse allows to magnify the differences between individuals, so that the greater the fitness, the better the individual.
+In order to compare individuals, so that best ones can be chosen to reproduce and worst ones disappear in every new generation, the fitness of every individual is computed as the inverse of the RMSE (Root-mean-square deviation). Using the inverse allows to magnify the differences between individuals, so that the greater the fitness, the better the individual.
 
 The operators used in {\em jsEvRBF} are the following:
 
