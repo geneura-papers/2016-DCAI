@@ -29,7 +29,7 @@
 \author[3,4]{P. Garc\'{\i}a-Fern\'{a}ndez}
 
 % Affiliations according to authblk
-\affil[1]{Univ. of Jaen, Dept of Computer Sciences,\\
+\affil[1]{Univ. of Ja\'{e}n, Dept of Computer Sciences,\\
 Campus Las Lagunillas s/n, 23071, Ja\'{e}n, SPAIN\\
 \texttt{vrivas@ujaen.es},
 \texttt{http://vrivas.es}}
@@ -136,11 +136,11 @@ Adding JavaScript programs to web pages is simple: the code is inserted in the H
 For safety reasons, any web browser allows its users to change the preferences
 in order to disable the execution of any JavaScript code; nevertheless, this is
 rarely done in nowadays. Even more, most standard web users are not
-aware of the existence of this language, not realising their browsers
+aware of the existence of this language, not realizing their browsers
 are working as programming environments in which code is analysed,
 translated into a low-level language and executed. Consequently, in order to extreme security, programs written in JavaScript are executed by
 browsers using a {\em sandbox model}. The sandbox model imposes a series of strict
-restrictions that could be summarised as: the JavaScript program
+restrictions that could be summarized as: the JavaScript program
 inserted in a given web page cannot access any other resources than
 the ones contained in that web page. This means that JavaScript programs are not allowed
 to access the client's file system but only to store little pieces of text (called
@@ -214,7 +214,7 @@ the parallel implementation is used to explore more efficiently the
 space of different parallel architectures.
 
 This is probably the reason why it has not been approached using
-volunteer computing, which eschews fixed computing infraestructures,
+volunteer computing, which eschews fixed computing infrastructures,
 relying on the computing resources lent by strangers
 \cite{daniel:euromicro09,gecco07:workshop:dcor,DBLP:journals/corr/abs-0801-1210,DBLP:conf/gecco/MereloCGCRV16,baratloo1996charlotte,hwang2009determinants,web:BOINC}. Although
 in these kind of networks a high sustained performance is difficult to
@@ -336,7 +336,7 @@ The exact value used for each of these parameters for the experiments carried ou
 \label{sec:experiments}
 The data used in our experiments is composed of 208
 weekly averaged observations representing the exchange rates between
-Bristish pound and US dollar from 31 December 1979 to 26 December
+British pound and US dollar from 31 December 1979 to 26 December
 1983\footnote{The source of the information, thanks to the work done
   by Prof. Werner Antweiler from the University of British Columbia,
   Vancouver, Canada, is available from
@@ -344,7 +344,7 @@ Bristish pound and US dollar from 31 December 1979 to 26 December
 has been used in exactly the same way than Sheta and de Jong in
 \cite{Sheta2001}; thus, only one randomly chosen half of the
 dataset has been used to train and validate the obtained neural nets,
-while the whole data set has been used to compute the generalisation
+while the whole data set has been used to compute the generalization
 power of the best neural net found in every execution of the
 algorithm.
 
@@ -369,7 +369,7 @@ to the URL: \url{http://150.214.178.89}; no special technical knowledge was nece
 algorithm since it was automatically executed once the web page was
 loaded. Figure \ref{fig:example-of-execution} shows the page users
 could read when accessing the specified URL.
-Every time an user accessed that URL, the web page containing the algorithm was loaded in their computer and $10$ complete, independent executions of the algorithm were done. Once finished every execution, the {\em Mean Square Error} (MSE)  was computed using the whole data set as expected values, and the values provided by the best individual (RBNFF) found in the last iteration of the genetic algorithm. The computed MSE was sent to the sever to store it allowing a later statistic analysis. After the $10$ executions have finished, the page was reloaded again if the user did not close the window in less than $10$ seconds in the case of the first experiment (the one open to the global community).
+Every time an user accessed that URL, the web page containing the algorithm was loaded in their computer and $10$ complete, independent executions of the algorithm were done. Once finished every execution, the {\em Mean Square Error} (MSE)  was computed using the whole data set as expected values, and the values provided by the best individual (RBFNN) found in the last iteration of the genetic algorithm. The computed MSE was sent to the sever to store it allowing a later statistic analysis. After the $10$ executions have finished, the page was reloaded again if the user did not close the window in less than $10$ seconds in the case of the first experiment (the one open to the global community).
 
 
 Public information (browser and operating system versions) about the clients executing the algorithm and the MSE they yielded were received
@@ -489,7 +489,7 @@ itself does not matter, only whether values are greater or smaller than
 the others).  Friedman's test allows to establish a ranking among the
 different browsers, according to the number of times every browser
 beats the others. Table \ref{tab:friedman-results} shows the ordered
-sequence of browser with respect to their MSE (form better in te top
+sequence of browser with respect to their MSE (form better in the top
 to worse in the bottom); this table clearly shows that Firefox can be
 considered the best browser to this kind of tasks independently of its
 version. Concretely, the browser Firefox 50.1.0 executed under Mac OS
@@ -521,11 +521,11 @@ In this paper, the implementation in JavaScript of the algorithm {\em EvRBF} has
 
 The experiments previously described have proved that {\em jsEvRBF} can be effectively used to perform a time-series forecasting task in which real data corresponding to currency exchange has been used. {\em jsEvRBF} has been able to be executed on different browsers and even different operating systems, just making the browsers to access to a given URL. By means of social networks, users were asked to connect to the specified URL and during 15 days, 55 volunteers used their own devices to execute 41853 times the algorithm. The results (measured as the Mean Square Error from expected output to yielded ones) were comparable to those obtained by previous versions of the algorithm as well as the method introduced by Sheta and De Jong\cite{Sheta2001} in their original work related to this time-series. Thus, {\em jsEvRBF} can be taken into account as a valid method to allow the execution in parallel of algorithms over a volunteer computing paradigm, and also as a valid method to perform time-series forecasting. 
 
-A second experiment has been done attempting to detect differences between the different browsers currently available. Existing errors previously reported in our paper for PAAMS 2016 (\cite{DBLP:conf/dcai/RivasPMAG16}) have disappeared in browser Safari, but still remains in Chrome. For this reason, although Chrome is a good candidate to run the algorithm, should be rejected in favor of Firefox. Effectively, Firefox has revealed itself to be the one that gets good accuracy and robustness. Considering that Firefox is currently available for any device, we can conclude that it should be the first option when choosing a web-browser to perform this kind of taks.
+A second experiment has been done attempting to detect differences between the different browsers currently available. Existing errors previously reported in our paper for PAAMS 2016 (\cite{DBLP:conf/dcai/RivasPMAG16}) have disappeared in browser Safari, but still remains in Chrome. For this reason, although Chrome is a good candidate to run the algorithm, should be rejected in favor of Firefox. Effectively, Firefox has revealed itself to be the one that gets good accuracy and robustness. Considering that Firefox is currently available for any device, we can conclude that it should be the first option when choosing a web-browser to perform this kind of task.
 
 Future work includes the use of the algorithm in an {\em island model}  framework , since {\em jsEO}, the underlying
 library supporting {\em jsEvRBF} has been implemented with this
-feature. In suche a framework, good
+feature. In such a framework, good
 individuals (i.e., good solutions) found by any of the browser would be distributed to the rest of them running the algorithm in that moment or even later.
 
 
@@ -581,7 +581,7 @@ individuals (i.e., good solutions) found by any of the browser would be distribu
 
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{time-series.eps}
-\caption{Time-series being forecasted in this paper. The data represent the exchange rates between Bristish pound and US dollar from 31 December 1979 to 26 December 1983\cite{Sheta2001}.}
+\caption{Time-series being forecasted in this paper. The data represent the exchange rates between British pound and US dollar from 31 December 1979 to 26 December 1983\cite{Sheta2001}.}
 \label{fig:time-series}
 \end{figure}
 
@@ -764,7 +764,7 @@ Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Ranking of browsers according to Friedman's test. Values in column $\chi^2$ indicate the degrees of freedom for the $\chi^2$ distribution followed by the different solutions provided by each client: the lowset this value, the better the position in the ranking. }
+\caption{Ranking of browsers according to Friedman's test. Values in column $\chi^2$ indicate the degrees of freedom for the $\chi^2$ distribution followed by the different solutions provided by each client: the lowest this value, the better the position in the ranking. }
 \label{tab:friedman-results}
 \begin{center}
 \begin{tabular}{clcc}
