@@ -505,10 +505,9 @@ procedure to discover if there exist significant differences among
 this browser and the rest of them. The results of Holm's procedure
 applied to the MSE computed per every execution of every browser are
 showed in table  \ref{tab:holm-results}. Stating that the null
-hypothesis is "there exist significant differences with respect to the
-best result", the table shows that this hypothesis is rejected for
-every browser but the last $3$, i.e., Edge, Safari and Chrome (when
-executed on Mac). According to this analysis, we can conclude that
+hypothesis is "there does not exist significant differences with respect to the
+best result", the table shows that this hypothesis is not rejected for
+browsers  Chromium 51.0.2704.79 (Linux),  Firefox 47.0 (Linux) and Firefox 50.1.0 (Linux); thus, it exist significant differences whit respect to Safari, Egde and Chrome. According to this analysis, we can conclude that
 although any browser could be used to run the algorithm, Firefox is
 the best choice as far as it finds the best models (i.e., the smallest
 MSE) and in a most robust way than Chrome does. 
@@ -785,22 +784,29 @@ Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Results of the Holms procedure. Control browser is Firefox 50.1.0 under Mac OS; the null hypothesis is rejected when it does not exist significant differences between the browser being considered in every row and the control browser. Column $\rho$ indicates the adjusted $\rho-value$ for every browser with respect to the control browser. Column  $\alpha/i$ represents the alpha level used to accept or reject the null hypothesis. As $\alpha$ has been established to $0.05$, the null hypothesis is rejected when $\rho<\alpha/i$.}
+\caption{Results of the Holms procedure. Control browser is Firefox 50.1.0 under Mac OS; the null hypothesis is rejected when it does exist significant differences between the browser being considered in every row and the control browser. Column $\rho$ indicates the adjusted $\rho-value$ for every browser with respect to the control browser. Column  $\alpha/i$ represents the alpha level used to accept or reject the null hypothesis. As $\alpha$ has been established to $0.05$, the null hypothesis is rejected when $\rho<\alpha/i$.}
 \label{tab:holm-results}
 \begin{center}
 \begin{tabular}{cp{45mm}ccl}
 \bf i & \bf Control browser: \newline Firefox 50.1.0 (Mac OS)	&	$\mathbf{\rho}$	&	\bf $\mathbf{\alpha/i}$	&	\bf Null hypothesis	\\
 \hline
-\bf 1 & \bf Firefox 50.1.0 (Linux)		&	\bf 0.00003	&	\bf 0.00714	&	\bf Rejected	\\
-\bf 2 & \bf Firefox 47.0 (Linux)			&	\bf 0.00140	&	\bf 0.00833	&	\bf Rejected	\\
-\bf 3 & \bf Chromium 51.0.2704.79 (Linux)	&	\bf 0.00259	&	\bf 0.01000	&	\bf Rejected	\\
-\bf 4 & \bf Chrome 55.0.2883.87 (Windows)	&	\bf 0.00811	&	\bf 0.01250	&	\bf Rejected	\\
-5 & Edge 4.14393				&	0.01992	&	0.01667	&	Non Rejected	\\
-6 & Safari 10.0.2 (Mac OS)		&	0.71500	&	0.02500	&	Non Rejected	\\
-7 & Chrome 55.0.2883.95 (Mac OS)	&	0.71500	&	0.05000	&	Non Rejected	\\
+
+
+
+ 7 &  Chrome 55.0.2883.95 (Mac OS)	&	 0.00003	&	 0.00714	&	 Rejected	\\
+ 6 &  Safari 10.0.2 (Mac OS)		&	 0.00140	&	 0.00833	&	 Rejected	\\
+ 5 & Edge 4.14393				&	 0.00259	&	 0.01000	&	 Rejected	\\
+ 4 &  Chrome 55.0.2883.87 (Windows)	&	 0.00811	&	 0.01250	&	 Rejected	\\
+3 &  \bf Chromium 51.0.2704.79 (Linux)	&	\bf 0.01992	&	\bf 0.01667	&	\bf Non Rejected	\\
+2 & \bf Firefox 47.0 (Linux)			&	\bf 0.71500	&	\bf 0.02500	&	\bf Non Rejected	\\
+1 & \bf Firefox 50.1.0 (Linux)		&	\bf 0.71500	&	\bf 0.05000	&	\bf Non Rejected	\\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
 
 \end{document}
+
+
+
+
