@@ -58,7 +58,7 @@ C/ Periodista Daniel Saucedo s/n, 18071, Granada, SPAIN}
 {\em jsEvRBF} is a time-series forecasting method based on genetic algorithm
 and neural nets. Written in JavaScript language, can be executed in most web browsers.
 Consequently, everybody can participate in the experiments, and
-scientists can take advantage of nowadays available browsers and devices as computation environments. 
+scientists can take advantage of nowadays available browsers and devices as computation environments.
 This is also a great challenge
 as the language support and performance varies from one browser to another.
 In this paper, {\em jsEvRBF} has been tested in a volunteer computing experiment, and also in a single-browser one.
@@ -114,7 +114,7 @@ capability that JavaScript gives to the browser to make calculus,
 to interact with the user, or to dynamically retrieve data from servers
 without reloading the whole page, as it is done with AJAX\cite{powell2008ajax}. %Reference???.
 
-Briefly, the history of JavaScript starts in the 1990s\footnote{Press release announcing JavaScript, "Netscape and Sun announce JavaScript", PR Newswire, December 4, 1995. \url{http://bit.ly/JSPRESS}}: the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include Java (its more static programming language) in Netscape Navigator. For this reason, it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers %the support for 
+Briefly, the history of JavaScript starts in the 1990s\footnote{Press release announcing JavaScript, "Netscape and Sun announce JavaScript", PR Newswire, December 4, 1995. \url{http://bit.ly/JSPRESS}}: the proprietary web browser Netscape Navigator had been created and was dominant, and in 1995, Brendan Eich was hired by Netscape company to design and implement a new language. At the same time, Netscape collaborated with Sun company to include Java (its more static programming language) in Netscape Navigator. For this reason, it was questioned the needed of two programming languages: Java and a scripting language. Finally, they decided that the new scripting language had to make more accessible to non-Java programmers and web designers %the support for
 supporting Java applets \cite{Champeon08}. In May 1995, Eich designed a prototype in 10 days and was named first \emph{Mocha}, coined by the founder of Netscape Marc Andreessen, then \emph{LiveScript} and finally, in December 1995, \emph{JavaScript} \cite{Eich2010}, not because of the Java programming language, but to support Sun Microsystems.
 JavaScript was standardized in 1997 by the European Computer Manufacturer's Association, or ECMA. According to the ECMA-262 standard, its real name is \emph{ECMAScript}, but everyone calls the language \emph{JavaScript} \cite{Flanagan06}.
 
@@ -130,7 +130,7 @@ event-driven language. Although it was initially designed to be used only in the
 browser, independent implementations running on the server were soon released; nowadays
 it is used to write programs for both the client (i.e., the browser) and the
 server thanks to frameworks like
-\emph{node.js}~\cite{rauch2012smashing}. 
+\emph{node.js}~\cite{rauch2012smashing}.
 % Why comment??- JJ - Because I wrote too much in the initial version and I had to reduce it according to the congress rules.
 Adding JavaScript programs to web pages is simple: the code is inserted in the HTML code in plain text; then, it is downloaded by the browser that, finally,  interprets and executes it.
 For safety reasons, any web browser allows its users to change the preferences
@@ -231,7 +231,7 @@ achieve \cite{DBLP:conf/lion/LaredoGFMACG11,DBLP:conf/gecco/MereloCGCRV16}, in t
   resources of infected computers \cite{plohmann2012case}.
 
 Regarding the herein described implementation, our research group has already published the preliminary results obtained by the
-initial proof of concept in \cite{DBLP:conf/dcai/RivasPMAG16}. The results presented in this new paper correspond to new experiments that measure the 
+initial proof of concept in \cite{DBLP:conf/dcai/RivasPMAG16}. The results presented in this new paper correspond to new experiments that measure the
 performance obtained with different browsers and in different
 conditions. In order to compare results, {\em jsEvRBF} has been evaluated with the same time-series
 used by Sheta and de Jong \cite{Sheta2001} and the results were
@@ -240,7 +240,7 @@ published in \cite{DBLP:conf/dcai/RivasPMAG16}. % Maybe mention other
                                 % series here - JJ
 For this paper, we
 go beyond the state of the art by including new experiments and new
-results. 
+results.
 
 
 \section{The {\em jsEvRBF} implementation} %Is it an algorithm or an
@@ -393,7 +393,7 @@ open for two weeks (from 29/Dec/2016 to 13/Jan/2017), and users only
 had to open in their browsers the previously cited URL.
 Along the 15 days that lasted the experiment, $41853$ executions done
 by $55$ users were completed; thus, in average, every user ran the
-experiment close to $761$ times. 
+experiment close to $761$ times.
 As showed in \ref{tab:ooss-first-experiment}, the most widely used operating system was Android
 ($54.5\%$) of users, followed by Windows and Mac OS ($18.2\%$ any of
 them), and Linux ($9.1\%$). %Next to another table - JJ - Done
@@ -422,7 +422,7 @@ $41853$ executions, the MSE turns to be $2 \times
 by the MSE-LSE algorithm introduced by Sheta in \cite{Sheta2001}.
 
 Let us see how this would compare with single browser performance in
-the next subsection. 
+the next subsection.
 
 
 
@@ -444,7 +444,8 @@ average MSE and the corresponding standard deviation of the results
 yielded by the different browsers. The experiment was carried out
 loading the web page only once in every browser; thus, the results
 presented in this paper are averaged over $10$ executions, except for
-the Chromium and Chrome browsers; in these browsers, and despite the
+the Chromium\footnote{Chromium is the open-source project behind Chrome}
+ and Chrome browsers; in these browsers, and despite the
 fact that the code used in our implementation is written in standard
 JavaScript, still an error appears in some executions. % We should fix
                                 % this - JJ
@@ -477,10 +478,9 @@ Safari, in their most recent versions; the average MSE yielded by
 these browsers are $2.0 \times 10^{-2}	 \pm	2.2 \times 10^{-2}$
 and  $6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$,
 respectively, i.e., two order of magnitude worse than the reference
-values. 
+values.
 
-Furthermore, using the techniques introduced by Garcia et al. in ~\cite{Garcia2009}, we have analyzed the obtained results has been
-carried out taking into account both accuracy and number of
+Furthermore, using the techniques introduced by Garcia et al. in ~\cite{Garcia2009}, we have analysed the obtained results taking into account both accuracy and number of
 valid solutions. In order to do this, a Friedman's test has been performed
 considering the MSE yielded by every browser in any of the $10$
 executions (in the case of non valid solutions, a value of
@@ -497,20 +497,20 @@ appears in first position, followed by Firefox 47.0 and Firefox 50.1.0
 under Linux. After them, Chromium and Chrome appear as the next best
 browsers, despite the fact they do not allow to run the complete set
 of executions. Finally, Edge and Safari turn to be the worst
-classified. 
+classified.
 
 Once it has been established that Firefox 50.1.0 under Mac OS is the
 browser with the best results, it is now possible  to perform Holm's
 procedure to discover if there exist significant differences among
 this browser and the rest of them. The results of Holm's procedure
 applied to the MSE computed per every execution of every browser are
-showed in table  \ref{tab:holm-results}. Stating that the null
-hypothesis is "there does not exist significant differences with respect to the
+showed in table  \ref{tab:holm-results}. Providing that the null
+hypothesis considered is "there does not exist significant differences with respect to the
 best result", the table shows that this hypothesis is not rejected for
 browsers  Chromium 51.0.2704.79 (Linux),  Firefox 47.0 (Linux) and Firefox 50.1.0 (Linux); thus, it exist significant differences whit respect to Safari, Egde and Chrome. According to this analysis, we can conclude that
-although any browser could be used to run the algorithm, Firefox is
+although any browser could potentially be used to run the algorithm, Firefox is
 the best choice as far as it finds the best models (i.e., the smallest
-MSE) and in a most robust way than Chrome does. 
+MSE) and in a most robust way than Chrome or Chromium do.
 
 
 \section{Conclusions}
@@ -518,7 +518,7 @@ MSE) and in a most robust way than Chrome does.
 
 In this paper, the implementation in JavaScript of the algorithm {\em EvRBF} has been introduced. This implementation, called {\em jsEvRBF}, has been proved to make easy the execution of an evolutionary algorithm in a volunteer computing scenario. The former is due to the capability of web browsers to decode and execute programs written in JavaScript. This way, the browser turns into a multi-platform framework in which any program coded in JavaScript can be easily downloaded and executed without needing special technical knowledge by the user or installing additional software.
 
-The experiments previously described have proved that {\em jsEvRBF} can be effectively used to perform a time-series forecasting task in which real data corresponding to currency exchange has been used. {\em jsEvRBF} has been able to be executed on different browsers and even different operating systems, just making the browsers to access to a given URL. By means of social networks, users were asked to connect to the specified URL and during 15 days, 55 volunteers used their own devices to execute 41853 times the algorithm. The results (measured as the Mean Square Error from expected output to yielded ones) were comparable to those obtained by previous versions of the algorithm as well as the method introduced by Sheta and De Jong\cite{Sheta2001} in their original work related to this time-series. Thus, {\em jsEvRBF} can be taken into account as a valid method to allow the execution in parallel of algorithms over a volunteer computing paradigm, and also as a valid method to perform time-series forecasting. 
+The experiments previously described have proved that {\em jsEvRBF} can be effectively used to perform a time-series forecasting task in which real data corresponding to currency exchange has been used. {\em jsEvRBF} has been able to be executed on different browsers and even different operating systems, just making the browsers to access to a given URL. By means of social networks, users were asked to connect to the specified URL and during 15 days, 55 volunteers used their own devices to execute 41853 times the algorithm. The results (measured as the Mean Square Error from expected output to yielded ones) were comparable to those obtained by previous versions of the algorithm as well as the method introduced by Sheta and De Jong\cite{Sheta2001} in their original work related to this time-series. Thus, {\em jsEvRBF} can be taken into account as a valid method to allow the execution in parallel of algorithms over a volunteer computing paradigm, and also as a valid method to perform time-series forecasting.
 
 A second experiment has been done attempting to detect differences between the different browsers currently available. Existing errors previously reported in our paper for PAAMS 2016 (\cite{DBLP:conf/dcai/RivasPMAG16}) have disappeared in browser Safari, but still remains in Chrome. For this reason, although Chrome is a good candidate to run the algorithm, should be rejected in favor of Firefox. Effectively, Firefox has revealed itself to be the one that gets good accuracy and robustness. Considering that Firefox is currently available for any device, we can conclude that it should be the first option when choosing a web-browser to perform this kind of task.
 
@@ -532,8 +532,8 @@ individuals (i.e., good solutions) found by any of the browser would be distribu
  This work has been supported in part by:
  Ministerio espa\~{n}ol de Econom\'{\i}a y Competitividad under project TIN2014-56494-C4-3-P (UGR-EPHEMECH)
  and
- PRY142/14 (que ha sido financiado íntegramente por la Fundaci\'{o}n P\'{u}blica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'{o}n)\footnote{The description in Spanish is mandatory.}.
- % Quizás Victor quiera meter su contrato de jaén-- Maribel
+ PRY142/14 (que ha sido financiado ï¿½ntegramente por la Fundaci\'{o}n P\'{u}blica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'{o}n)\footnote{The description in Spanish is mandatory.}.
+ % Quizï¿½s Victor quiera meter su contrato de jaï¿½n-- Maribel
 
 %
 % ---- Bibliography ----
@@ -548,8 +548,8 @@ individuals (i.e., good solutions) found by any of the browser would be distribu
 
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{rnfbr.eps}
-\caption{Radial Basis Function Neural Network. Every neuron in the hidden layer uses a Radial Basis Function ($\phi$) as activation function. This function depends on the input ($x$), the point in the input space where the function is centred ($c_i$), and the width or radius established for the neuron ($r_i$). Weights from hidden to output layers (namely $\lambda_{ij}$) can be efficiently calculated provided that there exist enough training data.} 
-\label{fig:rbfnn} 
+\caption{Radial Basis Function Neural Network. Every neuron in the hidden layer uses a Radial Basis Function ($\phi$) as activation function. This function depends on the input ($x$), the point in the input space where the function is centred ($c_i$), and the width or radius established for the neuron ($r_i$). Weights from hidden to output layers (namely $\lambda_{ij}$) can be efficiently calculated provided that there exist enough training data.}
+\label{fig:rbfnn}
 \end{figure}
 
 \newpage
@@ -558,7 +558,7 @@ individuals (i.e., good solutions) found by any of the browser would be distribu
 \begin{figure}[!ht]
 \includegraphics[width=120mm]{gausiana.eps}
 \caption{Gaussian function: $y=e^{\frac{-||X-C||^2}{2r^2}}$; where $X$ is the input pattern, $C$ is the centre of the function and $r$ is tis width or radius.}
-\label{fig:gaussian} 
+\label{fig:gaussian}
 \end{figure}
 
 
@@ -617,7 +617,7 @@ individuals (i.e., good solutions) found by any of the browser would be distribu
 {\em xOverRate} &  0.2&
 {\em mutRate} &   0.8  \\
 {\em mutPower} &  0.5 &
-{\em Executions per page load} & 1 \\
+{\em Executions per page load} & 10 \\
 \hline
 \end{tabular}
 \end{center}
@@ -713,7 +713,7 @@ jsEvRBF'16 & $2 \times 10^{-2} \pm 5 \times 10^{-2}$ & $6 \times10^{-4}$  \\
 \hline
 Chrome & 55.0.2883.87 & Windows \\
 Chrome & 55.0.2883.95 & Mac OS \\
-Chromium\footnote{The open-source project behind Chrome} & 51.0.2704.79 & Linux \\
+Chromium\protect\footnotemark & 51.0.2704.79 & Linux \\
 Edge & 14.14393.0.0 & Windows \\
 Firefox & 47.0 & Linux \\
 Firefox & 50.1.0 & Linux \\
@@ -723,6 +723,7 @@ Safari & 10.0.2 & Mac OS \\
 \end{tabular}
 \end{center}
 \end{table}
+\footnotetext{Chromium is the open-source project behind Chrome}
 
 
 
@@ -731,11 +732,11 @@ Safari & 10.0.2 & Mac OS \\
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Second experiment: MSE and standard deviation yielded by the different browsers used to run the {\em jsEvRBF} algorithm. Values are averaged over the number of valid executions\protect\footnotemark.}
+\caption{Second experiment: MSE and standard deviation yielded by the different browsers used to run the {\em jsEvRBF} algorithm. Values are averaged over the number of executions\protect\footnotemark.}
 \label{tab:results-per-browser-second-experiment}
 \begin{center}
-\begin{tabular}{lcc}
-{\bf Browser}	 & \bf{MSE} 	$\mathbf{\pm}$ {\bf STD.DEV}	 & 	{\bf Valid Executions}	 \\
+\begin{tabular}{p{4.5cm}cc}
+{\bf Browser}	 & \bf{MSE} 	$\mathbf{\pm}$ {\bf STD.DEV}	 & 	{\bf Executions}	 \\
 \hline
 \bf Chromium 51.0.2704.79 (Linux)	 & 	$\mathbf{7.4\times10^{-4} \pm 	1.6 \times 10^{-4}}$	 & 	$\mathbf{5}$	 \\
 Firefox 47.0 (Linux)	 & 	$8.5 \times 10^{-4}	 \pm 	1.4 \times 10^{-4}$	 & 	$10$	 \\
@@ -750,8 +751,8 @@ Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$
 \end{tabular}
 \end{center}
 \end{table}
-\footnotetext{The number of valid executions should have been $10$ for
-  all browsers, but it is different for Chromium and Chrome browsers,
+\footnotetext{The number of executions should have been $10$ for
+  all browsers. It is different for Chromium and Chrome browsers,
   since there seems to be a bug that makes these browsers yield {\em NaN} when training the neural nets in a few executions.}
 
 
@@ -784,7 +785,7 @@ Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$
 
 \setlength{\tabcolsep}{10pt}
 \begin{table}
-\caption{Results of the Holms procedure. Control browser is Firefox 50.1.0 under Mac OS; the null hypothesis is rejected when it does exist significant differences between the browser being considered in every row and the control browser. Column $\rho$ indicates the adjusted $\rho-value$ for every browser with respect to the control browser. Column  $\alpha/i$ represents the alpha level used to accept or reject the null hypothesis. As $\alpha$ has been established to $0.05$, the null hypothesis is rejected when $\rho<\alpha/i$.}
+\caption{Results of the Holms procedure. Control browser is Firefox 50.1.0 under Mac OS; the null hypothesis is rejected when it does exist significant differences between the browser being considered in every row and the control browser. Column $\rho$ indicates the adjusted $\rho-value$ for every browser with respect to the control browser. Column  $\alpha/i$ represents the alpha level used to accept or reject the null hypothesis, being $\alpha=0.05$. The null hypothesis is rejected when $\rho<\alpha/i$.}
 \label{tab:holm-results}
 \begin{center}
 \begin{tabular}{cp{45mm}ccl}
@@ -806,7 +807,3 @@ Safari 10.0.2 (Mac OS)	 & 	$6.0 \times 10^{-2}	\pm 	8.9 \times 10^{-2}$	 & 	$10$
 \end{table}
 
 \end{document}
-
-
-
-
